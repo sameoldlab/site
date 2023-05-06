@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro"
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("note")
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<Layout title={entry.data.title}>
+  <article>
+      <h2>{entry.data.title}</h2>
+      <section class="content">
+        <Content />
+    </section>
+  </article>
+</Layout>
+<style>
+  .posts {
+    /* max-width: 77ch; */
+    padding: 3rem 0;
+  }
+
+  time {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.5;
+  }
+  h2 {
+    font-size: 1rem;
+    /* margin-bottom: 0.5rem; */
+  }
+  .content {
+    max-width: 60ch;
+  }
+</style>

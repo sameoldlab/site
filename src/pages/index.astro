@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../layouts/Layout.astro"
+
+const notes = await getCollection(
+  "note",
+  ({ data }) =>
+    // This filters posts OUT
+    data.draft !== true
+)
+---
+
+<Layout title="Notes">
+
+    <div class="posts">
+      {
+        notes.reverse().map(async (item) => {
+          const { Content } = await item.render()
+          return (
+            <article class="note">
+              <time datetime={item.data.date.toISOString()}>
+                <a href={`note/${item.slug}`}>{item.data.date.toLocaleDateString()}</a>
+              </time>
+              <section class="content">
+                {item.data.title !== '' && <h2>{item.data.title}</h2>}
+                <Content />
+              </section>
+            </article>
+          )
+        })
+      }
+    </div>
+</Layout>
+
+<style>
+
+  .posts {
+    /* max-width: 77ch; */
+    padding: 3rem 0;
+  }
+  article {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  time {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.5;
+  }
+  .note h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .content {
+    width: min(65ch, 100%);
+  }
+</style>
