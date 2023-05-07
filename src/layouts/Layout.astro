@@ -4,6 +4,7 @@ export interface Props {
 }
 
 const { title } = Astro.props
+import '../fonts.css'
 ---
 
 <!DOCTYPE html>
@@ -17,8 +18,8 @@ const { title } = Astro.props
   </head>
   <body>
     <main>
-        <h1>Stream</h1>
-    <slot />
+      <h1>Stream</h1>
+      <slot />
     </main>
   </body>
 </html>
@@ -35,15 +36,21 @@ const { title } = Astro.props
 
   html {
     background-color: #101010;
-    font-family: "Cabinet Grotesk", cursive, serif;
-    color:  rgba(255, 255, 255, 0.95);;
+    font-family: "Neue Montreal", Inter, "San Francisco", serif;
+    color: rgba(255, 255, 255, 0.98);
+  }
+  a {
+    color: aliceblue;
   }
   @media (prefers-color-scheme: light) {
     html {
-        background-color: #ecdbc7;
-        color: rgba(0, 0, 0, 0.95);
+      background-color: #ecdbc7;
+      color: rgba(0, 0, 0, 0.85);
     }
-}
+    a {
+    color:  rgba(0, 0, 0, 0.85);
+  }
+  }
 
   * {
     margin: 0;
@@ -54,24 +61,21 @@ const { title } = Astro.props
   }
 
   code {
-    font-family: "Fira Code", Menlo, Monaco, Lucida Console, Liberation Mono,
-      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+    font-family: "Fira Code", SFMono, Menlo, Monaco, Lucida Console,
+      Liberation Mono, DejaVu Sans Mono, monospace;
     margin: 0 1em;
-    font-size: .9rem;
-}
-pre {
+    font-size: 0.9rem;
+  }
+  pre {
     /* background: #; */
 
-    padding: .3rem;
-    border-radius: .5rem;
-
+    padding: 0.3rem;
+    border-radius: 0.5rem;
   }
   .astro-code {
     background-color: #da62c4;
   }
-  a {
-    color: aliceblue;
-  }
+
   table {
     padding: 1rem 0;
     border-collapse: separate;
@@ -91,7 +95,7 @@ pre {
     border: 1px solid white;
   }
   .content p {
-    margin-bottom: .75em;
+    margin-bottom: 0.75em;
     opacity: 0.9;
   }
   main {
@@ -99,6 +103,4 @@ pre {
     max-width: 80ch;
     margin: auto;
   }
-
- 
 </style>

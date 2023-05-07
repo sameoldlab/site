@@ -1,0 +1,176 @@
+{
+  "main": {
+    "id": "c1f7c50f5a47948d",
+    "type": "split",
+    "children": [
+      {
+        "id": "5ee6f2cb17ee4cae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1f63efae48c3294d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-04-21.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6b11088a2f552e25",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-04-21.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "699cc11e971298c1",
+    "type": "split",
+    "children": [
+      {
+        "id": "2495d7e49ddbe44b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "175f375c09144a4a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a44a0585407d0756",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#ROSE",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f0df743213e10865",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "fa15386be6858b38",
+    "type": "split",
+    "children": [
+      {
+        "id": "a749597412b8dc25",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d3a474f49e5cb6e2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2023-04-21.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "16fe3f5b8ce079a1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2023-04-21.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "71b1940409ea3bf3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "eae8e6cefba5415e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2023-04-21.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "6b11088a2f552e25",
+  "lastOpenFiles": [
+    "2022-08-24.md",
+    "2022-21-07.md",
+    "2023-04-21.md",
+    "_template.md",
+    "node_modules/sad.md",
+    "sad.md",
+    "node_modules",
+    "template/template.md",
+    "2023-02-23.md",
+    "twitter.com/round.md",
+    "twitter.com",
+    "template"
+  ]
+}
