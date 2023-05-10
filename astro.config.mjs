@@ -7,6 +7,9 @@ import remarkWikilink from "remark-wiki-link"
 
 // https://astro.build/config
 export default defineConfig({
+    experimental: {
+        assets: true
+    },
   markdown: {
     shikiConfig: {
       theme: "material-theme-darker",

@@ -12,13 +12,13 @@
   "dependencies": {
     "@astrojs/prefetch": "^0.2.1",
     "@astrojs/rss": "^2.3.2",
-    "astro": "^2.4.2"
+    "astro": "^2.4.4"
   },
   "devDependencies": {
     "astro-rome": "^0.1.12",
     "markdown-it": "^13.0.1",
-    "sanitize-html": "^2.10.0",
     "remark-wiki-link": "^1.0.4",
+    "sanitize-html": "^2.10.0",
     "unist-util-visit": "^4.1.2"
   }
 }
