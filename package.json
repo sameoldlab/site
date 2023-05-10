@@ -17,6 +17,8 @@
   "devDependencies": {
     "astro-rome": "^0.1.12",
     "markdown-it": "^13.0.1",
-    "sanitize-html": "^2.10.0"
+    "sanitize-html": "^2.10.0",
+    "remark-wiki-link": "^1.0.4",
+    "unist-util-visit": "^4.1.2"
   }
 }
