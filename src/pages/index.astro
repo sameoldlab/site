@@ -10,30 +10,30 @@ const notes = await getCollection(
 )
 ---
 
-<Layout title="Notes">
-
-    <div class="posts">
-      {
-        notes.reverse().map(async (item) => {
-          const { Content } = await item.render()
-          return (
-            <article class="note">
-              <time datetime={item.data.date.toISOString()}>
-                <a href={`note/${item.slug}`}>{item.data.date.toLocaleDateString()}</a>
-              </time>
-              <section class="content">
-                {item.data.title !== '' && <h2>{item.data.title}</h2>}
-                <Content />
-              </section>
-            </article>
-          )
-        })
-      }
-    </div>
+<Layout title="Notes" slug="">
+  <div class="posts">
+    {
+      notes.reverse().map(async (item) => {
+        const { Content } = await item.render()
+        return (
+          <article class="note">
+            <time datetime={item.data.date.toISOString()}>
+              <a href={`note/${item.slug}`}>
+                {item.data.date.toLocaleDateString()}
+              </a>
+            </time>
+            <section class="content">
+              {item.data.title !== "" && <h2>{item.data.title}</h2>}
+              <Content />
+            </section>
+          </article>
+        )
+      })
+    }
+  </div>
 </Layout>
 
 <style>
-
   .posts {
     /* max-width: 77ch; */
     padding: 3rem 0;

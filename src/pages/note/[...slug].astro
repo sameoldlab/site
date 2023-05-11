@@ -14,7 +14,7 @@ const { entry } = Astro.props
 const { Content } = await entry.render()
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={entry.data.title} slug={entry.slug}>
   <article>
       <h2>{entry.data.title}</h2>
       <section class="content">
