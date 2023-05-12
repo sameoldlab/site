@@ -31,72 +31,60 @@ import "../fonts.css"
 </html>
 <style is:global>
   :root {
-    --t-dark-highlight: rgba(238, 238, 238, 1);
-    --text-dark: rgba(187, 187, 187, 1) ;
-    --accent: 124, 58, 237;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      #da62c4 30%,
-      white 60%
-    );
-  }
+    --t-highlight: hsl(0, 0%, 93%);
+    --text: hsl(23, 3%, 77%);
+    --t-low: hsl(0, 0%, 53%);
+    --ease: ease-in-out 200ms;
 
-  html {
-    background-color: #101010;
-    font-family: "Cabinet Grotesk", Inter, "San Francisco", serif;
-    color: var(--text-dark)
-  }
-  a {
-    color: var(--t-dark-highlight);
-  }
-  @media (prefers-color-scheme: light) {
-    html {
-      background-color: #ecdbc7;
-      color: rgba(0, 0, 0, 0.85);
-    }
-    a {
-      color: rgba(0, 0, 0, 0.85);
-      underline: none;
-    }
+    color: var(--text);
   }
 
   * {
     margin: 0;
   }
+
+  html {
+    background-color: hsl(0, 0%, 6%);
+    font-family: "Cabinet Grotesk", Inter, "San Francisco", serif;
+    line-height: 150%;
+  }
+  a {
+    color: var(--t-highlight);
+    text-decoration: underline solid var(--t-low) 1px;
+    /* border-bottom: 1px solid var(--t-low); */
+
+  }
+  a:hover {
+    color: var(--t-low);
+    transition: color var(--ease);
+    opacity: 0.7;
+  }
+
   p {
     font-weight: 460;
-    /* margin: 0; */
+  }
+
+  h1,
+  h2 {
+    color: var(--t-highlight);
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
 
   code {
     font-family: "Fira Code", SFMono, Menlo, Monaco, Lucida Console,
       Liberation Mono, DejaVu Sans Mono, monospace;
-    margin: 0 1em;
     font-size: 0.9rem;
   }
   pre {
-    /* background: #; */
-
     padding: 0.3rem;
     border-radius: 0.5rem;
   }
-  .astro-code {
-    background-color: #da62c4;
-  }
-
   table {
     padding: 1rem 0;
     border-collapse: separate;
     border-spacing: 0.25rem;
-  }
-  h1, h2 {
-    color: var(--t-dark-highlight)
-  }
-  h2 {
-    margin: 0;
-    padding: 0;
-    border: 0;
   }
   td,
   th {
@@ -113,8 +101,8 @@ import "../fonts.css"
     width: 100%;
     object-fit: scale-down;
     opacity: 0.7;
-    transition: opacity ease-in-out 500ms;
-    border-radius: .25rem;
+    transition: opacity var(--ease);
+    border-radius: 0.25rem;
   }
   img:hover {
     opacity: 1;
@@ -127,8 +115,8 @@ import "../fonts.css"
   }
   blockquote {
     padding-left: 1rem;
-    opacity: .9;
-    border-left: 1px solid var(--t-dark-highlight);
+    opacity: 0.9;
+    border-left: 1px solid var(--t-low);
   }
   /* header {
     position: sticky;
@@ -139,5 +127,64 @@ import "../fonts.css"
   }
   .bc--path {
     font-weight: 400;
+  }
+  .extravagance {
+    background: #9796f0; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #fbc7d4,
+      #9796f0
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #fbc7d4,
+      #9796f0
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #d9a7c7; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #fffcdc,
+      #9796f0
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #fffcdc,
+      #9796f0
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --t-highlight: hsl(0, 0%, 3%);
+      --text: hsl(30, 11%, 14%);
+    }
+    html {
+      background-color: hsl(32, 56%, 85%);
+    }
+    p {
+      font-weight: 500;
+    }
+    a {
+    }
+    .extravagance {
+      background: #dc2430; /* fallback for old browsers */
+      background: -webkit-linear-gradient(
+        to right,
+        #7b4397,
+        #dc2430
+      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(
+        to right,
+        #7b4397,
+        #dc2430
+      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    img {
+      opacity: 0.95;
+    }
   }
 </style>
