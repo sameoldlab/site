@@ -8,6 +8,7 @@ const notes = await getCollection(
     // This filters posts OUT
     data.draft !== true
 )
+notes.sort((a, b) => a.data.date - b.data.date )
 ---
 
 <Layout title="Notes" slug="">
@@ -18,7 +19,7 @@ const notes = await getCollection(
         return (
           <article class="note">
             <time datetime={item.data.date.toISOString()}>
-              <a href={`note/${item.slug}`}>
+              <a [data-swup-preload] href={`note/${item.slug}`}>
                 {item.data.date.toLocaleDateString()}
               </a>
             </time>

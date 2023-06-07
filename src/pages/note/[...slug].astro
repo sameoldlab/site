@@ -15,17 +15,27 @@ const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title} slug={entry.slug}>
-  <article>
+  <div>
+    <a href="#" onclick="history.back()"> ⮌ Return </a>
+    <article>
       <h2>{entry.data.title}</h2>
       <section class="content">
         <Content />
-    </section>
-  </article>
+      </section>
+    </article>
+  </div>
 </Layout>
+
 <style>
   .posts {
     /* max-width: 77ch; */
     padding: 3rem 0;
+  }
+  div {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
   }
 
   time {
