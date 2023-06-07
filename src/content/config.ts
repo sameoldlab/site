@@ -13,7 +13,6 @@ const note = defineCollection({
     title: z.string().optional().default(''),
     date: z.date(),
     tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-    image: z.string().optional(),
     draft: z.boolean().optional(),
   }),
 })
