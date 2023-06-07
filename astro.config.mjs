@@ -21,6 +21,6 @@ export default defineConfig({
       [remarkWikilink, { hrefTemplate: ((permalink) => `/note/${permalink}`) }],
     ],
   },
-  site: "https://stream.ibro.xyz",
+  site: "https://notes.ibro.xyz",
   integrations: [rome(), prefetch()],
 })

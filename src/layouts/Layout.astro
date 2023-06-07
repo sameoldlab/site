@@ -1,11 +1,11 @@
 ---
+import "../fonts.css"
 export interface Props {
   title: string
   slug: string
 }
-
 const { title, slug = "" } = Astro.props
-import "../fonts.css"
+
 ---
 
 <!DOCTYPE html>
@@ -20,19 +20,20 @@ import "../fonts.css"
   <body>
     <header>
       <h4 class="bc--root">
-        <a href="/">stream.ibro.xyz</a>
+        <a href="/">notes.ibro.xyz</a>
         <span class="bc--path"> {slug === "" ? "" : `/ ${slug}`}</span>
       </h4>
     </header>
-    <main>
+    <main id="swup" class="transition-fade">
       <slot />
     </main>
+    <!-- <script type="module" src="/app.js"></script> -->
   </body>
 </html>
 <style is:global>
   :root {
-    --t-highlight: hsl(0, 0%, 93%);
-    --text: hsl(23, 3%, 77%);
+    --t-highlight: hsl(0, 0%, 95%);
+    --text: hsl(23, 3%, 75%);
     --t-low: hsl(0, 0%, 53%);
     --ease: ease-in-out 200ms;
 
@@ -50,9 +51,8 @@ import "../fonts.css"
   }
   a {
     color: var(--t-highlight);
-    text-decoration: underline solid var(--t-low) 1px;
+    text-decoration: underline dotted var(--t-low) 1px;
     /* border-bottom: 1px solid var(--t-low); */
-
   }
   a:hover {
     color: var(--t-low);
@@ -60,8 +60,8 @@ import "../fonts.css"
     opacity: 0.7;
   }
 
-  p {
-    font-weight: 460;
+  p, ul, li {
+    font-weight: 550;
   }
 
   h1,
@@ -70,6 +70,9 @@ import "../fonts.css"
     margin: 0;
     padding: 0;
     border: 0;
+  }
+  h3 {
+    font-size: 1rem;
   }
 
   code {
@@ -100,12 +103,17 @@ import "../fonts.css"
   img {
     width: 100%;
     object-fit: scale-down;
-    opacity: 0.7;
+    opacity: 0.85;
     transition: opacity var(--ease);
     border-radius: 0.25rem;
   }
   img:hover {
     opacity: 1;
+  }
+  img + em {
+    color: var(--t-low);
+    width: 100%;
+    text-align: center;
   }
   main,
   header {
@@ -154,7 +162,13 @@ import "../fonts.css"
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
+  hr {
+    margin: .25rem 0 1rem;  
+  }
+  ul {
+    padding-left: 1rem;
+    
+  }
   @media (prefers-color-scheme: light) {
     :root {
       --t-highlight: hsl(0, 0%, 3%);
@@ -163,8 +177,8 @@ import "../fonts.css"
     html {
       background-color: hsl(32, 56%, 85%);
     }
-    p {
-      font-weight: 500;
+    p, ul, li {
+      font-weight: 600;
     }
     a {
     }
@@ -186,5 +200,8 @@ import "../fonts.css"
     img {
       opacity: 0.95;
     }
+
+
   }
+
 </style>

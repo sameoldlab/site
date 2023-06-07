@@ -7,5 +7,6 @@
     "node_modules/",
     "/node_modules/*"
   ],
-  "attachmentFolderPath": "assets"
+  "attachmentFolderPath": "assets",
+  "alwaysUpdateLinks": true
 }

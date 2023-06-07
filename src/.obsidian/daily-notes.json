@@ -1,3 +1,4 @@
 {
-  "template": "template/template"
+  "template": "_template",
+  "folder": "content/note"
 }

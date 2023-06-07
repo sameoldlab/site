@@ -1,5 +1,5 @@
 {
-  "name": "stream",
+  "name": "notes",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -15,10 +15,14 @@
     "astro": "^2.4.4"
   },
   "devDependencies": {
+    "@swup/a11y-plugin": "^3.0.0",
+    "@swup/fade-theme": "^1.0.5",
+    "@swup/preload-plugin": "^2.1.1",
     "astro-rome": "^0.1.15",
     "markdown-it": "^13.0.1",
     "remark-wiki-link": "^1.0.4",
     "sanitize-html": "^2.10.0",
+    "swup": "^3.0.6",
     "unist-util-visit": "^4.1.2"
   }
 }
