@@ -10,19 +10,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/prefetch": "^0.2.1",
-    "@astrojs/rss": "^2.4.1",
-    "astro": "^2.4.4"
+    "@astrojs/prefetch": "^0.4.1",
+    "@astrojs/rss": "^3.0.0",
+    "astro": "^3.4.0"
   },
   "devDependencies": {
-    "@swup/a11y-plugin": "^3.0.0",
-    "@swup/fade-theme": "^1.0.5",
-    "@swup/preload-plugin": "^2.1.1",
-    "astro-rome": "^0.1.15",
-    "markdown-it": "^13.0.1",
-    "remark-wiki-link": "^1.0.4",
-    "sanitize-html": "^2.10.0",
-    "swup": "^3.0.6",
-    "unist-util-visit": "^4.1.2"
+    "@astrojs/language-server": "^2.4.1",
+    "@swup/a11y-plugin": "^4.4.2",
+    "@swup/fade-theme": "^2.0.0",
+    "@swup/preload-plugin": "^3.2.7",
+    "astro-rome": "^2.0.9",
+    "markdown-it": "^13.0.2",
+    "remark-wiki-link": "^2.0.1",
+    "sanitize-html": "^2.11.0",
+    "swup": "^4.4.2",
+    "unist-util-visit": "^5.0.0"
   }
 }
