@@ -1,6 +1,9 @@
 ---
 date: 2023-05-06
-tags: ['']
+tags:
+  - super-normal
+  - software
+  - hyperpads
 draft: true
 ---
 Metamask Snaps and Solana xNFTs have a lot of similarity to Urbit. Or rather they're all converging on something that seems to be new paradigm, till you remember the "good ol' days" downloading programs that *just ran* on your computer. Throw in a node, local hosting, and some privacy then someone could start marketing this as web0.5. I say this but also downloading and installing 30-50MB executables before using DeFi is (currently) horrendous UX so... who knows. It does feel like there's something stupid simple between PWAs, IPFS, and/or Docker to make this significantly more usable. more "malleable, yet secure": [@agoric](https://twitter.com/agoric)hardened js, rsms' [@playbit_](https://twitter.com/playbit_)Fedora Silverblue (Immutable file systems + sand-boxed applications)
