@@ -1,30 +1,28 @@
 {
-  "name": "notes",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/prefetch": "^0.4.1",
-    "@astrojs/rss": "^3.0.0",
-    "astro": "^4.4.9",
-    "sharp": "^0.32.6"
-  },
-  "devDependencies": {
-    "@astrojs/language-server": "^2.7.6",
-    "@swup/a11y-plugin": "^4.5.0",
-    "@swup/fade-theme": "^2.0.0",
-    "@swup/preload-plugin": "^3.2.10",
-    "astro-rome": "^2.1.1",
-    "markdown-it": "^13.0.2",
-    "remark-wiki-link": "^2.0.1",
-    "sanitize-html": "^2.12.1",
-    "swup": "^4.6.0",
-    "unist-util-visit": "^5.0.0"
-  }
+	"name": "notes",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"devDependencies": {
+		"@astrojs/rss": "^4.0.5",
+		"@astrojs/sitemap": "^3.1.1",
+		"@vite-pwa/astro": "^0.3.0",
+		"astro": "^4.4.9",
+		"astro-compress": "^2.2.11",
+		"astro-rome": "^2.1.1",
+		"markdown-it": "^14.0.0",
+		"remark-wiki-link": "^2.0.1",
+		"sanitize-html": "^2.12.1",
+		"unist-util-visit": "^5.0.0",
+		"vite-plugin-pwa": "^0.19.2"
+	},
+	"dependencies": {
+		"sharp": "^0.33.2"
+	}
 }
