@@ -4,13 +4,14 @@ import prefetch from "@astrojs/prefetch"
 import { rehypeLinks } from "./.rex-plugins/rehype-links.mjs"
 import { remarkDeruntify } from "./.rex-plugins/remark-derunt.mjs"
 import remarkWikilink from "remark-wiki-link"
+import customTheme from '.shiki/vesper.json';
 
 // https://astro.build/config
 export default defineConfig({
   assets: true,
   markdown: {
     shikiConfig: {
-      theme: "material-theme-darker",
+      theme: customTheme,
       wrap: true,
     },
     rehypePlugins: [rehypeLinks],
