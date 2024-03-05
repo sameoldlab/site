@@ -22,6 +22,9 @@ devDependencies:
   astro-compress:
     specifier: ^2.2.11
     version: 2.2.11
+  astro-rome:
+    specifier: ^2.1.1
+    version: 2.1.1
   astrojs-service-worker:
     specifier: ^2.0.0
     version: 2.0.0(astro@4.4.9)
@@ -2261,7 +2264,7 @@ packages:
     peerDependencies:
       astro: '>=4.0.0'
     dependencies:
-      astro: 4.4.9
+      astro: 4.4.9(typescript@5.3.3)
       workbox-build: 6.6.0
     transitivePeerDependencies:
       - '@types/babel__core'

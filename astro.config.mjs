@@ -30,6 +30,7 @@ export default defineConfig({
 		],
 	},
 	integrations: [
+		rome(),
 		// compress(), /*  munmap_chunk(): invalid pointer */
 		serviceWorker({
 			// https://developer.chrome.com/docs/workbox/modules/workbox-build/
