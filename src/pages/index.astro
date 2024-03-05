@@ -8,56 +8,140 @@ const notes = await getCollection(
     // This filters posts OUT
     data.draft !== true
 )
-notes.sort((a, b) => a.data.date - b.data.date )
----
+notes.sort((a, b) => b.data.date - a.data.date )
 
-<Layout title="Notes" slug="">
+const fileTree = {
+	files: notes.map(v => ({
+		title: v.data.title || v.slug,
+		slug: v.slug
+	}))
+}
+---
+<Layout title="Notes" slug="" {fileTree}>
+	<div>
+		<button id='toggleCollapse' aria-label="Expand All">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
+				<path d="m7 9 5-5 5 5"></path>
+				<path d="m7 15 5 5 5-5"></path>
+			</svg>
+		</button>
+	</div>
   <div class="posts">
     {
-      notes.reverse().map(async (item) => {
+      notes.map(async (item) => {
         const { Content } = await item.render()
         return (
           <article class="note">
-            <time datetime={item.data.date.toISOString()}>
-              <a [data-swup-preload] href={`note/${item.slug}`}>
-                {item.data.date.toLocaleDateString()}
-              </a>
-            </time>
-            <section class="content">
-              {item.data.title !== "" && <h2>{item.data.title}</h2>}
-              <Content />
-            </section>
+						<a class="header" href={`note/${item.slug}`} data-astro-prefetch="viewport">
+							{ 
+								(item.data.title !== "" && <h2>{item.data.title}</h2>) || 
+								<h2>{item.data.date.toLocaleDateString()}</h2>
+							}
+							
+							<time datetime={item.data.date.toISOString()}>
+								<!--Only show date when page is untitled -->
+								{item.data.title !== "" && item.data.date.toLocaleDateString()}
+								</time>
+							</a> 
+
+							<div class="content-text collapsed">
+								<Content />
+							</div>
+
           </article>
         )
       })
     }
   </div>
+	<script>
+		let collapsed = true
+		const toggleCollapse = document.getElementById('toggleCollapse')!
+		toggleCollapse.addEventListener('click', () => {
+			if (!collapsed) {
+				document
+					.querySelectorAll('.content-text')
+					.forEach(el => el.classList.add('collapsed'))
+				toggleCollapse.innerHTML = `
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
+		<path d="m7 15 5 5 5-5"></path>
+		<path d="m7 9 5-5 5 5"></path>
+	</svg>
+`
+			} else {
+				document
+					.querySelectorAll('.content-text')
+					.forEach(el => el.classList.remove('collapsed'))
+				toggleCollapse.innerHTML = `
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
+		<path d="m7 20 5-5 5 5"></path>
+		<path d="m7 4 5 5 5-5"></path>
+	</svg>
+
+`
+			}
+			collapsed = !collapsed
+		})
+		// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
+	</script>
+
 </Layout>
 
 <style>
+		#toggleCollapse {
+		color: var(--t-highlight);
+		background: var(--bg);
+		/* background: transparent; */
+		padding: .15em .5em;
+		border-radius: 4px;
+		border: 0px;
+		outline: 1px solid var(--bg-highlight);
+		cursor: pointer;
+	}
+	#toggleCollapse > svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	#toggleCollapse:hover {
+		background-color: var(--bg-highlight);
+	}
+
   .posts {
-    /* max-width: 77ch; */
-    padding: 3rem 0;
-  }
-  article {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    align-items: flex-start;
-    margin-bottom: 2rem;
+    max-width: 80ch;
+		margin-inline: auto;
+    padding: 1.5em .5em;
   }
 
+  article {
+    display: grid;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+	.header {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap-reverse;
+	}
   time {
     font-size: 1rem;
     font-weight: 400;
     opacity: 0.5;
+		font-variant-numeric: tabular-nums;
+		font-feature-settings: 'tnum', 'lnum';
   }
-  .note h2 {
-    font-size: 1rem;
+  article h2 {
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
+
   }
   .content {
-    width: min(65ch, 100%);
+    /* width: min(65ch, 100%); */
   }
+	.collapsed {
+		display: none;
+		/* height: 0; */
+		opacity: 0;
+		transition: opacity 140ms allow-discrete ease-in-out;
+	}
 </style>
