@@ -1,35 +1,127 @@
 ---
-import "../fonts.css"
-import "../type.css"
-export interface Props {
-  title: string
-  slug: string
+import '../fonts.css'
+import '../type.css'
+type Link = {
+	title: string
+	slug: URL['pathname']
 }
-const { title, slug = "" } = Astro.props
-
+export interface Props {
+	title: string
+	slug: string
+	fileTree: {
+		files: Link[]
+		related?: Link[]
+	}
+}
+const { title, slug = '', fileTree } = Astro.props
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-		<link rel="sitemap" href="/sitemap-index.xml" />
-  </head>
-  <body>
-    <header>
-      <h1 class="bc--root">
-        <a href="/">notes.ibro.xyz</a>
-        <span class="bc--path"> {slug === "" ? "" : `/ ${slug}`}</span>
-      </h1>
-    </header>
-    <main id="swup" class="transition-fade">
-      <slot />
-    </main>
-    <!-- <script type="module" src="/app.js"></script> -->
-  </body>
+<html lang='en'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width' />
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<meta name='generator' content={Astro.generator} />
+		<title>{title}</title>
+		<link rel='sitemap' href='/sitemap-index.xml' />
+	</head>
+	<body>
+		<div id='grid-container'>
+
+		<header>
+			<h1 class='bc--root'>
+				<a href='/'>notes.ibro.xyz</a>
+				<span class='bc--path'> {slug === '' ? '' : `/ ${slug}`}</span>
+			</h1>
+		</header>
+				<aside>
+					<h2>Notes</h2>
+					<div class="files">
+
+					{
+						fileTree.files.map(c => {
+							return <a href={`note/${c.slug}`}>{c.title}</a>
+						})
+					}
+					</div>
+
+				</aside>
+			<main id='swup' class='transition-fade'>
+
+					<slot />
+			</main>
+		</div>
+
+				
+
+		<!-- <script type="module" src="/app.js"></script> -->
+	</body>
 </html>
 
+<style>
+	.bc--path {
+		font-weight: 400;
+	}
+	.bc--root {
+		font-size: inherit;
+	}
+	html, body { 
+		height: 100%; 
+	}
+
+	#grid-container {
+		display: grid;
+		grid-template-rows: min-content auto;
+		grid-template-columns: 21ch auto;
+		height: 100%;
+		overflow: hidden;
+	}
+	header, aside {
+		background-color: var(--bg);
+	}
+	main {overflow-y: auto;}
+	header {
+		grid-column: 1/span 2;
+		font-size: 0.925em;
+		padding: 0.375em calc(1.25em + .5em);
+		border-block-end: 1px solid var(--bg-highlight);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	aside {
+		padding: 0.475em 0.5em;
+		overflow-y: auto;
+		border-inline-end: 1px solid var(--bg-highlight);
+	}
+	.files {
+		display: grid;
+
+	}
+	aside > h2,
+	.files > * {
+		padding: .375em 1.25em;
+	}
+
+	aside > h2 {
+		font-size: 1em;
+		padding: .1em 1.25em;
+	}
+
+	aside a {
+		color: var(--t-low);
+		font-size: 0.9em;
+		text-decoration: none;
+		font-weight: 500;
+		line-height: 1.2em;
+		transition: background-color var(--ease), color var(--ease);
+	}
+	aside a:hover {
+		color: var(--t-highlight);
+		background-color: var(--bg-highlight);
+		border-radius: 4px;
+	}
+
+
+</style>
