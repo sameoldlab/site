@@ -1,13 +1,12 @@
 import { defineConfig } from 'astro/config'
-import rome from 'astro-rome'
 import { rehypeLinks } from './.rex-plugins/rehype-links.mjs'
 import { remarkDeruntify } from './.rex-plugins/remark-derunt.mjs'
 import remarkWikilink from 'remark-wiki-link'
-import customTheme from '.shiki/vesper.json'
-import compress from 'astro-compress'
-import sitemap from '@astrojs/sitemap'
 
-import AstroPwa from '@vite-pwa/astro'
+import customTheme from '.shiki/vesper.json'
+// import compress from 'astro-compress'
+import sitemap from '@astrojs/sitemap'
+import serviceWorker from 'astrojs-service-worker'
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,35 +30,12 @@ export default defineConfig({
 		],
 	},
 	integrations: [
-		rome(),
-		compress(),
-		AstroPwa({
-			mode: 'development',
-      base: '/',
-      scope: '/',
-			manifest: {
-				name: 'Astro PWA',
-				short_name: 'Astro PWA',
-				theme_color: '#ffffff',
-			},
-			workbox: {
-        navigateFallback: '/',
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt}'],
-      },
-      devOptions: {
-        enabled: true,
-        navigateFallbackAllowlist: [/^\//],
-      },
-      experimental: {
-        directoryAndTrailingSlashHandler: true,
-      }
+		// compress(), /*  munmap_chunk(): invalid pointer */
+		serviceWorker({
+			// https://developer.chrome.com/docs/workbox/modules/workbox-build/
+			workbox: {},
 		}),
+
 		sitemap(),
 	],
-	vite: {
-		logLevel: 'info',
-		define: {
-			__DATE__: `'${new Date().toISOString()}'`,
-		},
-	},
 })
