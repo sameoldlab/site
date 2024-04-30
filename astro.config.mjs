@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config'
-import rome from 'astro-rome'
 import { rehypeLinks } from './.rex-plugins/rehype-links.mjs'
 import { remarkDeruntify } from './.rex-plugins/remark-derunt.mjs'
 import remarkWikilink from 'remark-wiki-link'
@@ -31,7 +30,6 @@ export default defineConfig({
 		],
 	},
 	integrations: [
-		rome(),
 		// compress(), /*  munmap_chunk(): invalid pointer */
 		serviceWorker({
 			// https://developer.chrome.com/docs/workbox/modules/workbox-build/
