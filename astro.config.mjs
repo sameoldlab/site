@@ -7,6 +7,7 @@ import customTheme from '.shiki/vesper.json'
 // import compress from 'astro-compress'
 import sitemap from '@astrojs/sitemap'
 import serviceWorker from 'astrojs-service-worker'
+import svelte from '@astrojs/svelte'
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,5 +38,6 @@ export default defineConfig({
 		}),
 
 		sitemap(),
+		svelte(),
 	],
 })
