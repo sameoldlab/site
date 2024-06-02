@@ -1,8 +1,0 @@
----
-title: {{title}}  
-date: {{now}}
-tags: ['rabbithole', 'privacy', 'design']
-draft: true
----
-
-{{content}}
