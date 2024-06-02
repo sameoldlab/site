@@ -8,18 +8,10 @@ const notes = await getCollection(
     // This filters posts OUT
     data.draft !== true
 )
-notes.sort((a, b) => b.data.date - a.data.date )
-
+notes.sort((a, b) => a.data.date - b.data.date )
 ---
+
 <Layout title="Notes" slug="">
-	<div>
-		<button id='toggleCollapse' aria-label="Expand All">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
-				<path d="m7 9 5-5 5 5"></path>
-				<path d="m7 15 5 5 5-5"></path>
-			</svg>
-		</button>
-	</div>
   <div class="posts">
     {
       notes.map(async (item) => {
