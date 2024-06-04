@@ -17,13 +17,14 @@ Want to figure out an answer to this mess:
 - Not sure if all the libraries are psyops...
 - Maybe this is a good year to ignore libraries for a while
 
-### Todo: 
+## Todo: 
+
 - Query builder meets social media aggregator, for whatever value social media still has
 - Local desktop caching app for Omnivore
 - Local-first are.na 
 - TUI version of Visor
 - video riff on Amelia's prompting article ( thing about taking AI prompts from teletype to at least Fish shell )
 - many, many, many shader sketches
-- Find/make scrolling window manager (or plugin) that works with Wayland and Arch
-- update this bloody website
+- [x] ~~Find/make scrolling window manager (or plugin) that works with Wayland and Arch~~ Niri
+- [x] update this bloody website
 - Dark-mode PRs for more websites :P

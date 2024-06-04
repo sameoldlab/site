@@ -1,9 +1,10 @@
 ---
-title: Data Zero
+title: test page
 date: 2024-02-21
-tags: ['data', 'protocol fit']
+tags: ['meta']
 draft: true
 ---
+
 I just found out today,
 ```html 
 <button onClick={handleClick}>Expand</button>
@@ -29,7 +30,6 @@ But at it's worst, we get monopolies; one entity defines the standard and its us
 
 No pain would be nicer though. Maybe this is where protocols are important? 🤷 They can lower the switching cost for products built on top, allowing us to migrate between open standards as they evolve and grow. Platforms might also realize its in their best interest to work together, in a similar process to [Market-Protocol Fit](https://otherinter.net/research/market-protocol-fit/)
 
-
-![Image](https://pbs.twimg.com/media/FYLquFGXoAEdBij?format=png&name=small)
-
+[[media-test-2]]
 Most things do eventually become irrelevant or break down so the goal should rarely be to make the perfect standard or protocol. The interesting part in my opinion is the dance. From the spread and growth of new standards, dominance, ossification, and eventually a better model for replacement.
+

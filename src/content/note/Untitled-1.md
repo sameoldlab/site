@@ -1,6 +1,7 @@
 ---
+title: untitled
 date: 2024-01-29
-draft: false
+draft: true
 tags:
   - software
   - gpui
