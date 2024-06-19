@@ -1,10 +1,4 @@
   :root {
-    --t-highlight: hsl(0, 0%, 98%);
-    --text: hsl(0, 0%, 86%);
-    --t-low: hsl(0, 0%, 58%);
-
-    --bg-low: hsl(0, 0%, 8%);
-    --bg: hsl(0, 0%, 12%);
 		--bg-highlight: hsl(0, 0%, 18%);
 
     --ease: ease-in-out 80ms;
@@ -22,7 +16,6 @@
 
   html {
     background-color: var(--bg);
-    font-family: "Cabinet Grotesk", Inter, "San Francisco", serif;
     line-height: 150%;
   }
 
@@ -153,13 +146,18 @@
   }
   @media (prefers-color-scheme: light) {
     :root {
-			--text: hsl(62, 33%, 81%);
-			--t-low: hsl(0, 0%, 36%);
 
-			--bg-highlight: #d8bc9c;
-			--bg: #f2d9bc;
-			--bg-low: #faf1e7;
-			--t-highlight: #2b1a06;
+			--text: hsl(62, 33%, 81%);
+			--t-low: #5c5c5c;
+
+
+			--t-highlight: 	oklch(43% 0.12 73);
+			--text: 				oklch(13% 0.02 73);
+			--t-low: 				oklch(53% 0.12 73);
+
+			--bg-highlight: oklch(88% 0.12 70);
+			--bg: 					oklch(92% 0.07 70);
+			--bg-low: 			oklch(96% 0.03 70);
 			/* --bg-low: #fdf7f5; */
     }
     html {
