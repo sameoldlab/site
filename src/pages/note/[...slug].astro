@@ -3,11 +3,11 @@ import { getCollection } from 'astro:content'
 import Layout from '../../_includes/Main.astro'
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("note")
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }))
+	const blogEntries = await getCollection('note')
+	return blogEntries.map(entry => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}))
 }
 
 const { entry } = Astro.props
@@ -15,15 +15,15 @@ const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title} slug={entry.slug}>
-  <div>
-    <a href="#" onclick="history.back()"> ⮌ Return </a>
-    <article>
-      <h2>{entry.data.title}</h2>
-      <section class="content">
-        <Content />
-      </section>
-    </article>
-  </div>
+	<div>
+		<a href='#' onclick='history.back()'> ⮌ Return</a>
+		<article>
+			<h2>{entry.data.title}</h2>
+			<section class='content'>
+				<Content />
+			</section>
+		</article>
+	</div>
 </Layout>
 
 <style>
@@ -31,12 +31,12 @@ const { Content } = await entry.render()
 		display: flex;
 		gap: 3em;
 		/* border-block-end: 1px solid var(--t-low); */
-		padding: .25em;
+		padding: 0.25em;
 		position: sticky;
 		/* background: red; */
-		top:0;
-		opacity: .98;
-		mask-image: linear-gradient( #000 60%, transparent);
+		top: 0;
+		opacity: 0.98;
+		mask-image: linear-gradient(#000 60%, transparent);
 
 		/* background: #00000077; */
 		backdrop-filter: blur(8px);
@@ -44,27 +44,27 @@ const { Content } = await entry.render()
 	}
 	article {
 		padding-block-start: 1em;
-		padding-inline: .5em;
+		padding-inline: 0.5em;
 		margin-inline: auto;
 		max-width: 60ch;
 	}
-  .posts {
-    padding: 3rem 0;
-  }
+	.posts {
+		padding: 3rem 0;
+	}
 
-  time {
-    font-size: 1rem;
-    font-weight: 400;
-    opacity: 0.5;
-  }
-  h2 {
-    font-size: 1rem;
+	time {
+		font-size: 1rem;
+		font-weight: 400;
+		opacity: 0.5;
+	}
+	h2 {
+		font-size: 1rem;
 		/* font-weight: 400; */
 		text-align: center;
 		flex-grow: 1;
-    /* margin-bottom: 0.5rem; */
-  }
-  .content {
-    max-width: 60ch;
-  }
+		/* margin-bottom: 0.5rem; */
+	}
+	.content {
+		max-width: 60ch;
+	}
 </style>
