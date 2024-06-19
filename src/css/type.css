@@ -1,4 +1,10 @@
   :root {
+		--t-highlight: hsl(0, 0%, 98%);
+		--text: hsl(0, 0%, 96%);
+		--t-low: hsl(0, 0%, 58%);
+	
+		--bg-low: hsl(0, 0%, 8%);
+		--bg: hsl(0, 0%, 12%);
 		--bg-highlight: hsl(0, 0%, 18%);
 
     --ease: ease-in-out 80ms;
@@ -16,6 +22,8 @@
 
   html {
     background-color: var(--bg);
+    font-family: 'Literata', Newsreader, 'Source Serif', 'FiraSerif', Cambria,
+		'PT Serif', Cochin, Georgia, Times, 'Times New Roman', serif;
     line-height: 150%;
   }
 

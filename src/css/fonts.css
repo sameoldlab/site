@@ -1,8 +1,16 @@
-/* Register your custom font family and tell the browser where to find it. */
 @font-face {
-  font-family: "Cabinet Grotesk";
-  src: url("/fonts/CabinetGrotesk-Variable.woff2") format("woff2"), url("/fonts/CabinetGrotesk-Variable.woff") format("woff");
-  font-weight: 200 800;
-  font-style: regular;
-  font-display: swap;
+	font-family: 'Literata';
+	src: url('/fonts/Literata-VariableFont_opsz,wght.woff2') format('woff2');
+	font-weight: 200 800;
+	font-style: regular;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Literata';
+	src: url('/fonts/Literata-Italic-VariableFont_opsz,wght.woff2')
+		format('woff2');
+	font-weight: 200 800;
+	font-style: italic;
+	font-display: swap;
 }
