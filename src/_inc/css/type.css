@@ -31,31 +31,7 @@
 	background: var(--t-highlight);
 }
 
-header#sitenav {
-	/* fixed px-4 md:px-0 py-2 left-0 right-0 bottom-0 text-lg z-10 transition-all duration-1000 ease-in-out */
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 12;
-	background-color: inherit;
-	display: flex;
-	backdrop-filter: blur(8px);
-	/* opacity: .58; */
-	mask-image: linear-gradient(transparent, #000 50%);
-	align-items: center;
-	justify-content: space-between;
-	padding: 0.75em 1.75em 0.25em;
 
-	& > a {
-		font-style: italic;
-	}
-
-	nav {
-		display: flex;
-		gap: 2em;
-	}
-}
 
 main {
 	padding-block-end: 5em;
