@@ -1,17 +1,16 @@
 ---
 import { getCollection } from "astro:content"
-import Layout from "../_includes/base.astro"
+import Layout from "../_inc/layouts/base.astro"
 
-const notes = await getCollection(
+const notes = (await getCollection(
   "note",
   ({ data }) =>
     // This filters posts OUT
     data.draft !== true
-)
-notes.sort((a, b) => a.data.date - b.data.date )
+)).toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf() )
 ---
 
-<Layout title="Notes" slug="">
+<Layout title="Notes">
   <div class="posts">
     {
       notes.map(async (item) => {
