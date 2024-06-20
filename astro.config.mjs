@@ -12,7 +12,10 @@ import svelte from '@astrojs/svelte'
 // https://astro.build/config
 export default defineConfig({
 	assets: true,
-	prefetch: true,
+	prefetch: {
+    defaultStrategy: 'hover',
+		prefetchAll: true
+  },
 	site: 'https://notes.ibro.xyz',
 	markdown: {
 		shikiConfig: {
