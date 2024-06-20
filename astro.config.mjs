@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import { rehypeLinks } from './.rex-plugins/rehype-links.mjs'
 import { remarkDeruntify } from './.rex-plugins/remark-derunt.mjs'
+import { remarkModifiedTime} from './.rex-plugins/remark-modified-time.mjs'
 import remarkWikilink from 'remark-wiki-link'
 
 import customTheme from '.shiki/vesper.json'
@@ -31,6 +32,7 @@ export default defineConfig({
 					hrefTemplate: permalink => `/note/${permalink}`,
 				},
 			],
+			remarkModifiedTime
 		],
 	},
 	integrations: [

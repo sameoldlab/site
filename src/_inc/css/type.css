@@ -8,20 +8,27 @@ article {
 
 	header {
 		padding-block: 0.75em;
+		text-align: center;
 	}
 }
 p:has(time) {
 	font-size: 1em;
 	line-height: 1rem;
+	padding-block-start: 0.75rem;
 	font-weight: 300;
-	padding-block-end: 0.75rem;
+	color: var(--t-low);
 }
 
 .tags {
-	opacity: 0.7;
 	font-style: italic;
+	justify-content: center;
 	display: flex;
 	gap: 0.5rem;
+	padding-block: 0.25rem 0;
+	
+	a {
+		color: var(--t-low);
+	}
 }
 
 .content {
@@ -29,8 +36,8 @@ p:has(time) {
 	font-weight: 380;
 }
 
-h3:first-child,
-h2:first-child {
+content h3:first-child,
+content h2:first-child {
 	padding-block-start: 0.5em;
 }
 

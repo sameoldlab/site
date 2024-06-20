@@ -8,7 +8,9 @@ export interface Props {
 }
 
 const { entry } = Astro.props
-const { Content } = await entry.render()
+const { Content, remarkPluginFrontmatter } = await entry.render()
+
+const modified = new Date(remarkPluginFrontmatter.modified)
 ---
 
 <Layout title={entry.data.title}>
@@ -18,8 +20,7 @@ const { Content } = await entry.render()
 			<header>
 				<h1> {entry.data.title} </h1>
 				<p class="date"> <time>
-					{ new Date(entry.data.date).toLocaleDateString() }
-				</time></p>
+					{ new Date(entry.data.date).toLocaleDateString()}–{modified.toLocaleDateString()}</time></p>
 				<div class="tags">
 					{
 						entry.data.tags.map((tag) => {

@@ -1,4 +1,4 @@
-@import url('./fonts.css'); 
+@import url('./fonts.css');
 
 :root {
 	color-scheme: dark light;
@@ -13,8 +13,8 @@
 	--bg-highlight: hsl(0, 0%, 18%);
 
 	--ease: ease-in-out 80ms;
-	--width: 60ch;
-	
+	--width: 65ch;
+
 	color: var(--text);
 	background-color: var(--bg-low);
 	line-height: 150%;
@@ -22,10 +22,11 @@
 * {
 	margin: 0;
 	box-sizing: border-box;
-}
-*::selection {
-	color: var(--bg);
-	background: var(--t-highlight);
+
+	&::selection {
+		color: var(--bg);
+		background: var(--t-highlight);
+	}
 }
 
 body > main {
@@ -34,7 +35,8 @@ body > main {
 	padding-block-end: 5em;
 }
 
-img, video {
+img,
+video {
 	max-width: 100%;
 	height: auto;
 }
