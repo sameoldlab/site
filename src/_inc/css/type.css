@@ -1,89 +1,60 @@
-@import url('./fonts.css');
+@import url('./globals.css');
 
-:root {
-	color-scheme: dark light;
-	font-family: 'Literata', Newsreader, 'Source Serif', 'FiraSerif', Cambria,
-		'PT Serif', Cochin, Georgia, Times, 'Times New Roman', serif;
-	--t-highlight: hsl(0, 0%, 98%);
-	--text: hsl(0, 0%, 96%);
-	--t-low: hsl(0, 0%, 58%);
+article {
+	padding-block-start: 3em;
+	padding-inline: 0.5em;
+	margin-inline: auto;
+	max-width: var(--width);
 
-	--bg-low: hsl(0, 0%, 8%);
-	--bg: hsl(0, 0%, 12%);
-	--bg-highlight: hsl(0, 0%, 18%);
-
-	--ease: ease-in-out 80ms;
-
-	color: var(--text);
-	background-color: var(--bg-low);
-	line-height: 150%;
+	header {
+		padding-block: 0.75em;
+	}
 }
-
-/* Finding Maxima in Protocol Constraints */
-
-* {
-	margin: 0;
-	box-sizing: border-box;
-}
-
-*::selection {
-	color: var(--bg);
-	background: var(--t-highlight);
-}
-
-
-
-main {
-	padding-block-end: 5em;
-}
-
-h1,
-h2,
-h3,
-h4 {
+p:has(time) {
+	font-size: 1em;
+	line-height: 1rem;
 	font-weight: 300;
+	padding-block-end: 0.75rem;
+}
+
+.tags {
+	opacity: 0.7;
 	font-style: italic;
-	padding-block-start: 3.5rem;
-	padding-block-end: 0.5rem;
-	color: var(--t-highlight);
+	display: flex;
+	gap: 0.5rem;
 }
 
-h1,
-h2 {
-	margin: 0;
-	padding: 0;
-	border: 0;
+.content {
+	max-width: 75ch;
+	font-weight: 380;
 }
 
-h1 {
-	font-size: 2.25em;
-	line-height: 2.5rem;
-	font-variation-settings: 'opsz' 64;
-}
-
-h2 {
-	font-weight: 500;
-}
-h3 {
-	font-size: 1rem;
+h3:first-child,
+h2:first-child {
+	padding-block-start: 0.5em;
 }
 
 p {
-	padding-block: 0.5em;
+	text-wrap: pretty;
+}
+
+ul,
+ol {
+	list-style: square;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+ul,
+ol,
+p {
+	padding-block-start: 0.5rem;
 	line-height: 1.65em;
 }
 
-a {
-	color: var(--t-highlight);
-	text-decoration: none;
+.content a,
+a.link {
 	border-bottom: 1px dotted var(--t-low);
-
-	&:hover > h2,
-	&:hover {
-		color: var(--t-low);
-		transition: color var(--ease);
-		border-bottom: 1px solid var(--t-low);
-	}
 }
 
 code {
@@ -108,25 +79,29 @@ img {
 	opacity: 0.85;
 	transition: opacity var(--ease);
 	border-radius: 0.25rem;
+	padding-block: 1.5rem;
 
 	&:hover {
 		opacity: 1;
 	}
 
 	& + em {
+		display: block;
 		color: var(--t-low);
 		width: 100%;
 		text-align: center;
+		margin-block-start: -1.5rem;
+		padding-block-end: 1rem;
 	}
 }
 
 blockquote {
-	padding-left: 1rem;
-	opacity: 0.9;
+	padding-left: 0.75rem;
+	font-size: 0.9rem;
 	border-left: 1px solid var(--t-low);
 	color: var(--t-low);
-	padding-block: .75rem;
-	margin-inline: .5rem;
+	padding-block: 0.25rem;
+	margin-inline: 0.5rem;
 	p {
 		padding: 0;
 	}
@@ -134,48 +109,6 @@ blockquote {
 
 hr {
 	margin: 0.25rem 0 1rem;
-}
-
-ul {
-	padding-left: 1rem;
-}
-
-#home {
-	padding: 4em;
-}
-
-article {
-	padding-block-start: 3em;
-	padding-inline: 0.5em;
-	margin-inline: auto;
-	max-width: 60ch;
-
-	header {
-		padding-block: 0.75em;
-	}
-
-	p:has(time) {
-		font-size: 1em;
-		line-height: 1rem;
-		font-weight: 300;
-		padding-block-end: 0.75rem;
-	}
-
-	.tags {
-		opacity: 0.7;
-		font-style: italic;
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.content {
-		max-width: 75ch;
-		font-weight: 380;
-	}
-
-	p {
-		text-wrap: pretty;
-	}
 }
 
 .extravagance {
@@ -196,20 +129,6 @@ article {
 }
 
 @media (prefers-color-scheme: light) {
-	:root {
-		--text: hsl(62, 33%, 81%);
-		--t-low: #5c5c5c;
-
-		--t-highlight: oklch(43% 0.12 73);
-		--text: oklch(13% 0.02 73);
-		--t-low: oklch(53% 0.12 73);
-
-		--bg-highlight: oklch(88% 0.12 70);
-		--bg: oklch(92% 0.07 70);
-		--bg-low: oklch(96% 0.03 70);
-		/* --bg-low: #fdf7f5; */
-	}
-
 	.extravagance {
 		background: #dc2430;
 		/* fallback for old browsers */

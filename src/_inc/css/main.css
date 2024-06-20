@@ -1,70 +1,47 @@
-@import url('./type.css');
+@import url('./globals.css');
 
-:root {
-	color-scheme: dark light;
-	--t-highlight: hsl(0, 0%, 98%);
-	--text: hsl(0, 0%, 96%);
-	--t-low: hsl(0, 0%, 58%);
-
-	--bg-low: hsl(0, 0%, 8%);
-	--bg: hsl(0, 0%, 12%);
-	--bg-highlight: hsl(0, 0%, 18%);
-
-	--ease: ease-in-out 80ms;
-
-	color: var(--text);
-	background-color: var(--bg-low);
-	line-height: 150%;
+h1,
+h2,
+h3,
+h4 {
+	font-weight: 300;
+	font-style: italic;
+	padding-block-start: 2em;
+	padding-block-end: 0.5em;
+	color: var(--t-highlight);
 }
 
-/* Finding Maxima in Protocol Constraints */
-
-* {
+h1,
+h2 {
 	margin: 0;
-	box-sizing: border-box;
+	padding: 0;
+	border: 0;
 }
 
-/* header {
-	position: sticky;
-	top: 0;
-} */
-#home {
-	padding: 4em;
-
+h1 {
+	font-size: 2.25em;
+	line-height: 2.5rem;
+	font-variation-settings: 'opsz' 64;
 }
 
-@media (prefers-color-scheme: light) {
-	:root {
-		--text: hsl(62, 33%, 81%);
-		--t-low: #5c5c5c;
 
-		--t-highlight: oklch(43% 0.12 73);
-		--text: oklch(13% 0.02 73);
-		--t-low: oklch(53% 0.12 73);
+h2 {
+	font-weight: 500;
+}
+h3 {
+	/* font-size: 1.5rem; */
+	font-weight: 400;
+}
 
-		--bg-highlight: oklch(88% 0.12 70);
-		--bg: oklch(92% 0.07 70);
-		--bg-low: oklch(96% 0.03 70);
-		/* --bg-low: #fdf7f5; */
-	}
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+}
 
-
-	.extravagance {
-		background: #dc2430;
-		/* fallback for old browsers */
-		background: -webkit-linear-gradient(to right,
-				#7b4397,
-				#dc2430);
-		/* Chrome 10-25, Safari 5.1-6 */
-		background: linear-gradient(to right,
-				#7b4397,
-				#dc2430);
-		/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
-
-	img {
-		opacity: 0.95;
-	}
+button.text {
+	background-color: inherit;
+	color: inherit;
+	border: none;
+	font-family: inherit;
 }

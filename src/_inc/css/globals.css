@@ -1,0 +1,69 @@
+@import url('./fonts.css'); 
+
+:root {
+	color-scheme: dark light;
+	font-family: 'Literata', Newsreader, 'Source Serif', 'FiraSerif', Cambria,
+		'PT Serif', Cochin, Georgia, Times, 'Times New Roman', serif;
+	--t-highlight: hsl(0, 0%, 98%);
+	--text: hsl(0, 0%, 88%);
+	--t-low: hsl(0, 0%, 58%);
+
+	--bg-low: hsl(0, 0%, 8%);
+	--bg: hsl(0, 0%, 12%);
+	--bg-highlight: hsl(0, 0%, 18%);
+
+	--ease: ease-in-out 80ms;
+	--width: 60ch;
+	
+	color: var(--text);
+	background-color: var(--bg-low);
+	line-height: 150%;
+}
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+*::selection {
+	color: var(--bg);
+	background: var(--t-highlight);
+}
+
+body > main {
+	padding: 1rem;
+	width: 100%;
+	padding-block-end: 5em;
+}
+
+img, video {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	color: var(--t-highlight);
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	transition: color var(--ease);
+
+	&:hover > h2,
+	&:hover {
+		color: var(--t-low);
+		border-bottom: 1px solid var(--t-low);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--text: hsl(62, 33%, 81%);
+		--t-low: #5c5c5c;
+
+		--t-highlight: oklch(43% 0.12 73);
+		--text: oklch(13% 0.02 73);
+		--t-low: oklch(53% 0.12 73);
+
+		--bg-highlight: oklch(88% 0.12 70);
+		--bg: oklch(92% 0.07 70);
+		--bg-low: oklch(96% 0.03 70);
+		/* --bg-low: #fdf7f5; */
+	}
+}
