@@ -1,0 +1,70 @@
+@import url('./type.css');
+
+:root {
+	color-scheme: dark light;
+	--t-highlight: hsl(0, 0%, 98%);
+	--text: hsl(0, 0%, 96%);
+	--t-low: hsl(0, 0%, 58%);
+
+	--bg-low: hsl(0, 0%, 8%);
+	--bg: hsl(0, 0%, 12%);
+	--bg-highlight: hsl(0, 0%, 18%);
+
+	--ease: ease-in-out 80ms;
+
+	color: var(--text);
+	background-color: var(--bg-low);
+	line-height: 150%;
+}
+
+/* Finding Maxima in Protocol Constraints */
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/* header {
+	position: sticky;
+	top: 0;
+} */
+#home {
+	padding: 4em;
+
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--text: hsl(62, 33%, 81%);
+		--t-low: #5c5c5c;
+
+		--t-highlight: oklch(43% 0.12 73);
+		--text: oklch(13% 0.02 73);
+		--t-low: oklch(53% 0.12 73);
+
+		--bg-highlight: oklch(88% 0.12 70);
+		--bg: oklch(92% 0.07 70);
+		--bg-low: oklch(96% 0.03 70);
+		/* --bg-low: #fdf7f5; */
+	}
+
+
+	.extravagance {
+		background: #dc2430;
+		/* fallback for old browsers */
+		background: -webkit-linear-gradient(to right,
+				#7b4397,
+				#dc2430);
+		/* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right,
+				#7b4397,
+				#dc2430);
+		/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	img {
+		opacity: 0.95;
+	}
+}

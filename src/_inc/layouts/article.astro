@@ -1,0 +1,63 @@
+---
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import Layout from '../layouts/base.astro'
+import type { MarkdownHeading } from 'astro';
+import '../css/type.css'
+
+export interface Props {
+	entry: {
+		id: "Untitled-1.md";
+    slug: "untitled-1";
+    body: string;
+    collection: "note";
+    data: {
+        title: string;
+        date: Date;
+        tags: string[];
+        draft?: boolean | undefined;
+    }
+    render(): Promise<{
+        Content: AstroComponentFactory
+        headings: MarkdownHeading[]
+        // remarkPluginFrontmatter: Record
+    }>
+	}
+}
+//   title: string
+//   slug: string
+// }
+// const { title, slug = "" } = Astro.props
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<Layout title={entry.data.title} slug={entry.slug}>
+	<div>
+		<!-- <a href='#' onclick='history.back()'> ⮌ Return</a> -->
+		<article>
+			<header>
+				<h1> {entry.data.title} </h1>
+				<p class="date"> <time>
+					{ new Date(entry.data.date).toLocaleDateString() }
+				</time></p>
+				<div class="tags">
+					{
+						entry.data.tags.map((tag) => {
+							return (
+								<a href={'/tag/'+tag}>{tag}</span></a>
+							)
+						})
+					}
+				</div>
+			</header>
+			<section class='content'>
+				<Content/>
+			</section>
+			{<aside id="backlinks">
+
+			</aside>}
+		</article>
+	</div>
+</Layout>
+
