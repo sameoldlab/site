@@ -18,9 +18,7 @@
 		"markdown-it": "^14.0.0",
 		"remark-wiki-link": "^2.0.1",
 		"sanitize-html": "^2.12.1",
-		"unist-util-visit": "^5.0.0"
-	},
-	"dependencies": {
+		"unist-util-visit": "^5.0.0",
 		"@astrojs/svelte": "^5.4.0",
 		"sharp": "^0.33.2",
 		"svelte": "^4.2.17",

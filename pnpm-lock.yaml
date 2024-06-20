@@ -7,19 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@astrojs/svelte':
-        specifier: ^5.4.0
-        version: 5.4.0(astro@4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5))(svelte@4.2.17)(typescript@5.4.5)(vite@5.1.4(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1))
-      sharp:
-        specifier: ^0.33.2
-        version: 0.33.2
-      svelte:
-        specifier: ^4.2.17
-        version: 4.2.17
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
     devDependencies:
       '@astrojs/rss':
         specifier: ^4.0.5
@@ -27,6 +14,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.1.1
         version: 3.1.1
+      '@astrojs/svelte':
+        specifier: ^5.4.0
+        version: 5.4.0(astro@4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5))(svelte@4.2.17)(typescript@5.4.5)(vite@5.1.4(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1))
       astro:
         specifier: ^4.4.9
         version: 4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5)
@@ -45,6 +35,15 @@ importers:
       sanitize-html:
         specifier: ^2.12.1
         version: 2.12.1
+      sharp:
+        specifier: ^0.33.2
+        version: 0.33.2
+      svelte:
+        specifier: ^4.2.17
+        version: 4.2.17
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
