@@ -1,13 +1,25 @@
 ---
-import Layout from "../_includes/base.astro"
+import Layout from '../_inc/layouts/base.astro'
 ---
 
-<Layout title="Notes" slug="404" >
-  <h1>
-    404
-  </h1>
-  <br>
-  <p>
-    The page you are looking for does not exist. Try going back returning to <a href="/">the stream</a> or check out <a href="https://ibro.xyz">ibro.xyz</a>&nbsp;instead? 
-  </p>
+<Layout title='ibro.xyz'>
+	<div>
+		<h1>Missing Page</h1>
+		<p>
+			The page you are looking for was found by a rouge email. Consider circling
+			back to the <a href='/'>the start</a> or check out another page instead:
+			</p>
+		<!-- list of 5 most recent posts -->
+	</div>
 </Layout>
+<style>
+	div {
+		padding-block-start: 8rem;
+		width: min(50ch, 90%);
+		margin: auto;
+	}
+	h1 {
+		padding-block-end: 1em;
+	}
+
+</style>
