@@ -4,13 +4,21 @@
 	color-scheme: dark light;
 	font-family: 'Literata', Newsreader, 'Source Serif', 'FiraSerif', Cambria,
 		'PT Serif', Cochin, Georgia, Times, 'Times New Roman', serif;
-	--t-highlight: hsl(0, 0%, 98%);
-	--text: hsl(0, 0%, 88%);
-	--t-low: hsl(0, 0%, 58%);
+	--c: 0;
+	--h: 230;
+	--l: 0;
+	--ld: 1;
+	/* --text: oklch(from var(--bg-low)86% c h); */
+	/* --text: oklch(calc(var(--l) + 86%) var(--c) var(--h)); */
+	/* --t-high: oklch(from var(--bg-low)98% c h); */
+	/* --t-low: oklch(from var(--bg-low) 65% c h); */
 
-	--bg-low: hsl(0, 0%, 8%);
-	--bg: hsl(0, 0%, 12%);
-	--bg-highlight: hsl(0, 0%, 18%);
+	--text: 		oklch(calc(var(--l) + calc(0.86 * var(--ld))) var(--c) var(--h));
+	--t-high:		oklch(calc(var(--l) + calc(0.98 * var(--ld))) var(--c) var(--h));
+	--t-low:		oklch(calc(var(--l) + calc(0.64 * var(--ld))) var(--c) var(--h));
+	--bg-low:		oklch(calc(var(--l) + calc(0.18 * var(--ld))) var(--c) var(--h));
+	--bg:				oklch(calc(var(--l) + calc(0.16 * var(--ld))) var(--c) var(--h));
+	--bg-high:	oklch(calc(var(--l) + calc(0.32 * var(--ld))) var(--c) var(--h));
 
 	--ease: ease-in-out 80ms;
 	--width: 65ch;
@@ -19,13 +27,14 @@
 	background-color: var(--bg-low);
 	line-height: 150%;
 }
+
 * {
 	margin: 0;
 	box-sizing: border-box;
 
 	&::selection {
-		color: var(--bg);
-		background: var(--t-highlight);
+		color: var(--t-high);
+		background: var(--bg-high);
 	}
 }
 
@@ -42,7 +51,7 @@ video {
 }
 
 a {
-	color: var(--t-highlight);
+	color: var(--t-high);
 	text-decoration: none;
 	border-bottom: 1px solid transparent;
 	transition: color var(--ease);
@@ -53,19 +62,22 @@ a {
 		border-bottom: 1px solid var(--t-low);
 	}
 }
-
 @media (prefers-color-scheme: light) {
 	:root {
-		--text: hsl(62, 33%, 81%);
-		--t-low: #5c5c5c;
-
-		--t-highlight: oklch(43% 0.12 73);
-		--text: oklch(13% 0.02 73);
-		--t-low: oklch(53% 0.12 73);
-
-		--bg-highlight: oklch(88% 0.12 70);
-		--bg: oklch(92% 0.07 70);
-		--bg-low: oklch(96% 0.03 70);
-		/* --bg-low: #fdf7f5; */
+		--c: 0.067;
+		--h: 86;
+		--l: 0.95;
+		--ld: -1;
+	}
+}
+@media print {
+	:root {
+		--c: 0;
+		--h: 0;
+		--l: 1;
+		--ld: -1;
+	}
+	header#nav {
+		display: none;
 	}
 }

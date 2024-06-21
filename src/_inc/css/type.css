@@ -45,19 +45,22 @@ p {
 	text-wrap: pretty;
 }
 
-ul,
-ol {
-	list-style: square;
+ol, ul {
 	margin: 0;
 	padding-inline-start: 1rem;
-}
 
-ul,
-ol,
-p {
-	padding-block-start: 0.5rem;
-	line-height: 1.65em;
+	& ::marker {
+		color: var(--t-low);
+	}
 }
+	
+	ul,
+	ol,
+	p {
+		padding-block-start: 0.5rem;
+		line-height: 1.5em;
+		}
+	ul{list-style: circle;}
 
 .content a,
 a.link {
@@ -73,11 +76,13 @@ code {
 .astro-code {
 	line-height: 1.2rem;
 	/* padding: .25em; */
-	border: hsl(0, 0%, 16%) solid 1.5px;
-	/* background-color: hsl(0, 0%, 16%) !important; */
+	border: var(--bg-highlight) solid 1.5px;
+	background-color: var(--bg) !important;
 	margin-block: 1rem;
 	min-width: 0;
 	overflow-wrap: break-word;
+	padding: .75rem;
+	border-radius: .25rem;
 }
 
 img {
@@ -116,6 +121,11 @@ blockquote {
 
 hr {
 	margin: 0.25rem 0 1rem;
+	/* border-width: 0; */
+	color: var(--t-low);
+	opacity: .4;
+	/* border-color: red; */
+	/* outline: red solid 1px; */
 }
 
 .extravagance {
