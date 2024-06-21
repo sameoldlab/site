@@ -1,0 +1,15 @@
+{
+	"title": "nft-folder",
+	"description": "cli for syncing an nft collection from address to a local folder",
+	"links": [
+		{"github": "https://github.com/sameoldlab/nft-folder-linux"}
+	],
+	"media": [
+		{
+			"link": "",
+			"type": "image",
+			"alt": "",
+			"description":""
+		}
+	]
+}
