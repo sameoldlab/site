@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
-import { rehypeLinks } from './.rex-plugins/rehype-links.mjs'
-import { remarkDeruntify } from './.rex-plugins/remark-derunt.mjs'
+import { rehypeExternalLinks } from './.rex-plugins/rehype-links.mjs'
+// import { remarkDeruntify } from './.rex-plugins/remark-derunt.mjs'
 import { remarkModifiedTime} from './.rex-plugins/remark-modified-time.mjs'
 import remarkWikilink from 'remark-wiki-link'
 
@@ -14,25 +14,24 @@ import svelte from '@astrojs/svelte'
 export default defineConfig({
 	assets: true,
 	prefetch: {
-    defaultStrategy: 'hover',
-		prefetchAll: true
-  },
+		defaultStrategy: 'hover',
+		prefetchAll: true,
+	},
 	site: 'https://notes.ibro.xyz',
 	markdown: {
 		shikiConfig: {
 			theme: customTheme,
 			wrap: true,
 		},
-		rehypePlugins: [rehypeLinks],
+		rehypePlugins: [rehypeExternalLinks],
 		remarkPlugins: [
-			remarkDeruntify,
 			[
 				remarkWikilink,
 				{
 					hrefTemplate: permalink => `/note/${permalink}`,
 				},
 			],
-			remarkModifiedTime
+			remarkModifiedTime,
 		],
 	},
 	integrations: [
@@ -41,7 +40,6 @@ export default defineConfig({
 			// https://developer.chrome.com/docs/workbox/modules/workbox-build/
 			workbox: {},
 		}),
-
 		sitemap(),
 		svelte(),
 	],
