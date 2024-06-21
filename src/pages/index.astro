@@ -1,8 +1,87 @@
 ---
 import Projects from './projects.svelte'
-import Layout from "../_inc/layouts/base.astro"
+import Layout from '../_inc/layouts/base.astro'
 ---
 
-<Layout title="ibro.xyz">
-	<Projects client:idle/>
+<Layout title='ibro.xyz'>
+	<main>
+		<section class='container'>
+			<p class='header'>I'm Ibro. I make interfaces. Hi.</p>
+			<!-- One day I will figure out a way to write this section that does not sound pretentious,
+				that day is not today 
+				-->
+			<!--
+			<p class="mb-2 font-sans opacity-70">What, that's it???</p>
+			<p class="mb-2">Well... yeah. Is there supposed to be something else?</p>
+			<p class="mb-2 font-sans opacity-70">
+				What about delight and solving problems? I don't even know who you are.
+			</p>
+			<p class="mb-2">
+				I think design is about playing with constraints, function melts form, and
+				"simple" should mean clear. I too nerd out over typography, caustics, and
+				beziers, but also performance, privacy, and open protocols. If this computer
+				thing doesn't work out... I'll probably try canning tomatoes or washing
+				coffee cherries. If you want more rambling, please just see
+			</p>
+			<p class="mb-2 font-sans opacity-70">Well what about-</p>
+			<p class="sol">
+				Design for the Real World, Inventing on Principle, Supernormal Design, 
+				Speculative Fiction, and The Ecosystem is Moving are all very good manifestos, 
+				already
+			</p> -->
+			<br />
+		</section>
+		<Projects client:idle />
+		<div class="socials">
+			<p class="text-lg opacity-60 gap-4 flex-wrap">
+				<a class="link" href="mailto:sameoldlab@proton.me">email</a>
+				<br />
+
+				<a
+					class="link"
+					href="https://www.are.na/sameoldlab"
+					rel="noreferrer"
+					target="_blank">are.na</a
+				>
+				<br />
+
+				<a
+					class="link"
+					href="https://github.com/sameoldlab"
+					rel="noreferrer"
+					target="_blank">github</a
+				>
+				<br />
+			</p>
+		</div>
+	</main>
 </Layout>
+
+<style>
+	main {
+		padding-block: 8rem;
+		padding-inline: 2rem;
+		width: min(80ch, 100%);
+		margin-inline: auto;
+	}
+	/* .header::before {		content:"\00B6";	} */
+	.header {
+		font-style: italic;
+		font-weight: 400;
+		font-variation-settings: 'opsz' 128;
+		font-size: 1.25rem;
+		line-height: 1.1em;
+	}
+	.socials {
+		display: flex;
+		padding-top: 2rem;
+		padding-bottom: 4rem;
+	}
+
+	.opacity-70 {
+		opacity: 0.7;
+	}
+	.font-sans {
+		font-family: 'Courier New', Courier, monospace;
+	}
+</style>

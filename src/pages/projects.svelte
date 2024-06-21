@@ -26,32 +26,6 @@
 	}
 </script>
 
-<section class="container">
-	<p class="header">I'm Ibro. I make interfaces. Hi.</p>
-	<!-- One day I will figure out a way to write this section that does not sound pretentious,
-	  that day is not today 
-		-->
-	<!--
-	<p class="mb-2 font-sans opacity-70">What, that's it???</p>
-	<p class="mb-2">Well... yeah. Is there supposed to be something else?</p>
-	<p class="mb-2 font-sans opacity-70">
-		What about delight and solving problems? I don't even know who you are.
-	</p>
-	<p class="mb-2">
-		I think design is about playing with constraints, function melts form, and
-		"simple" should mean clear. I too nerd out over typography, caustics, and
-		beziers, but also performance, privacy, and open protocols. If this computer
-		thing doesn't work out... I'll probably try canning tomatoes or washing
-		coffee cherries. If you want more rambling, please just see
-	</p>
-	<p class="mb-2 font-sans opacity-70">Well what about-</p>
-	<p class="sol">
-		Design for the Real World, Inventing on Principle, Supernormal Design, 
-		Speculative Fiction, and The Ecosystem is Moving are all very good manifestos, 
-		already
-	</p> -->
-	<br />
-</section>
 
 <div class="grid">
 	<div class="projects">
@@ -74,28 +48,6 @@
 				<!-- <li class="link"><a href="https://github.com/sameoldlab/nft-folder"> oriole </a></li> -->
 			</ul>
 		</section>
-		<div class="socials">
-			<p class="text-lg opacity-60 gap-4 flex-wrap">
-				<a class="link" href="mailto:sameoldlab@proton.me">email</a>
-				<br />
-
-				<a
-					class="link"
-					href="https://www.are.na/sameoldlab"
-					rel="noreferrer"
-					target="_blank">are.na</a
-				>
-				<br />
-
-				<a
-					class="link"
-					href="https://github.com/sameoldlab"
-					rel="noreferrer"
-					target="_blank">github</a
-				>
-				<br />
-			</p>
-		</div>
 	</div>
 
 	<section class="preview">
@@ -127,11 +79,6 @@
 		}
 	}
 
-	.socials {
-		display: flex;
-		padding-top: 2rem;
-		padding-bottom: 4rem;
-	}
 	.preview {
 		flex-grow: 1;
 		grid-column: span 3 / span 3;
@@ -147,19 +94,5 @@
 			display: flex;
 			opacity: 1;
 		}
-	}
-	.header {
-		font-style: italic;
-		font-weight: 400;
-		font-variation-settings: 'opsz' 128;
-		font-size: 1.75rem;
-		line-height: 1.5em;		
-	}
-
-	.opacity-70 {
-		opacity: 0.7;
-	}
-	.font-sans {
-		font-family: 'Courier New', Courier, monospace;
 	}
 </style>
