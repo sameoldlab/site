@@ -14,30 +14,31 @@ const modified = new Date(remarkPluginFrontmatter.modified)
 ---
 
 <Layout title={entry.data.title}>
-	<div>
-		<!-- <a href='#' onclick='history.back()'> ⮌ Return</a> -->
-		<article>
-			<header>
-				<h1> {entry.data.title} </h1>
-				<p class="date"> <time>
-					{ new Date(entry.data.date).toLocaleDateString()}–{modified.toLocaleDateString()}</time></p>
-				<div class="tags">
-					{
-						entry.data.tags.map((tag) => {
-							return (
-								<a href={'/tag/'+tag.split(' ').join('-')}>{tag}</span></a>
-							)
-						})
-					}
-				</div>
-			</header>
-			<section class='content'>
-				<Content/>
-			</section>
-			{<aside id="backlinks">
-
-			</aside>}
-		</article>
-	</div>
+	<main>
+		<div>
+			<!-- <a href='#' onclick='history.back()'> ⮌ Return</a> -->
+			<article>
+				<header>
+					<h1> {entry.data.title} </h1>
+					<p class="date"> <time>
+						{ new Date(entry.data.date).toLocaleDateString()}–{modified.toLocaleDateString()}</time></p>
+					<div class="tags">
+						{
+							entry.data.tags.map((tag) => {
+								return (
+									<a href={'/tag/'+tag.split(' ').join('-')}>{tag}</span></a>
+								)
+							})
+						}
+					</div>
+				</header>
+				<section class='content'>
+					<Content/>
+				</section>
+				{<aside id="backlinks">
+				</aside>}
+			</article>
+		</div>
+	</main>
 </Layout>
 

@@ -11,75 +11,76 @@ const { entries, title } = Astro.props
 ---
 
 <Layout {title}>
-	<header class='main'>
-		<h1>{title}</h1>
-
-		<button class='text'>Full</button>
-		<button class='text'>Collapse</button>
-	</header>
-	<div class='articles'>
-		{
-			entries.map(async entry => {
-				const { Content } = await entry.render()
-				return (
-					<article class='note'>
-						<header>
-							<h2>
-								{' '}
-								<a class='' href={`/${entry.collection}/${entry.slug}`}>
-									{(entry.data.title !== '' && <>{entry.data.title}</>) || (
-										<>{entry.data.date.toLocaleDateString()}</>
-									)}
-								</a>{' '}
-							</h2>
-							{/* 									<p>
-										<time datetime={entry.data.date.toISOString()}>
-											<!--Only show date when page is untitled -->
-											{entry.data.title !== "" && entry.data.date.toLocaleDateString()}
-											</time>
-											</p> */}
-						</header>
-						<div class='content'>
-							<Content />
-						</div>
-					</article>
-				)
-			})
-		}
-	</div>
-	<script>
-		let collapsed = true
-		const toggleCollapse = document.getElementById('toggleCollapse')!
-		toggleCollapse.addEventListener('click', () => {
-			if (!collapsed) {
-				document
-					.querySelectorAll('.content-text')
-					.forEach(el => el.classList.add('collapsed'))
-				toggleCollapse.innerHTML = `
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
-		<path d="m7 15 5 5 5-5"></path>
-		<path d="m7 9 5-5 5 5"></path>
-	</svg>
-`
-			} else {
-				document
-					.querySelectorAll('.content-text')
-					.forEach(el => el.classList.remove('collapsed'))
-				toggleCollapse.innerHTML = `
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
-		<path d="m7 20 5-5 5 5"></path>
-		<path d="m7 4 5 5 5-5"></path>
-	</svg>
-
-`
+	<main>
+		<header class='main'>
+			<h1>{title}</h1>
+			<button class='text'>Full</button>
+			<button class='text'>Collapse</button>
+		</header>
+		<div class='articles' {collapse}>
+			{
+				entries.map(async entry => {
+					const { Content } = await entry.render()
+					return (
+						<article class='note'>
+							<header>
+								<h2>
+									{' '}
+									<a class='' href={`/${entry.collection}/${entry.slug}`}>
+										{(entry.data.title !== '' && <>{entry.data.title}</>) || (
+											<>{entry.data.date.toLocaleDateString()}</>
+										)}
+									</a>{' '}
+								</h2>
+								{/* 									<p>
+											<time datetime={entry.data.date.toISOString()}>
+												<!--Only show date when page is untitled -->
+												{entry.data.title !== "" && entry.data.date.toLocaleDateString()}
+												</time>
+												</p> */}
+							</header>
+							<div class='content'>
+								<Content />
+							</div>
+						</article>
+					)
+				})
 			}
-			collapsed = !collapsed
-		})
-		// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
-	</script>
+		</div>
+		<script>
+			let collapsed = true
+			const toggleCollapse = document.getElementById('toggleCollapse')!
+			toggleCollapse.addEventListener('click', () => {
+				if (!collapsed) {
+					document
+						.querySelectorAll('.content-text')
+						.forEach(el => el.classList.add('collapsed'))
+					toggleCollapse.innerHTML = `
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
+			<path d="m7 15 5 5 5-5"></path>
+			<path d="m7 9 5-5 5 5"></path>
+		</svg>
+		`
+				} else {
+					document
+						.querySelectorAll('.content-text')
+						.forEach(el => el.classList.remove('collapsed'))
+					toggleCollapse.innerHTML = `
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
+			<path d="m7 20 5-5 5 5"></path>
+			<path d="m7 4 5 5 5-5"></path>
+		</svg>
+		
+		`
+				}
+				collapsed = !collapsed
+			})
+			// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
+		</script>
+	</main>
 </Layout>
 
-<style>
+<style is:global>
 	#toggleCollapse {
 		color: var(--t-highlight);
 		background: var(--bg);
@@ -119,19 +120,6 @@ const { entries, title } = Astro.props
 		width: var(--width);
 		margin-inline: auto;
 	}
-	/*
-time {
-	font-size: 1rem;
-	font-weight: 400;
-	opacity: 0.5;
-	font-variant-numeric: tabular-nums;
-	font-feature-settings: 'tnum', 'lnum';
-} */
-	/* article h2 {
-	font-size: 1.1rem;
-	margin-bottom: 0.5rem;
-
-} */
 
 	.collapsed {
 		.content {
