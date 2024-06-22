@@ -15,6 +15,6 @@ When it works? Fun, fun, fun ([Maxim Leyzerovich](https://round.is) has an inspi
 No pain would be nicer though. Maybe this is where protocols are important? 🤷 They can lower the switching cost for products built on top, allowing us to migrate between open standards as they evolve and grow. Platforms might also realize its in their best interest to work together, in a similar process to [Market-Protocol Fit](https://otherinter.net/research/market-protocol-fit/)
 
 
-![Diamond-shaped protocol growth cycle. Experimentation grows with adoption, then slows down with ossification ](/assets/protocol-ossification.png)
+![Diamond-shaped protocol growth cycle. Experimentation grows with adoption, then slows down with ossification ](../assets/protocol-ossification.png)
 
 Most things do eventually become irrelevant or break down so the goal should rarely be to make the perfect standard or protocol. The interesting part is the dance; the spread and growth of new standards, dominance, , and eventually ossification. Maybe a better model for replacement.

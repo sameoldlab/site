@@ -13,7 +13,7 @@ This weekend was a quick dive into the "unbundler" space. Why do we do this thin
 
 I found Fraidycat in the comment section of a blog post, which was linked to in an are.na channel. A channel I do not follow with very strong ties 
 across the [every single are.na channel related to having a healthy and non-obsessive relationship to technology](https://www.are.na/emanuel-f/every-single-are-na-channel-related-to-having-a-healthy-and-non-obsessive-relationship-to-technology) supercluster. 
-![node-wire graph visualizing connection across different channels in are dot na](../../assets/arena-hr2t-supercluster.png) 
+![node-wire graph visualizing connection across different channels in are dot na](../assets/arena-hr2t-supercluster.png) 
 *visualized with [g02 graph](https://hardly.link/projects/g02-graph)* 
 
 All quite funny because, of course, the creator of Fraidycat also has an esoteric blog with links back to are.na, quotebacks, and beaker browser. All my rabbits seem to live in the same hole. 
