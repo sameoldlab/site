@@ -6,7 +6,7 @@ const notes = (await getCollection(
   "note",
   ({ data }) =>
     // This filters posts OUT
-    data.draft !== true
+		import.meta.env.PROD ? data.draft !== true : true
 )).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() )
 ---
 
