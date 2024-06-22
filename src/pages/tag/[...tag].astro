@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 		props: {
 			entries: notes
 				.filter(v => v.data.tags.includes(tag))
-				.toSorted((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+				.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
 		},
 	}))
 }
