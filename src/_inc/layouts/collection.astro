@@ -5,19 +5,47 @@ import '../css/type.css'
 
 export interface Props {
 	entries: CollectionEntry<'note'>[]
+	collapsed?: boolean | undefined
 	title: string
 }
-const { entries, title } = Astro.props
+const { entries, title, collapsed = false } = Astro.props
 ---
 
 <Layout {title}>
 	<main>
 		<header class='main'>
 			<h1>{title}</h1>
-			<button class='text'>Full</button>
-			<button class='text'>Collapse</button>
+			<button id='toggleCollapse' class='text' title='Collapse entries'
+				>{
+					collapsed ? (
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							width='16'
+							height='16'
+							viewBox='0 0 24 24'
+							fill='none'
+							stroke='currentColor'
+						>
+							<path d='m7 15 5 5 5-5' />
+							<path d='m7 9 5-5 5 5' />
+						</svg>
+					) : (
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							width='16'
+							height='16'
+							viewBox='0 0 24 24'
+							fill='none'
+							stroke='currentColor'
+						>
+							<path d='m7 20 5-5 5 5' />
+							<path d='m7 4 5 5 5-5' />
+						</svg>
+					)
+				}</button
+			>
 		</header>
-		<div class='articles' {collapse}>
+		<div class={`articles ${collapsed ? 'collapsed' : ''}`}>
 			{
 				entries.map(async entry => {
 					const { Content } = await entry.render()
@@ -40,55 +68,57 @@ const { entries, title } = Astro.props
 												</p> */}
 							</header>
 							<div class='content'>
-								<Content />
+								<div class='toggle'>
+									<Content />
+								</div>
 							</div>
 						</article>
 					)
 				})
 			}
 		</div>
-		<script>
-			let collapsed = true
-			const toggleCollapse = document.getElementById('toggleCollapse')!
-			toggleCollapse.addEventListener('click', () => {
-				if (!collapsed) {
-					document
-						.querySelectorAll('.content-text')
-						.forEach(el => el.classList.add('collapsed'))
-					toggleCollapse.innerHTML = `
+	</main>
+
+	<script>
+		let articles = document.querySelector('div.articles')!
+		let collapsed = articles?.classList.contains('collapsed')
+
+		const toggleCollapse = document.getElementById('toggleCollapse')!
+		toggleCollapse.addEventListener('click', () => {
+			console.log('clicked! collaspe = ', collapsed)
+
+			if (!collapsed) {
+				articles.classList.add('collapsed')
+				toggleCollapse.innerHTML = `
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
 			<path d="m7 15 5 5 5-5"></path>
 			<path d="m7 9 5-5 5 5"></path>
 		</svg>
 		`
-				} else {
-					document
-						.querySelectorAll('.content-text')
-						.forEach(el => el.classList.remove('collapsed'))
-					toggleCollapse.innerHTML = `
+			} else {
+				articles.classList.remove('collapsed')
+				toggleCollapse.innerHTML = `
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
 			<path d="m7 20 5-5 5 5"></path>
 			<path d="m7 4 5 5 5-5"></path>
 		</svg>
-		
 		`
-				}
-				collapsed = !collapsed
-			})
-			// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
-		</script>
-	</main>
+			}
+			// setCollapsed(!collapsed())
+			collapsed = !collapsed
+		})
+		// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
+	</script>
 </Layout>
 
 <style is:global>
 	#toggleCollapse {
-		color: var(--t-highlight);
-		background: var(--bg);
-		/* background: transparent; */
-		padding: 0.15em 0.5em;
+		color: var(--t-high);
+		/* background: var(--bg); */
+		padding: 0.25em;
 		border-radius: 4px;
 		border: 0px;
-		outline: 1px solid var(--bg-highlight);
+		/* outline: 1px solid var(--bg-high); */
 		cursor: pointer;
 
 		& > svg {
@@ -97,36 +127,82 @@ const { entries, title } = Astro.props
 		}
 
 		&:hover {
-			background-color: var(--bg-highlight);
+			background-color: var(--bg-high);
 		}
 	}
 
-	button.text {
-		font-weight: 300;
-		/* font-style: italic; */
-		color: var(--t-low);
-		font-size: 1.25em;
-		line-height: 2.5rem;
-		/* font-variation-settings: 'opsz' 64; */
-		cursor: pointer;
-	}
-
-	header {
+	main > header {
 		display: flex;
-		/* justify-content: space-between; */
-		align-items: baseline;
-		gap: 1rem;
-		flex-wrap: wrap-reverse;
-		width: var(--width);
+		justify-content: space-between;
+		/* align-items: baseline; */
+		gap: 0.5rem;
+		max-width: var(--width);
 		margin-inline: auto;
 	}
 
-	.collapsed {
+	.articles {
+		max-width: var(--width);
+		margin-inline: auto;
+
+		header {
+			text-align: left;
+			transition: padding var(--ease);
+		}
+		h2 {
+			transition: font-size var(--ease);
+		}
 		.content {
-			display: none;
-			height: 0;
+			display: grid;
+			grid-template-rows: 0fr;
+			transition: grid-template-rows 13s ease; /* var(--ease); */
+		}
+		.toggle {
+			transition: opacity 300s ease; /* var(--ease); */
+			/* transition: grid-template-rows 1s ;var(--ease); */
+		}
+	}
+
+	.articles.collapsed {
+		color: var(--text);
+		transition: color var(--ease);
+
+		header,
+		article {
+			padding: 0;
+		}
+		article {
+			border-block-end: 1px solid var(--t-low);
+		}
+
+		h2 {
+			font-size: 1rem;
+			font-weight: 400;
+			color: inherit;
+
+			a {
+				padding-block: 1rem;
+				width: 100%;
+				display: inline-block;
+				color: inherit;
+				&:hover {
+					color: inherit;
+				}
+			}
+		}
+
+		/* very extra hover as seen on paco.me */
+		&:hover {
+			color: var(--t-low);
+
+			article:hover {
+				border-color: var(--t-high);
+				color: var(--t-high);
+			}
+		}
+		.toggle {
 			opacity: 0;
-			transition: opacity 140ms allow-discrete ease-in-out;
+			overflow: hidden;
+			display: none;
 		}
 	}
 </style>

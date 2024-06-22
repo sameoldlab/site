@@ -10,4 +10,4 @@ const notes = (await getCollection(
 )).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() )
 ---
 
-<Collection title="Notes" entries={notes}/>
+<Collection title="Notes" entries={notes} collapsed/>

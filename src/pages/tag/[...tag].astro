@@ -3,7 +3,9 @@ import { getCollection } from 'astro:content'
 import Layout from '../../_inc/layouts/collection.astro'
 
 export async function getStaticPaths() {
-	const notes = await getCollection('note')
+	const notes = await getCollection('note', ({data}) => {
+		return import.meta.env.PROD ? data.draft !== true : true;
+	})
 	const tags = [
 		...new Set(
 			notes.reduce((a: string[], { data: { tags } }) => {
