@@ -23,6 +23,9 @@ importers:
       astro-compress:
         specifier: ^2.2.11
         version: 2.2.11
+      astro-meta-tags:
+        specifier: ^0.3.0
+        version: 0.3.0(astro@4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5))
       astrojs-service-worker:
         specifier: ^2.0.0
         version: 2.0.0(@types/babel__core@7.20.5)(astro@4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5))
@@ -1210,6 +1213,11 @@ packages:
 
   astro-compress@2.2.11:
     resolution: {integrity: sha512-cXN8FI0txjhteYRQjcXJby1EVHQvPA6oqt2ep1Z0MUfXcrn+F0AQA59vFGEt/pTnzmqp0R6TgrBxK1ZRDAR6Hg==}
+
+  astro-meta-tags@0.3.0:
+    resolution: {integrity: sha512-BA8jZncOGz1DkjK4AQHt8mzXurGwhR96CZZlx2wLemRUqKTxft4N2Arg8DK/s49G/9F0g4TuxmiObVkIv/DX8g==}
+    peerDependencies:
+      astro: ^4.0.0
 
   astro@4.4.9:
     resolution: {integrity: sha512-FTWhzKjao7rHHiF/CqPqPS18AFad+fmUcYUFhWWIsYETHcc9g0IIIiv6cHXUE7g6mEZf7ycAa+WdboeEHUhraQ==}
@@ -4573,6 +4581,10 @@ snapshots:
       sharp: 0.33.2
       svgo: 3.2.0
       terser: 5.28.1
+
+  astro-meta-tags@0.3.0(astro@4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5)):
+    dependencies:
+      astro: 4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5)
 
   astro@4.4.9(@types/node@20.11.24)(lightningcss@1.24.0)(terser@5.28.1)(typescript@5.4.5):
     dependencies:
