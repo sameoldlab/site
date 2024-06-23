@@ -11,7 +11,7 @@ export interface Props {
 const { entries, title, collapsed = false } = Astro.props
 ---
 
-<Layout {title}>
+<Layout {title} description={`Collected notes${title.includes('tag') ? ': '+title.substring(6) : ''}`}>
 	<main>
 		<header class='main'>
 			<h1>{title}</h1>

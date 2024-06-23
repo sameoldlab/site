@@ -1,33 +1,34 @@
 ---
-import "../css/main.css"
+import '../css/main.css'
 import Nav from '../components/nav.astro'
+import Meta from '../components/meta.astro'
 export interface Props {
-  title: string
+	title: string
+	description?: string
+	image?: {
+		url: string
+		url_fallback?: string
+		width: number
+		height: number
+	}
 }
-const { title } = Astro.props
-
+const props = Astro.props
 ---
 
-<!--  ̴̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡ ̴̡ı̴̴̡ ̡l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ |ı̴̡̡ ̡͌l̡ ̴̡ı̴̴̡ ̡l̡ ̴̡-->
-<!--         lo, traveler!                        -->
-<!--        perhaps this is the data you seek...  -->
-<!--     https://github.com/sameoldlab/ibro.xyz   -->
-<!--                                              -->
-<!--——————————————————————————————————————————————-->
+<!--  ̴̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡ ̴̡ı̴̴̡ ̡l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ |ı̴̡̡ ̡͌l̡ ̴̡ı̴̴̡ ̡l̡ ̴̡--><!--         lo, traveler!                        --><!--        perhaps this is the data you seek...  --><!--     https://github.com/sameoldlab/ibro.xyz   --><!--                                              --><!--——————————————————————————————————————————————--><!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width' />
+		<title>{props.title}</title>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-		<link rel="sitemap" href="/sitemap-index.xml" />
-  </head>
-  <body>
-		<Nav/>
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<meta name='generator' content={Astro.generator} />
+		<Meta {...props} />
+		<link rel='sitemap' href='/sitemap-index.xml' />
+	</head>
+	<body>
+		<Nav />
 		<slot />
-  </body>
+	</body>
 </html>
-

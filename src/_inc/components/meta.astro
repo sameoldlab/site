@@ -1,0 +1,41 @@
+---
+export interface Props {
+	title: string
+	description?: string
+	image?: {
+		url: string
+		url_fallback?: string
+		width: number
+		height: number
+	}
+}
+const {
+	title = 'ibro.xyz',
+	description = 'Experiments, exploration, bean-feuled execution',
+	image = {
+		url: "/img/light_ortho001.webp",
+		url_fallback: "/img/light_ortho001.jpg",
+		width: 2048,
+		height: 1152
+	},
+} = Astro.props
+---
+
+<meta property='og:title' content={title} />
+<meta property='og:description' content={description} />
+<meta name='description' content={description} />
+<meta property='og:image' content={image.url} />
+<meta property='og:image' content={image.url_fallback} />
+<meta property='og:url' content='https://ibro.xyz/' />
+<meta property='og:site_name' content={title} />
+
+<meta property='og:type' content='website' />
+<meta property='og:image:width' content={`${image.width}`} />
+<meta property='og:image:height' content={`${image.height}`} />
+
+<meta name='twitter:card' content='summary-large-image' />
+<meta name='twitter:description' content={description} />
+<meta name='twitter:title' content={title} />
+
+<meta name='twitter:image' content={image.url} />
+<meta name='twitter:image' content={image.url_fallback} />
