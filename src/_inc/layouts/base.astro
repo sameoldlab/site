@@ -2,6 +2,7 @@
 import '../css/main.css'
 import Nav from '../components/nav.astro'
 import Meta from '../components/meta.astro'
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 export interface Props {
 	title: string
 	description?: string
@@ -41,5 +42,6 @@ const props = Astro.props
 	<body>
 		<Nav />
 		<slot/>
+		<SpeedInsights/>
 	</body>
 </html>

@@ -22,7 +22,7 @@ export default defineConfig({
 		},
 		imageService: true,
 		devImageService: 'sharp',
-		webAnalytics: true,
+		webAnalytics: {enabled: true},
 	}),
 	image: {
 		domains: ['ibro.xyz'],
