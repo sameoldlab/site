@@ -14,12 +14,6 @@ import metaTags from "astro-meta-tags";
 // https://astro.build/config
 export default defineConfig({
   assets: true,
-  image: {
-    service: {
-      // https://docs.astro.build/en/guides/images/#add-simple-asset-support-for-cloudflare-deno-vercel-edge-and-netlify-edge
-      entrypoint: 'astro/assets/services/noop'
-    }
-  },
   prefetch: {
     defaultStrategy: 'hover',
     prefetchAll: true
