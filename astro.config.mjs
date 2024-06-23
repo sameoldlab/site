@@ -24,7 +24,7 @@ export default defineConfig({
     defaultStrategy: 'hover',
     prefetchAll: true
   },
-  site: 'https://notes.ibro.xyz',
+  site: 'https://ibro.xyz',
   markdown: {
     shikiConfig: {
       theme: customTheme,

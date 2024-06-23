@@ -13,7 +13,11 @@ const { Content, remarkPluginFrontmatter } = await entry.render()
 const modified = new Date(remarkPluginFrontmatter.modified)
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={entry.data.title}  type={{
+	published_time: entry.data.date,
+	modified_time: modified,
+	tags: entry.data.tags,
+	}}>
 	<main>
 		<div>
 			<!-- <a href='#' onclick='history.back()'> ⮌ Return</a> -->
