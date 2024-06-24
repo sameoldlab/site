@@ -14,5 +14,5 @@ export interface MetaProps {
 		url_fallback?: string
 		width: number
 		height: number
-	}
+	} | undefined
 }

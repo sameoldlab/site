@@ -10,10 +10,16 @@ export interface Props {
 	title: string
 	meta?: MetaProps
 }
-const { entries, title, collapsed = false } = Astro.props
+const { entries, title, collapsed = false, meta } = Astro.props
 ---
 
-<Layout {title} description={`Collected notes${title.includes('tag') ? ': '+title.substring(6) : ''}`}>
+<Layout
+	{title}
+	description={`Collected notes${
+		title.includes('tag') ? ': ' + title.substring(6) : ''
+	}`}
+	image={meta?.image}
+>
 	<main>
 		<header class='main'>
 			<h1>{title}</h1>

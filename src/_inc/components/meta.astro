@@ -7,20 +7,17 @@ const {
 	title = 'ibro.xyz',
 	description = 'Experiments, exploration, bean-feuled execution',
 	type = 'website',
-	image = {
-		url: '/img/light_ortho001.webp',
-		type: 'image/webp',
-		width: 2048,
-		height: 1152,
-	},
+	image,
 } = Astro.props
 
-const img = type === 'website' ? image : {
-	url: `${Astro.url}/og.png`,
-	type: 'image/png',
-	width: 1200,
-	height: 600,
-}
+
+const img = image ||
+	{
+		url: '/img/light_ortho001.png',
+		type: 'image/png',
+		width: 2048,
+		height: 1152,
+	} 
 
 // <!-- const url = 'https://'+Astro.site?.hostname + Astro.url?.pathname -->
 // const url = 'https://'+Astro.site?.hostname + Astro.url?.pathname

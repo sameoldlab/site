@@ -13,11 +13,20 @@ const { Content, remarkPluginFrontmatter } = await entry.render()
 const modified = new Date(remarkPluginFrontmatter.modified)
 ---
 
-<Layout title={entry.data.title}  type={{
-	published_time: entry.data.date,
-	modified_time: modified,
-	tags: entry.data.tags,
-	}}>
+<Layout 
+	title={entry.data.title}  
+	type={{
+		published_time: entry.data.date,
+		modified_time: modified,
+		tags: entry.data.tags,
+	}}
+	image={{
+		url: `${Astro.url}/og.png`,
+		type: 'image/png',
+		width: 1200,
+		height: 600,
+	}}
+	>
 	<main>
 		<div>
 			<!-- <a href='#' onclick='history.back()'> ⮌ Return</a> -->
