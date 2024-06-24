@@ -2,11 +2,13 @@
 import type { CollectionEntry } from 'astro:content'
 import Layout from './base.astro'
 import '../css/type.css'
+import type { MetaProps } from '../types'
 
 export interface Props {
 	entries: CollectionEntry<'note'>[]
 	collapsed?: boolean | undefined
 	title: string
+	meta?: MetaProps
 }
 const { entries, title, collapsed = false } = Astro.props
 ---

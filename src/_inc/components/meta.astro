@@ -1,22 +1,8 @@
 ---
-export interface Props {
-	title: string
-	description?: string
-	type?:
-		| 'website'
-		| {
-				published_time: Date
-				modified_time: Date
-				tags: string[]
-		  }
-	image?: {
-		url: string
-		type: string
-		url_fallback?: string
-		width: number
-		height: number
-	}
-}
+import type { MetaProps } from '../types'
+
+export interface Props extends MetaProps {}
+
 const {
 	title = 'ibro.xyz',
 	description = 'Experiments, exploration, bean-feuled execution',
