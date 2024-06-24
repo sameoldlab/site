@@ -13,9 +13,7 @@ interface Props {
 export async function GET({ props }: Props) {
 	const { post } = props
 
-	const Literata = readFileSync(
-		process.cwd() + '/public/fonts/Literata_60pt-LightItalic.ttf'
-	)
+	const Literata = readFileSync(`${process.cwd()}/public/fonts/Literata_60pt-LightItalic.ttf`)
 
 	const markup = html(`
 		<div
