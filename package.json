@@ -23,6 +23,8 @@
 		"markdown-it": "^14.0.0",
 		"remark-wiki-link": "^2.0.1",
 		"sanitize-html": "^2.12.1",
+		"satori": "^0.10.13",
+		"satori-html": "^0.3.2",
 		"sharp": "^0.33.2",
 		"spellcaster": "^3.1.0",
 		"svelte": "^4.2.17",

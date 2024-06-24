@@ -1,6 +1,8 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import { readFileSync } from 'fs'
-import { ImageResponse } from '@vercel/og'
+import { html } from 'satori-html'
+import satori from 'satori'
+import sharp from 'sharp'
 
 interface Props {
 	params: { slug: string }
@@ -12,54 +14,53 @@ interface Props {
 export async function GET({ props }: Props) {
 	const { post } = props
 
-	const LiterataItalic = readFileSync(
+	const Literata = readFileSync(
 		process.cwd() + '/public/fonts/Literata_60pt-LightItalic.ttf'
 	)
 
-	const html = {
-		type: 'div',
-		props: {
-			tw: 'w-full h-full flex items-center justify-center relative px-22',
-			style: {
-				background: '#141414',
-				fontFamily: 'Literata',
-			},
-			children: [
-				{
-					type: 'div',
-					props: {
-						// tw: 'absolute left-[40px] bottom-[40px] flex items-center',
-						style: {
-							fontFamily: '"LiterataItalic"',
-							marginTop: 40,
-							color: 'white',
-							position: 'absolute',
-							width: '1000px',
-							fontSize: 81,
-							// top: `calc(50% - 290px/2 + 125px)`,
-							bottom: '1rem',
-							left: '2rem',
-							opacity: 0.88,
-							fontStyle: 'italic',
-							fontWeight: 300,
-						},
-						children: post.data.title,
-					},
-				},
-			],
-		},
-	}
+	const markup = html(`
+		<div
+			class="w-full h-full flex items-center justify-center relative px-22 bg-[#141414]"
+		>
+			<div style="
+				font-family: Literata;
+				font-size: 81;
+				display: flex;
+				color: white;
+				opacity: 0.88;
 
-	return new ImageResponse(html, {
+				position: absolute;
+				margin-top: 40;
+				width: 1000px;
+				bottom: 1rem;
+				left: 2rem;
+			">
+				${post.data.title}
+			</div>
+		</div>
+		`)
+
+	const svg = await satori(markup, {
 		width: 1200,
 		height: 600,
 		fonts: [
 			{
-				name: 'LiterataItalic',
-				data: LiterataItalic.buffer,
+				name: 'Literata',
+				data: Literata.buffer,
 				style: 'italic',
 			},
 		],
+	})
+
+	const png = await sharp(Buffer.from(svg)).png().toBuffer()
+
+	return new Response(png, {
+		status: 200,
+		statusText: 'OK',
+		headers: {
+			'Content-Type': 'image/png',
+			'Cache-Control': 'public, max-age=31536000, immutable',
+		},
 	})
 }
 
