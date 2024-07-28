@@ -4,6 +4,7 @@ import Nav from '../components/nav.astro'
 import Meta from '../components/meta.astro'
 import  SpeedInsights  from "@vercel/speed-insights/astro"
 import type { MetaProps } from '../types'
+import { ViewTransitions } from 'astro:transitions'
 export interface Props extends MetaProps {}
 
 const props = Astro.props
@@ -26,6 +27,7 @@ const props = Astro.props
 		<Meta {...props}/>
 		<slot name='head'/>
 		<link rel='sitemap' href='/sitemap-index.xml' />
+		<ViewTransitions/>
 	</head>
 	<body>
 		<Nav />

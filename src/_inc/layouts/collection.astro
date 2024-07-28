@@ -88,34 +88,37 @@ const { entries, title, collapsed = false, meta } = Astro.props
 	</main>
 
 	<script>
-		let articles = document.querySelector('div.articles')!
-		let collapsed = articles?.classList.contains('collapsed')
+		document.addEventListener('astro:page-load', () => {
+			let articles = document.querySelector('div.articles')
+			if (articles === null) return 
+			let collapsed = articles.classList.contains('collapsed')
 
-		const toggleCollapse = document.getElementById('toggleCollapse')!
-		toggleCollapse.addEventListener('click', () => {
-			console.log('clicked! collaspe = ', collapsed)
+			const toggleCollapse = document.getElementById('toggleCollapse')!
+			toggleCollapse.addEventListener('click', () => {
+				console.log('clicked! collaspe = ', collapsed)
 
-			if (!collapsed) {
-				articles.classList.add('collapsed')
-				toggleCollapse.innerHTML = `
+				if (!collapsed) {
+					articles.classList.add('collapsed')
+					toggleCollapse.innerHTML = `
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
 			<path d="m7 15 5 5 5-5"></path>
 			<path d="m7 9 5-5 5 5"></path>
 		</svg>
 		`
-			} else {
-				articles.classList.remove('collapsed')
-				toggleCollapse.innerHTML = `
+				} else {
+					articles.classList.remove('collapsed')
+					toggleCollapse.innerHTML = `
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
 			<path d="m7 20 5-5 5 5"></path>
 			<path d="m7 4 5 5 5-5"></path>
 		</svg>
 		`
-			}
-			// setCollapsed(!collapsed())
-			collapsed = !collapsed
+				}
+				// setCollapsed(!collapsed())
+				collapsed = !collapsed
+			})
+			// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
 		})
-		// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
 	</script>
 </Layout>
 

@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import Layout from '../layouts/base.astro'
 import '../css/type.css'
+import { slide } from 'astro:transitions'
 
 export interface Props {
 	entry: CollectionEntry<'note'>
