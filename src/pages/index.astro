@@ -1,87 +1,181 @@
 ---
-import Projects from './_projects.svelte'
+//import Projects from './_projects.svelte';
 import Layout from '../_inc/layouts/base.astro'
+import { getCollection } from 'astro:content'
+const projects = (await getCollection('project')).sort(
+  (a, b) => a.data.rank - b.data.rank
+)
+
+let notes = await getCollection('note', ({ data }) => {
+  return data.draft !== true
+  //return import.meta.env.PROD ? data.draft !== true : true
+})
+const tags = notes.reduce((acc, entry) => {
+  entry.data.tags.forEach((t) => {
+    if (t === 'meta' || t === 'rabbithole') return
+    let tag = acc.get(t)
+    if (tag === undefined) tag = 0
+    acc.set(t, tag + 1)
+  })
+  return acc
+}, new Map())
+
+/*
+let recent = notes.map(async (entry) => {
+  const { remarkPluginFrontmatter } = await entry.render()
+  const modified = new Date(remarkPluginFrontmatter.modified)
+  return {
+    modified,
+    title: entry.data.title,
+    slug: entry.slug
+  }
+}).sort(async (a, b) => {
+  const ar = await a
+  const br = await b
+  return ar.modified.getTimezoneOffset() - br.modified.getTimezoneOffset() 
+}).filter((_,i) => i < 5)
+*/
 ---
 
-<Layout title='ibro.xyz'>
-	<main>
-		<section class='container'>
-			<p class='header'>I'm Ibro. I make interfaces. Hi.</p>
-			<!-- One day I will figure out a way to write this section that does not sound pretentious,
-				that day is not today 
-				-->
-			<!--
-			<p class="mb-2 font-sans opacity-70">What, that's it???</p>
-			<p class="mb-2">Well... yeah. Is there supposed to be something else?</p>
-			<p class="mb-2 font-sans opacity-70">
-				What about delight and solving problems? I don't even know who you are.
-			</p>
-			<p class="mb-2">
+<Layout title="ibro.xyz">
+  <main>
+    <section class="container">
+      <!--
+
 				I think design is about playing with constraints, function melts form, and
-				"simple" should mean clear. I too nerd out over typography, caustics, and
+				'simple' should mean clear. I too nerd out over typography, caustics, and
 				beziers, but also performance, privacy, and open protocols. If this computer
 				thing doesn't work out... I'll probably try canning tomatoes or washing
 				coffee cherries. If you want more rambling, please just see
-			</p>
-			<p class="mb-2 font-sans opacity-70">Well what about-</p>
-			<p class="sol">
-				Design for the Real World, Inventing on Principle, Supernormal Design, 
-				Speculative Fiction, and The Ecosystem is Moving are all very good manifestos, 
-				already
+
 			</p> -->
-			<br />
-		</section>
-		<Projects client:idle />
-		<div class="socials">
-			<p class="text-lg opacity-60 gap-4 flex-wrap">
-				<a class="link" href="mailto:sameoldlab@proton.me">email</a>
-				<br />
+      <br />
+    </section>
+    <section class="container">
+      <p class="">
+        <em>Building interfaces to communicate data.</em> I'm interested in privacy,
+        data-ownership, improving usability for open software, and hyperpads. I think
+        manifesto's are a bit overrated, but I'd remix from Design from the Real
+        World, The Ecosystem is Moving, Inventing on Principle, and Supernormal Design
+        if I had to write one.
+      </p>
+      <br />
+      <p class="">I'm Ibro. Welcome to my website. Hi.</p>
+    </section>
+    <div>
+      <section id="projects">
+        <h2 class="subhead">Recent working on</h2>
+        {
+          projects.map((entry) => (
+            <p>
+              <a class="" href={entry.data.links[0][1]}>
+                <em class="title">{entry.data.title}</em>
+                <span class="description"> — {entry.data.description}</span>
+              </a>
+            </p>
+          ))
+        }
+      </section>
+      <section id="notes">
+        <h2 class="subhead">and writing about</h2>
+        <div class="row tags">
+          {
+            [...tags.entries()]
+              .sort((a, b) => b[1] - a[1])
+              .map(([tag, count]) => (
+                <a href={`/tag/${tag.replaceAll(' ', '-')}`}>
+                  <em class="title">{tag}</em>{' '}
+                  <span class="description">{count}</span>
+                </a>
+              ))
+          }
+        </div>
 
-				<a
-					class="link"
-					href="https://www.are.na/sameoldlab"
-					rel="noreferrer"
-					target="_blank">are.na</a
-				>
-				<br />
-
-				<a
-					class="link"
-					href="https://github.com/sameoldlab"
-					rel="noreferrer"
-					target="_blank">github</a
-				>
-				<br />
-			</p>
-		</div>
-	</main>
+        {
+          /*
+          recent.map(async (res) => {
+          const entry = await Promise.resolve(res)
+          return (
+            <p>
+              <a class="" href={entry.slug}>
+                <span class="title">{entry.title}</span>
+                <!-- <span class="description"> — {entry.data.description}</span> -->
+              </a>
+            </p>
+          )})
+        */
+        }
+      </section>
+    </div>
+    <hr />
+    <section id="socials">
+      <div class="row">
+        <p>
+          Reach out by <a class="link" href="mailto:hey@ibro.xyz">email</a>, <a
+            class="link"
+            href="https://www.are.na/sameoldlab"
+            rel="noreferrer"
+            target="_blank">are.na</a
+          >, or <a
+            class="link"
+            href="https://github.com/sameoldlab"
+            rel="noreferrer"
+            target="_blank">github</a
+          >.
+        </p>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-	main {
-		padding-block: 8rem;
-		padding-inline: 2rem;
-		width: min(80ch, 100%);
-		margin-inline: auto;
-	}
-	/* .header::before {		content:"\00B6";	} */
-	.header {
-		font-style: italic;
-		font-weight: 400;
-		font-variation-settings: 'opsz' 128;
-		font-size: 1.25rem;
-		line-height: 1.1em;
-	}
-	.socials {
-		display: flex;
-		padding-top: 2rem;
-		padding-bottom: 4rem;
-	}
+  main {
+    padding-block: 8rem;
+    padding-inline: 2rem;
+    width: min(80ch, 100%);
+    margin-inline: auto;
+  }
+  /* .header::before {		content:'\00B6';	} */
+  .header {
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 128;
+    font-size: 1.25rem;
+    line-height: 1.1em;
+  }
+  .socials {
+    display: flex;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
 
-	.opacity-70 {
-		opacity: 0.7;
-	}
-	.font-sans {
-		font-family: 'Courier New', Courier, monospace;
-	}
+  .opacity-70 {
+    opacity: 0.7;
+  }
+  .font-sans {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  h2.subhead {
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    padding-block-end: 0.25rem;
+    color: var(--t-high);
+  }
+  section {
+    margin-top: 2em;
+  }
+  a {
+    em {
+      color: var(--t-high);
+    }
+    em + span {
+      color: var(--t-low);
+    }
+  }
+  .row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
 </style>

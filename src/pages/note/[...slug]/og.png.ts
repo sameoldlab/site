@@ -1,21 +1,23 @@
-import { getCollection, type CollectionEntry } from 'astro:content'
-import { readFileSync } from 'fs'
-import { html } from 'satori-html'
-import { ImageResponse } from '@vercel/og'
+import { getCollection, type CollectionEntry } from "astro:content";
+import { readFileSync } from "fs";
+import { html } from "satori-html";
+import { ImageResponse } from "@vercel/og";
 
 interface Props {
-	params: { slug: string }
-	props: {
-		post: CollectionEntry<'note'>
-	}
+  params: { slug: string };
+  props: {
+    post: CollectionEntry<"note">;
+  };
 }
 
 export async function GET({ props }: Props) {
-	const { post } = props
+  const { post } = props;
 
-	const Literata = readFileSync(`${process.cwd()}/public/fonts/Literata_60pt-LightItalic.ttf`)
+  const Literata = readFileSync(
+    `${process.cwd()}/public/fonts/Literata_60pt-LightItalic.ttf`,
+  );
 
-	const markup = html(`
+  const markup = html(`
 		<div
 			class="w-full h-full flex items-center justify-center relative px-22 bg-[#141414]"
 		>
@@ -37,25 +39,25 @@ export async function GET({ props }: Props) {
 				${post.data.title}
 			</div>
 		</div>
-		`)
+		`);
 
-	return new ImageResponse(markup, {
-		width: 1200,
-		height: 600,
-		fonts: [
-			{
-				name: 'Literata',
-				data: Literata.buffer,
-				style: 'italic',
-			},
-		],
-	})
+  return new ImageResponse(markup, {
+    width: 1200,
+    height: 600,
+    fonts: [
+      {
+        name: "Literata",
+        data: Literata.buffer,
+        style: "italic",
+      },
+    ],
+  });
 }
 
 export async function getStaticPaths() {
-	const notes = await getCollection('note')
-	return notes.map(post => ({
-		params: { slug: post.slug },
-		props: { post },
-	}))
+  const notes = await getCollection("note");
+  return notes.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }

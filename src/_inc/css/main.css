@@ -45,3 +45,8 @@ button.text {
 	border: none;
 	font-family: inherit;
 }
+hr {
+  opacity: .22;
+  border: .25px solid var(--t-low);
+  margin-block: 1rem;
+}
