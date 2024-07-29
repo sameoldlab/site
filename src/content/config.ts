@@ -27,13 +27,14 @@ const project = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		links: z.array(z.object({}).catchall(z.string().url())).optional(),
+		links: z.array(z.tuple([z.string(), z.string().url()])),
+		rank: z.number(),
 		media: z
 			.array(
 				z.object({
 					link: z.string(),
 					// type: z.enum([z.literal('image'), z.literal('video')]),
-					"type": z.enum(["image", "video"]),
+					type: z.enum(['image', 'video']),
 					alt: z.string(),
 					description: z.string().optional(),
 				})

@@ -1,7 +1,7 @@
 {
-	"title": "nft-folder",
-	"description": "cli for syncing an nft collection from address to a local folder",
-	"rank": 2,
+	"title": "visor",
+	"description": "testing block explorer [wip]",
+	"rank": 8,
 	"links": [["github", "https://github.com/sameoldlab/nft-folder-linux"]],
 	"media": [
 		{

@@ -1,0 +1,17 @@
+{
+	"title": "fractl ui",
+	"description": "Component library for crypto applications",
+	"rank": 3,
+	"links": [
+		["site", "https://fractl.click"],
+		["github", "https://github.com/sameoldlab/fractl-ui"]
+	],
+	"media": [
+		{
+			"link": "",
+			"type": "image",
+			"alt": "",
+			"description": ""
+		}
+	]
+}
