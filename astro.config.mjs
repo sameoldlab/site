@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 import { rehypeExternalLinks } from './.rex-plugins/rehype-links.mjs'
-// import { remarkDeruntify } from './.rex-plugins/remark-derunt.mjs'
 import { remarkModifiedTime } from './.rex-plugins/remark-modified-time.mjs'
 import remarkWikilink from 'remark-wiki-link'
 import customTheme from '.shiki/vesper.json'
@@ -22,7 +21,7 @@ export default defineConfig({
 		},
 		imageService: true,
 		devImageService: 'sharp',
-		webAnalytics: {enabled: true},
+		webAnalytics: { enabled: false },
 	}),
 	image: {
 		domains: ['ibro.xyz'],
