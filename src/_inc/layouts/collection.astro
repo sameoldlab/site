@@ -63,7 +63,7 @@ const { entries, title, collapsed = false, meta } = Astro.props
 								<h2>
 									{' '}
 									<a class='' href={`/${entry.collection}/${entry.slug}`}>
-										{(entry.data.title !== '' && <>{entry.data.title}</>) || (
+										{(entry.data.title && <>{entry.data.title}</>) || (
 											<>{entry.data.date.toLocaleDateString()}</>
 										)}
 									</a>{' '}
@@ -86,11 +86,33 @@ const { entries, title, collapsed = false, meta } = Astro.props
 			}
 		</div>
 	</main>
+	<script>
+		;(function (window) {
+			function setupVideo() {
+				let v = document.getElementById('videoElement')
+				v.addEventListener(
+					'mouseover',
+					function () {
+						this.controls = true
+					},
+					false
+				)
+				v.addEventListener(
+					'mouseout',
+					function () {
+						this.controls = false
+					},
+					false
+				)
+			}
 
+			window.addEventListener('load', setupVideo, false)
+		})(window)
+	</script>
 	<script>
 		document.addEventListener('astro:page-load', () => {
 			let articles = document.querySelector('div.articles')
-			if (articles === null) return 
+			if (articles === null) return
 			let collapsed = articles.classList.contains('collapsed')
 
 			const toggleCollapse = document.getElementById('toggleCollapse')!

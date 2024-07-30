@@ -19,6 +19,7 @@ const stream = defineCollection({
 	schema: z.object({
 		date: z.date(),
 		tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+		media: z.array(z.string()).optional(),
 	}),
 })
 
