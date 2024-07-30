@@ -98,15 +98,9 @@ code {
 
 img {
 	width: 100%;
-	object-fit: scale-down;
-	opacity: 0.85;
-	transition: opacity var(--ease);
+	object-fit: contain;
 	border-radius: 0.25rem;
 	padding-block: 1.5rem;
-
-	&:hover {
-		opacity: 1;
-	}
 
 	& + em {
 		display: block;
