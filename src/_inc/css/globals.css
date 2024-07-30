@@ -13,12 +13,12 @@
 	/* --t-high: oklch(from var(--bg-low)98% c h); */
 	/* --t-low: oklch(from var(--bg-low) 65% c h); */
 
-	--text: 		oklch(calc(var(--l) + calc(0.86 * var(--ld))) var(--c) var(--h));
-	--t-high:		oklch(calc(var(--l) + calc(0.98 * var(--ld))) var(--c) var(--h));
-	--t-low:		oklch(calc(var(--l) + calc(0.64 * var(--ld))) var(--c) var(--h));
-	--bg-low:		oklch(calc(var(--l) + calc(0.18 * var(--ld))) var(--c) var(--h));
-	--bg:				oklch(calc(var(--l) + calc(0.16 * var(--ld))) var(--c) var(--h));
-	--bg-high:	oklch(calc(var(--l) + calc(0.32 * var(--ld))) var(--c) var(--h));
+	--text: oklch(calc(var(--l) + calc(0.86 * var(--ld))) var(--c) var(--h));
+	--t-high: oklch(calc(var(--l) + calc(0.98 * var(--ld))) var(--c) var(--h));
+	--t-low: oklch(calc(var(--l) + calc(0.64 * var(--ld))) var(--c) var(--h));
+	--bg-low: oklch(calc(var(--l) + calc(0.18 * var(--ld))) var(--c) var(--h));
+	--bg: oklch(calc(var(--l) + calc(0.16 * var(--ld))) var(--c) var(--h));
+	--bg-high: oklch(calc(var(--l) + calc(0.32 * var(--ld))) var(--c) var(--h));
 
 	--ease: ease-in-out 80ms;
 	--width: 65ch;

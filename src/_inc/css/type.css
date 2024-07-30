@@ -26,7 +26,7 @@ p:has(time) {
 	flex-wrap: wrap;
 	gap: 0.5rem;
 	padding-block: 0.25rem 0;
-	
+
 	a {
 		color: var(--t-low);
 	}
@@ -46,7 +46,8 @@ p {
 	text-wrap: pretty;
 }
 
-ol, ul {
+ol,
+ul {
 	margin: 0;
 	padding-inline-start: 1rem;
 
@@ -54,14 +55,16 @@ ol, ul {
 		color: var(--t-low);
 	}
 }
-	
-	ul,
-	ol,
-	p {
-		padding-block-start: 0.5rem;
-		line-height: 1.5em;
-		}
-	ul{list-style: circle;}
+
+ul,
+ol,
+p {
+	padding-block-start: 0.5rem;
+	line-height: 1.5em;
+}
+ul {
+	list-style: circle;
+}
 
 .content a,
 a.link {
@@ -69,8 +72,15 @@ a.link {
 }
 
 code {
-	font-family: 'Fira Code', SFMono, Menlo, Monaco, Lucida Console,
-		Liberation Mono, DejaVu Sans Mono, monospace;
+	font-family:
+		'Fira Code',
+		SFMono,
+		Menlo,
+		Monaco,
+		Lucida Console,
+		Liberation Mono,
+		DejaVu Sans Mono,
+		monospace;
 	font-size: 0.8rem;
 }
 
@@ -78,12 +88,12 @@ code {
 	line-height: 1.2rem;
 	/* padding: .25em; */
 	border: var(--bg-highlight) solid 1.5px;
-	background-color: var(--bg) !important;
+	/* background-color: var(--bg) !important; */
 	margin-block: 1rem;
 	min-width: 0;
 	overflow-wrap: break-word;
-	padding: .75rem;
-	border-radius: .25rem;
+	padding: 0.75rem;
+	border-radius: 0.25rem;
 }
 
 img {
@@ -124,7 +134,7 @@ hr {
 	margin: 0.25rem 0 1rem;
 	/* border-width: 0; */
 	color: var(--t-low);
-	opacity: .4;
+	opacity: 0.4;
 	/* border-color: red; */
 	/* outline: red solid 1px; */
 }
