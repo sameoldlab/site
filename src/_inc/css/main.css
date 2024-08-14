@@ -1,6 +1,13 @@
 @import url('./globals.css');
 
 h1,
+h2 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+h1,
 h2,
 h3,
 h4 {
@@ -9,13 +16,6 @@ h4 {
 	padding-block-start: 2em;
 	padding-block-end: 0.5em;
 	color: var(--t-highlight);
-}
-
-h1,
-h2 {
-	margin: 0;
-	padding: 0;
-	border: 0;
 }
 
 h1 {
@@ -45,6 +45,7 @@ button.text {
 	border: none;
 	font-family: inherit;
 }
+
 hr {
 	opacity: 0.4;
 	border: none;

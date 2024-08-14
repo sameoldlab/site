@@ -11,6 +11,7 @@ article {
 		text-align: center;
 	}
 }
+
 p:has(time) {
 	font-size: 1em;
 	line-height: 1rem;
@@ -62,6 +63,7 @@ p {
 	padding-block-start: 0.5rem;
 	line-height: 1.5em;
 }
+
 ul {
 	list-style: circle;
 }
@@ -102,7 +104,7 @@ img {
 	border-radius: 0.25rem;
 	padding-block: 1.5rem;
 
-	& + em {
+	&+em {
 		display: block;
 		color: var(--t-low);
 		width: 100%;
@@ -115,10 +117,12 @@ img {
 blockquote {
 	padding-left: 0.75rem;
 	font-size: 0.9rem;
-	border-left: 1px solid var(--t-low);
+	border-inline-start: 1px solid var(--t-low);
 	color: var(--t-low);
-	padding-block: 0.25rem;
-	margin-inline: 0.5rem;
+	padding-block: 0.125rem;
+	margin-block: 0.75em;
+	/* margin-inline-start: 0.25em; */
+
 	p {
 		padding: 0;
 	}
