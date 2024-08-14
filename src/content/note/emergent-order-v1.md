@@ -8,34 +8,33 @@ I heard about Elinor Ostrom the first time last year. And a paper by Ron Eglash 
 
 It's all still quite amorphous, but *Organized Chaos*--or maybe *Emergent Order*--sounds like a decent tagline at the moment. So, what is it? Best I've got is a string of quotes--to be better digested in the future:
 
-**Life and Death of Great American Cities**
+## Notes
+---
+
+### Life and Death of Great American Cities
 
 > There is a quality even meaner than outright ugliness or disorder, and this meaner quality is the dishonest mask of pretended order, achieved by ignoring or suppressing the real order that is struggling to exist and to be served
 *- Jane Jacobs*
 
----
-
-**Hope in Source #11: City as Liturgy**
+### Hope in Source #11: City as Liturgy
 
 Pickstock : Descartes :: Jane Jacobs : Urban Planners: Replacing a "living, very sophisticated, rich and subtle order" with "visually flashy and comprehensible, but that was outside of time and therefore dead."
 
 >  Organic Order is not meant to be known all at once. It runs a system based on its output. Generating a fractal order
 *- Timothy Patitsis*
 
----
 
-**RadicalxChange Replayed #14: No Normal | Keller Easterling in Conversation with Shumi Bose**
+### RadicalxChange Replayed #14: No Normal | Keller Easterling in Conversation with Shumi Bose
 
 > The parameters of the system are constantly changing and therefore systems don't hold.... Productive entanglements is the phrase that we've been throwing around. 
 *- Shumi Bose*
 
----
 
 Designers tend to find and apply a kind of over arching (top-down) order to the work they do. These seem to fly in the face of that; Elinor Ostrom's research shows communities [coordinating to maintain shared resources](https://www.nobelprize.org/prizes/economic-sciences/2009/ostrom/facts/) without a central authority. Ron Eglash documents the [fractal patterns in African architecture](https://www.researchgate.net/publication/242911162_Fractals_in_African_settlement_architecture). Recurring themes: "Everyone is a designer" but not in the IDEO Design Thinking way (and it's rarely ever called capital-D *Design*). The only constant is change. 
 
 The New Urbanists are old now, so I'm not sure where this rabbit hole goes for someone making those top-down order things, but it might be useful. 
 
-Update [27-10-2023]: I came across [this essay](https://www.dubberly.com/articles/why-we-should-stop-describing-design-as-problem-solving.html) on design's shift away from the problem-solving lens. There's a lot of interesting history along the way and a **wide** range of sources for future rabbitholes. It did not have a solution to life, the universe, and everything like I'd expected, but helps address some of the dissonance I've felt with design.
+Dubberly on [design's shift away from problem solving](https://www.dubberly.com/articles/why-we-should-stop-describing-design-as-problem-solving.html). There's a lot of interesting history along the way and a **wide** range of sources for future rabbitholes. It did not have a solution to life, the universe, and everything like I'd expected, but helps address some of the dissonance I've felt with design.
 
 ### Skimmed / Read
 - *Design for the Pluriverse* - Arturo Escobar
