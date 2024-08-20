@@ -3,6 +3,7 @@ import { rehypeExternalLinks } from './.rex-plugins/rehype-links.mjs'
 import { remarkModifiedTime } from './.rex-plugins/remark-modified-time.mjs'
 import remarkWikilink from 'remark-wiki-link'
 import customTheme from '.shiki/vesper.json'
+// import mono from '.shiki/monochrome.json'
 // import compress from 'astro-compress'
 import sitemap from '@astrojs/sitemap'
 import serviceWorker from 'astrojs-service-worker'
@@ -34,6 +35,10 @@ export default defineConfig({
 	markdown: {
 		shikiConfig: {
 			theme: customTheme,
+			themes: {
+				light: 'rose-pine-dawn',
+				dark: 'poimandres',
+			},
 			wrap: true,
 		},
 		rehypePlugins: [rehypeExternalLinks],

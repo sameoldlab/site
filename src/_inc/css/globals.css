@@ -16,15 +16,16 @@
 	--text: oklch(calc(var(--l) + calc(0.86 * var(--ld))) var(--c) var(--h));
 	--t-high: oklch(calc(var(--l) + calc(0.98 * var(--ld))) var(--c) var(--h));
 	--t-low: oklch(calc(var(--l) + calc(0.64 * var(--ld))) var(--c) var(--h));
-	--bg-low: oklch(calc(var(--l) + calc(0.18 * var(--ld))) var(--c) var(--h));
+	--bg-low: oklch(calc(var(--l) + calc(0.08 * var(--ld))) var(--c) var(--h));
 	--bg: oklch(calc(var(--l) + calc(0.16 * var(--ld))) var(--c) var(--h));
+	--bg-mid: oklch(calc(var(--l) + calc(0.24 * var(--ld))) var(--c) var(--h));
 	--bg-high: oklch(calc(var(--l) + calc(0.32 * var(--ld))) var(--c) var(--h));
 
 	--ease: ease-in-out 80ms;
 	--width: 65ch;
 
 	color: var(--text);
-	background-color: var(--bg-low);
+	background-color: var(--bg);
 	line-height: 150%;
 }
 
@@ -38,7 +39,7 @@
 	}
 }
 
-body > main {
+body>main {
 	padding: 1rem;
 	width: 100%;
 	padding-block-end: 5em;
@@ -56,12 +57,13 @@ a {
 	border-bottom: 1px solid transparent;
 	transition: color var(--ease);
 
-	&:hover > h2,
+	&:hover>h2,
 	&:hover {
 		color: var(--t-low);
 		border-bottom: 1px solid var(--t-low);
 	}
 }
+
 @media (prefers-color-scheme: light) {
 	:root {
 		--c: 0.067;
@@ -70,6 +72,7 @@ a {
 		--ld: -1;
 	}
 }
+
 @media print {
 	:root {
 		--c: 0;
@@ -77,6 +80,7 @@ a {
 		--l: 1;
 		--ld: -1;
 	}
+
 	header#nav {
 		display: none;
 	}
