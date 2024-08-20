@@ -7,7 +7,7 @@ draft: true
 
 Link to Rich Hickey talk. You should see it. It's a good talk.
 
-I don't think the title atually fits though. Hickey focuses on the difference between simple and complex (or complected, as he put it). Simple gets a passing mention at the beggining in comparicon to hard, when we talk about the approcahbility or failiarity of a new system. But after that his main case is not for easyness, in use or while building, but for simple. 
+I don't think the title actually fits. Hickey focuses on the difference between simple and complex (or complected, as he put it). Simple gets a passing mention at the beginning in comparison to hard, when we talk about the approachability or familiarity of a new system. But after that his main case is not for ease, in use or while building, but for simple. 
 
 - I make the case that simple often gets abandoned for complex, because the complex system has put more effort into providing easyness
 - You can't really ignore this, because you end up in the same ecosystem as the people making these choices. My messaging app is decided by the majority of people I need to talk to. The speed I can work, my productivity, depends on the tools which are available to me, my language, framework, operating system, and even hardware of choice. 
