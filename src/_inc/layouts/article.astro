@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 import Layout from '../layouts/base.astro'
 import '../css/type.css'
 import { slide } from 'astro:transitions'
-
+import { backlinks } from '../backlinks'
 export interface Props {
 	entry: CollectionEntry<'note'>
 }
@@ -48,6 +48,12 @@ const modified = new Date(remarkPluginFrontmatter.modified)
 				</header>
 				<section class='content'>
 					<Content/>
+					{backlinks?.get(entry.slug) &&
+						<aside id="related">
+							<h2>Related</h2>
+						{ [...backlinks.get(entry.slug)].map(link => <p><a href={link.slug}>{link.title}</a></p>)}
+						</aside>
+					}
 				</section>
 				{<aside id="backlinks">
 				</aside>}
@@ -56,3 +62,16 @@ const modified = new Date(remarkPluginFrontmatter.modified)
 	</main>
 </Layout>
 
+<style is:global>
+	#related {
+		margin-block-start: 3rem;
+		padding: 1.5rem;
+		border-radius: .5rem;
+		background: var(--bg-mid);
+
+		h2 {
+			font-size: 1.2rem;
+			padding-block: 0 .25rem;
+		}
+	}
+</style>
