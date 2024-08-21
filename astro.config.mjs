@@ -3,7 +3,6 @@ import { rehypeExternalLinks } from './.rex-plugins/rehype-links.mjs'
 import { remarkModifiedTime } from './.rex-plugins/remark-modified-time.mjs'
 import remarkWikilink from 'remark-wiki-link'
 import customTheme from '.shiki/vesper.json'
-// import mono from '.shiki/monochrome.json'
 // import compress from 'astro-compress'
 import sitemap from '@astrojs/sitemap'
 import serviceWorker from 'astrojs-service-worker'
@@ -56,7 +55,30 @@ export default defineConfig({
 		// compress(), /*  munmap_chunk(): invalid pointer */
 		serviceWorker({
 			// https://developer.chrome.com/docs/workbox/modules/workbox-build/
-			workbox: {},
+			workbox: {
+				cacheId: "ibro.xyz",
+				runtimeCaching: [
+					{
+						urlPattern: /\/$/,
+						handler: "NetworkFirst",
+					},
+					{
+						urlPattern: /\.html$/,
+						handler: 'StaleWhileRevalidate'
+					},
+					{
+						// we serve stale copies of static assets while they're refreshed
+						urlPattern:
+							/^.*\.(ico|svg|json)$/,
+						handler: "StaleWhileRevalidate",
+					},
+					{
+						// Network wil not be used at all for assets which are unlikely to change
+						urlPattern: /^.*\.(jpg|png|mp4|gif|webp|woff2)$/,
+						handler: "CacheFirst",
+					}
+				],
+			},
 		}),
 		sitemap(),
 		svelte(),
