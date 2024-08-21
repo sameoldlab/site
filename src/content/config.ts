@@ -28,7 +28,7 @@ const project = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		links: z.array(z.tuple([z.string(), z.string().url()])),
+		links: z.array(z.tuple([z.string(), z.string().url()])).optional(),
 		rank: z.number(),
 		media: z
 			.array(

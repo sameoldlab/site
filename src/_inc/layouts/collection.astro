@@ -171,6 +171,10 @@ const { entries, title, collapsed = false, meta } = Astro.props
 		gap: 0.5rem;
 		max-width: var(--width);
 		margin-inline: auto;
+
+		h1 {
+			padding: 0;
+		}
 	}
 
 	.articles {
@@ -183,6 +187,7 @@ const { entries, title, collapsed = false, meta } = Astro.props
 		}
 		h2 {
 			transition: font-size var(--ease);
+			padding-block: 0em;
 		}
 		.content {
 			display: grid;

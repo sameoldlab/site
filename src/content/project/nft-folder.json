@@ -1,8 +1,13 @@
 {
 	"title": "nft-folder",
-	"description": "cli for syncing an nft collection from address to a local folder",
+	"description": "sync or download an nft collection locally",
 	"rank": 2,
-	"links": [["github", "https://github.com/sameoldlab/nft-folder-linux"]],
+	"links": [
+		[
+			"github",
+			"https://github.com/sameoldlab/nft-folder-linux"
+		]
+	],
 	"media": [
 		{
 			"link": "",

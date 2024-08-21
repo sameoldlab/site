@@ -2,7 +2,12 @@
 	"title": "visor",
 	"description": "testing block explorer [wip]",
 	"rank": 8,
-	"links": [["github", "https://github.com/sameoldlab/nft-folder-linux"]],
+	"links": [
+		[
+			"github",
+			"https://github.com/sameoldlab/visor"
+		]
+	],
 	"media": [
 		{
 			"link": "",

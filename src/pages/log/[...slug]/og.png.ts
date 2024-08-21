@@ -6,7 +6,7 @@ import { ImageResponse } from '@vercel/og'
 interface Props {
 	params: { slug: string }
 	props: {
-		post: CollectionEntry<'note'>
+		post: CollectionEntry<'stream'>
 	}
 }
 
@@ -36,7 +36,7 @@ export async function GET({ props }: Props) {
 				bottom: 2.5rem;
 				left: 3rem;
 			">
-				${post.data.title}
+				${post.data.date}
 			</div>
 		</div>
 		`)
@@ -55,7 +55,7 @@ export async function GET({ props }: Props) {
 }
 
 export async function getStaticPaths() {
-	const notes = await getCollection('note')
+	const notes = await getCollection('stream')
 	return notes.map((post) => ({
 		params: { slug: post.slug },
 		props: { post },
