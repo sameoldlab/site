@@ -1,8 +1,9 @@
 # build output
-dist/
-
-# generated types
-.astro/
+/dist
+.output
+.vercel
+/.svelte-kit
+/build
 
 # dependencies
 node_modules/
@@ -23,3 +24,7 @@ pnpm-debug.log*
 
 .obsidian
 .zk
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
