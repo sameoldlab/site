@@ -1,32 +1,24 @@
----
-//import Projects from './_projects.svelte';
-import Layout from '../_inc/layouts/base.astro'
-import { getCollection } from 'astro:content'
-const projects = (await getCollection('project')).sort(
-	(a, b) => a.data.rank - b.data.rank
-)
+<script lang="ts">
+	export let data
+	const { notes, projects } = data
 
-let notes = await getCollection('note', ({ data }) => {
-	return data.draft !== true
-	//return import.meta.env.PROD ? data.draft !== true : true
-})
-const tags = notes.reduce((acc, entry) => {
-	entry.data.tags.forEach((t) => {
-		if (t === 'meta' || t === 'rabbithole') return
-		let tag = acc.get(t)
-		if (tag === undefined) tag = 0
-		acc.set(t, tag + 1)
-	})
-	return acc
-}, new Map())
+	const tags = notes.reduce((acc, entry) => {
+		entry.metadata.tags?.forEach((t) => {
+			if (t === 'meta' || t === 'rabbithole') return
+			let tag = acc.get(t)
+			if (tag === undefined) tag = 0
+			acc.set(t, tag + 1)
+		})
+		return acc
+	}, new Map())
 
-/*
+	/*
 let recent = notes.map(async (entry) => {
   const { remarkPluginFrontmatter } = await entry.render()
   const modified = new Date(remarkPluginFrontmatter.modified)
   return {
     modified,
-    title: entry.data.title,
+    title: entry.title,
     slug: entry.slug
   }
 }).sort(async (a, b) => {
@@ -35,103 +27,79 @@ let recent = notes.map(async (entry) => {
   return ar.modified.getTimezoneOffset() - br.modified.getTimezoneOffset() 
 }).filter((_,i) => i < 5)
 */
----
+</script>
 
-<Layout title="ibro.xyz">
-	<main>
-		<section class="container">
-			<!--
-
+<main>
+	<section class="container">
+		<!--
 				I think design is about playing with constraints, function melts form, and
 				'simple' should mean clear. I too nerd out over typography, caustics, and
 				beziers, but also performance, privacy, and open protocols. If this computer
 				thing doesn't work out... I'll probably try canning tomatoes or washing
 				coffee cherries. If you want more rambling, please just see
-
 			</p> -->
-			<br />
-		</section>
-		<section class="container">
-			<p class="">
-				<em>Building interfaces to communicate data.</em> Exploring interactions
-				at same.supply data-ownership, improving usability for open protocols, and
-				hyperpads. If this <em>computer thing</em> doesn't pan out, I'll probably
-				try metalwork or washing coffee again. Till then you can find me on the internet
-				working with design, code, and the many little things in between.
-			</p>
-			<br />
-			<p class="">I'm Ibro. Welcome to my website. Hi.</p>
-		</section>
-		<div>
-			<section id="projects">
-				<h2 class="subhead">Recently working on</h2>
-				{
-					projects.map((entry) => {
-						if(entry.data.links)
-						return <p>
-							<a class="" href={entry.data.links[0][1]}>
-								<em class="title">{entry.data.title}</em>
-								<span class="description"> — {entry.data.description}</span>
-							</a></p>
-						else 
-								return <p>
-								<em class="title">{entry.data.title}</em>
-								<span class="description"> — {entry.data.description}</span>
-								</p>
-					})
-				}
-			</section>
-			<section id="notes">
-				<h2 class="subhead">and writing about</h2>
-				<div class="row tags">
-					{
-						[...tags.entries()]
-							.sort((a, b) => b[1] - a[1])
-							.map(([tag, count]) => (
-								<a href={`/tag/${tag.replaceAll(' ', '-')}`}>
-									<em class="title">{tag}</em>{' '}
-									<span class="description">{count}</span>
-								</a>
-							))
-					}
-				</div>
-
-				{
-					/*
-          recent.map(async (res) => {
-          const entry = await Promise.resolve(res)
-          return (
-            <p>
-              <a class="" href={entry.slug}>
-                <span class="title">{entry.title}</span>
-                <!-- <span class="description"> — {entry.data.description}</span> -->
-              </a>
-            </p>
-          )})
-        */
-				}
-			</section>
-		</div>
-		<hr />
-		<section id="socials">
-			<div class="row">
+	</section>
+	<section class="container">
+		<p class="">
+			<em>Building interfaces to communicate data.</em> Exploring interactions
+			at same.supply data-ownership, improving usability for open protocols, and
+			hyperpads. If this <em>computer thing</em> doesn't pan out, I'll probably try
+			metalwork or washing coffee again. Till then you can find me on the internet
+			working with design, code, and the many little things in between.
+		</p>
+		<br />
+		<p class="">I'm Ibro. Welcome to my website. Hi.</p>
+	</section>
+	<div>
+		<section id="projects">
+			<h2 class="subhead">Recently working on</h2>
+			{#each projects as entry}
 				<p>
-					Reach out by <a class="link" href="mailto:hey@ibro.xyz">email</a>, <a
-						class="link"
-						href="https://www.are.na/sameoldlab"
-						rel="noreferrer"
-						target="_blank">are.na</a
-					>, or <a
-						class="link"
-						href="https://github.com/sameoldlab"
-						rel="noreferrer"
-						target="_blank">github</a
-					>.
+					{#if entry.links}
+						<a class="" href={entry.links[0][1]}>
+							<em class="title">{entry.title}</em>
+							<span class="description"> — {entry.description}</span>
+						</a>
+					{:else}
+						<em class="title">{entry.title}</em>
+						<span class="description"> — {entry.description}</span>
+					{/if}
 				</p>
+			{/each}
+		</section>
+		<section id="notes">
+			<h2 class="subhead">and writing about</h2>
+			<div class="row tags">
+				{#each tags as [tag, count]}
+					<a href={`/tag/${tag.replaceAll(' ', '-')}`}>
+						<em class="title">{tag}</em>{' '}
+						<span class="description">{count}</span>
+					</a>
+				{/each}
 			</div>
 		</section>
-	</main>
-</Layout>
+	</div>
+	<hr />
+	<section id="socials">
+		<div class="row">
+			<p>
+				Reach out by <a class="link" href="mailto:hey@ibro.xyz">email</a>,
+				<a
+					class="link"
+					href="https://www.are.na/sameoldlab"
+					rel="noreferrer"
+					target="_blank">are.na</a
+				>, or
+				<a
+					class="link"
+					href="https://github.com/sameoldlab"
+					rel="noreferrer"
+					target="_blank">github</a
+				>.
+			</p>
+		</div>
+	</section>
+</main>
 
 <style>
 	main {
@@ -140,7 +108,7 @@ let recent = notes.map(async (entry) => {
 		width: min(80ch, 100%);
 		margin-inline: auto;
 	}
-	/* .header::before {		content:'\00B6';	} */
+
 	.header {
 		font-style: italic;
 		font-weight: 400;
