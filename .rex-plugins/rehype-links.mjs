@@ -1,5 +1,5 @@
 export function rehypeExternalLinks() {
-	return function (tree) {
+	return function(tree) {
 		tree.children.forEach(node => {
 			traverseLinks(node)
 		})
