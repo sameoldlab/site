@@ -1,4 +1,4 @@
-{
+export default {
   "colors": {
     "activityBar.background": "#101010",
     "activityBar.foreground": "#A0A0A0",
