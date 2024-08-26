@@ -52,3 +52,7 @@ hr {
 	border-block-start: 1px solid var(--t-low);
 	margin-block: 1rem;
 }
+
+main {
+	margin-block-end: 5rem;
+}

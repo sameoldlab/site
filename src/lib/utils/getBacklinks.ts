@@ -2,18 +2,20 @@ import type { Note, Page } from "$lib/types"
 import { getCollection } from "./getCollection"
 
 type Link = string
-export const backlinks = await getBacklinks()
+export const backlinks = getBacklinks()
 
-async function getBacklinks() {
-  const noteFiles = import.meta.glob(`/src/content/note/*.md`) as Record<string, () => Promise<Note>>
-
-  const notes = await getCollection(noteFiles)
-
-  const pages = notes.map((p) => ({
-    title: p.metadata.title,
-    slug: p.slug,
-    links: p.links,
-  }))
+function getBacklinks() {
+  const noteFiles = import.meta.glob(`/src/content/note/*.md`, { eager: true })
+  const pages = Object.entries(noteFiles)?.map(([path, module]) => {
+    const { metadata, links } = module as Note
+    const collectionPath = path
+    const slug = path.split('/').pop()?.split('.')[0]
+    return {
+      title: metadata.title,
+      slug,
+      links
+    }
+  })
 
   const map = new Map<Link, Set<Page>>()
   for (const page of pages) {
@@ -28,13 +30,4 @@ async function getBacklinks() {
     }
   }
   return map
-}
-
-function extractLinks(page: Page) {
-  const content = page?.body
-  const internalLinks = (content.match(/\[\[\s?([^\[\]\|\n\r]+)(\|[^\[\]\|\n\r]+)?\s?\]\]/g) || [])
-    .map(v => v.slice(2, -2).split(':')[0]?.trim())
-
-  console.log(page.slug, internalLinks)
-  return internalLinks
 }
