@@ -1,21 +1,11 @@
----
-import { getCollection } from 'astro:content'
-import Article from '../../../_inc/layouts/article.astro'
+<script lang="ts">
+	import Article from '$lib/layouts/article.svelte'
 
-export async function getStaticPaths() {
-	const blogEntries = await getCollection('note', ({ data }) =>
-		import.meta.env.PROD ? data.draft !== true : true
-	)
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}))
-}
+	export let data
+	const { content: Content, entry, related } = data
+	export const title = 'hello'
+</script>
 
-const { entry } = Astro.props
-const { Content } = await entry.render()
----
-
-<Article {entry}>
+<Article {entry} {related}>
 	<Content />
 </Article>
