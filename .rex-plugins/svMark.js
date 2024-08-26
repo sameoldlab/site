@@ -8,6 +8,7 @@ import rehypeShiki from '@shikijs/rehype'
 import matter from 'gray-matter'
 import vesper from './vesper.js'
 import { remarkModifiedTime } from './remark-modified-time.mjs'
+import remarkWikiLink from 'remark-wiki-link'
 import { rehypeExternalLinks } from './rehype-links.mjs'
 
 
@@ -18,8 +19,9 @@ import { rehypeExternalLinks } from './rehype-links.mjs'
  * @param {string} content
  */
 async function parseMarkdown(content, filepath) {
-  const tree = unified().use(toMarkdownAST)
-  const processor = await tree
+  const processor = await unified()
+    .use(toMarkdownAST)
+    .use(remarkWikiLink, { pageResolver: (page) => [page], hrefTemplate: (permalink) => `/note/${permalink}` })
     .use([remarkGfm, remarkSmartypants, remarkModifiedTime])
     .use(toHtmlAST, { allowDangerousHtml: true })
     .use(rehypeShiki, { theme: vesper })
@@ -46,6 +48,13 @@ function escapeHtml(content) {
   return content
 }
 
+function extractLinks(content = '') {
+  const internalLinks = (content.match(/\[\[\s?([^\[\]\|\n\r]+)(\|[^\[\]\|\n\r]+)?\s?\]\]/g) || [])
+    .map(v => v.slice(2, -2).split(':')[0]?.trim())
+
+  return internalLinks
+}
+
 function svMark() {
   return {
     name: 'svmark',
@@ -56,17 +65,16 @@ function svMark() {
     * @param {string} param.filename 
     */
     async markup({ content: contents, filename }) {
-      if (!filename.endsWith('.md')) return
+      if (!filename.endsWith('.md')) return { code: contents }
       const { data, content } = matter(contents, {})
       const html = await parseMarkdown(content, filename)
       const code = escapeHtml(html)
+      const links = extractLinks(content)
 
-      let d = `adafa dafdsafdsaf dsa
-      fsfs`
       const script = `
         <script context="module">
           export const metadata = ${JSON.stringify(data)}
-          export const raw = \`${d}\`
+          export const links = ${JSON.stringify(links)}
         </script>
       `
       return { code: script + code }
@@ -74,4 +82,5 @@ function svMark() {
   }
 }
 
+// export const raw = \`${escapeHtml(content)}\`
 export default svMark
