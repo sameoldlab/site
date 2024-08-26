@@ -1,20 +1,16 @@
----
-import type { CollectionEntry } from 'astro:content'
-import Layout from '../layouts/base.astro'
-import '../css/type.css'
-import { slide } from 'astro:transitions'
-import { backlinks } from '../backlinks'
-export interface Props {
-	entry: CollectionEntry<'note'>
-}
+<script lang="ts">
+	import type { Note, Page } from '$lib/types'
+	import type { Snippet } from 'svelte'
+	type Props = {
+		entry: Note
+		related?: Set<Page>
+		children: Snippet
+	}
+	let { entry, related, children }: Props = $props()
+	const modified = new Date()
+</script>
 
-const { entry } = Astro.props
-const { Content, remarkPluginFrontmatter } = await entry.render()
-
-const modified = new Date(remarkPluginFrontmatter.modified)
----
-
-<Layout 
+<!--<Layout 
 	title={entry.data.title}  
 	type={{
 		published_time: entry.data.date,
@@ -22,56 +18,56 @@ const modified = new Date(remarkPluginFrontmatter.modified)
 		tags: entry.data.tags,
 	}}
 	image={{
-		url: `${Astro.url}/og.png`,
+		url: `${$page.url}/og.png`,
 		type: 'image/png',
 		width: 1200,
 		height: 600,
 	}}
 	>
-	<main>
-		<div>
-			<!-- <a href='#' onclick='history.back()'> ⮌ Return</a> -->
-			<article>
-				<header>
-					<h1> {entry.data.title} </h1>
-					<p class="date"> <time>
-						{ new Date(entry.data.date).toLocaleDateString()}–{modified.toLocaleDateString()}</time></p>
-					<div class="tags">
-						{
-							entry.data.tags.map((tag) => {
-								return (
-									<a href={'/tag/'+tag.split(' ').join('-')}>{tag}</span></a>
-								)
-							})
-						}
-					</div>
-				</header>
-				<section class='content'>
-					<Content/>
-					{backlinks?.get(entry.slug) &&
-						<aside id="related">
-							<h2>Related</h2>
-						{ [...backlinks.get(entry.slug)].map(link => <p><a href={link.slug}>{link.title}</a></p>)}
-						</aside>
-					}
-				</section>
-				{<aside id="backlinks">
-				</aside>}
-			</article>
-		</div>
-	</main>
-</Layout>
+-->
+<main>
+	<div>
+		<!-- <a href='#' onclick='history.back()'> ⮌ Return</a> -->
+		<article>
+			<header>
+				<h1>{entry.metadata.title}</h1>
+				<p class="date">
+					<time>
+						{new Date(
+							entry.metadata.date
+						).toLocaleDateString()}–{modified.toLocaleDateString()}
+					</time>
+				</p>
+				<div class="tags">
+					{#each entry.metadata.tags as tag}
+						<a href={'/tag/' + tag.split(' ').join('-')}>{tag}</a>
+					{/each}
+				</div>
+			</header>
+			<section class="content">{@render children()}</section>
 
-<style is:global>
+			{#if related}
+				<aside id="related">
+					<h2>Related</h2>
+					{#each related as rl}
+						<p><a href={rl.slug}>{rl.title}</a></p>
+					{/each}
+				</aside>
+			{/if}
+		</article>
+	</div>
+</main>
+
+<style global>
 	#related {
 		margin-block-start: 3rem;
 		padding: 1.5rem;
-		border-radius: .5rem;
+		border-radius: 0.5rem;
 		background: var(--bg-mid);
 
 		h2 {
 			font-size: 1.2rem;
-			padding-block: 0 .25rem;
+			padding-block: 0 0.25rem;
 		}
 	}
 </style>
