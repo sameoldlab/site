@@ -1,5 +1,6 @@
 <script lang="ts">
-	export let data
+	import type { PageData } from './$types.js'
+	export let data: PageData
 	const { notes, projects } = data
 
 	const tags = notes.reduce((acc, entry) => {
@@ -108,25 +109,15 @@ let recent = notes.map(async (entry) => {
 		width: min(80ch, 100%);
 		margin-inline: auto;
 	}
-
-	.header {
-		font-style: italic;
-		font-weight: 400;
-		font-variation-settings: 'opsz' 128;
-		font-size: 1.25rem;
-		line-height: 1.1em;
+	.tags {
+		justify-content: start;
+		padding-block-end: 1rem;
 	}
-	.socials {
+
+	#socials {
 		display: flex;
 		padding-top: 2rem;
 		padding-bottom: 4rem;
-	}
-
-	.opacity-70 {
-		opacity: 0.7;
-	}
-	.font-sans {
-		font-family: 'Courier New', Courier, monospace;
 	}
 
 	h2.subhead {
