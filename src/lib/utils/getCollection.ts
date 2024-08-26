@@ -5,10 +5,11 @@ export const getCollection = async <T>(collectionFiles: Record<string, () => Pro
     collectionArr.map(async ([path, resolver]) => {
       const module = await resolver()
       const collectionPath = path
-
+      const slug = path.split('/').pop()?.split('.')[0]
       return {
         ...module,
-        path: collectionPath
+        path: collectionPath,
+        slug
       }
     })
   )
