@@ -1,10 +1,11 @@
-<header id='nav'>
-	<a href='/' aria-label='Homepage'> ibro.xyz</a>
+<header id="nav">
+	<a href="/" aria-label="Homepage"> ibro.xyz</a>
 
-	<nav class='item'>
+	<nav class="item">
 		<!-- <a href='/lab'>lab</a> -->
 		<!-- <a href='/now'>now</a> -->
-		<a href='/note'> notes</a>
+		<a href="/note"> notes</a>
+		<a href="/log"> log</a>
 	</nav>
 </header>
 
@@ -21,7 +22,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-
 
 		background: red;
 		background: color-mix(in oklch var(--bg-low) 20%, oklch(1, 1, 40));

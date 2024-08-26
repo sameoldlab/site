@@ -1,150 +1,94 @@
----
-import type { CollectionEntry } from 'astro:content'
-import Layout from './base.astro'
-import '../css/type.css'
-import type { MetaProps } from '../types'
+<script lang="ts">
+	import type { Snippet } from 'svelte'
+	import type { MetaProps, Note, Log, Entry } from '../types'
 
-export interface Props {
-	entries: CollectionEntry<'note'>[]
-	collapsed?: boolean | undefined
-	title: string
-	meta?: MetaProps
-}
-const { entries, title, collapsed = false, meta } = Astro.props
----
+	interface Props {
+		entries: Array<Entry<Note>>
+		// <'note'>[]
+		collapsed?: boolean | undefined
+		title: string
+		meta?: MetaProps
+		collection: string
+	}
 
-<Layout
+	const {
+		entries,
+		title,
+		collection,
+		collapsed = false,
+		meta
+	}: Props = $props()
+
+	let collapse = $state(collapsed)
+	const toggle = () => {
+		collapse = !collapse
+	}
+</script>
+
+<!--<Layout
 	{title}
 	description={`Collected notes${
 		title.includes('tag') ? ': ' + title.substring(6) : ''
 	}`}
 	image={meta?.image}
 >
-	<main>
-		<header class='main'>
-			<h1>{title}</h1>
-			<button id='toggleCollapse' class='text' title='Collapse entries'
-				>{
-					collapsed ? (
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							width='16'
-							height='16'
-							viewBox='0 0 24 24'
-							fill='none'
-							stroke='currentColor'
-						>
-							<path d='m7 15 5 5 5-5' />
-							<path d='m7 9 5-5 5 5' />
-						</svg>
-					) : (
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							width='16'
-							height='16'
-							viewBox='0 0 24 24'
-							fill='none'
-							stroke='currentColor'
-						>
-							<path d='m7 20 5-5 5 5' />
-							<path d='m7 4 5 5 5-5' />
-						</svg>
-					)
-				}</button
+-->
+<main>
+	<header class="main">
+		<h1>{title}</h1>
+		<button
+			onclick={() => (collapse = !collapse)}
+			id="toggleCollapse"
+			class="text"
+			title="Collapse entries"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
 			>
-		</header>
-		<div class={`articles ${collapsed ? 'collapsed' : ''}`}>
-			{
-				entries.map(async entry => {
-					const { Content } = await entry.render()
-					return (
-						<article class='note'>
-							<header>
-								<h2>
-									{' '}
-									<a class='' href={`/${entry.collection}/${entry.slug}`}>
-										{(entry.data.title && <>{entry.data.title}</>) || (
-											<>{entry.data.date.toLocaleDateString()}</>
-										)}
-									</a>{' '}
-								</h2>
-								{/* 									<p>
-											<time datetime={entry.data.date.toISOString()}>
-												<!--Only show date when page is untitled -->
-												{entry.data.title !== "" && entry.data.date.toLocaleDateString()}
-												</time>
-												</p> */}
-							</header>
-							<div class='content'>
-								<div class='toggle'>
-									<Content />
-								</div>
-							</div>
-						</article>
-					)
-				})
-			}
-		</div>
-	</main>
-	<script>
-		;(function (window) {
-			function setupVideo() {
-				let v = document.getElementById('videoElement')
-				v.addEventListener(
-					'mouseover',
-					function () {
-						this.controls = true
-					},
-					false
-				)
-				v.addEventListener(
-					'mouseout',
-					function () {
-						this.controls = false
-					},
-					false
-				)
-			}
+				{#if collapse}
+					<path d="m7 15 5 5 5 -5" />
+					<path d="m7 9 5-5 5 5" />
+				{:else}
+					<path d="m7 20 5 -5 5 5" />
+					<path d="m7 4 5 5 5-5" />
+				{/if}
+			</svg>
+		</button>
+	</header>
+	<div class={`articles ${collapse ? 'collapsed' : ''}`}>
+		{#each entries as entry}
+			<article class="note">
+				<header>
+					<h2>
+						<a class="" href={`/note/${entry.slug}`}>
+							{entry.metadata.title}
+						</a>
+					</h2>
+					<!-- <p> <time datetime={entry.data.date.toISOString()}>
+							<!--Only show date when page is untitled --
+							{entry.data.title !== "" && entry.data.date.toLocaleDateString()}
+						</time> </p> -->
+				</header>
+				<div class="content">
+					<div class="toggle">
+						<svelte:component this={entry?.default} />
+					</div>
+				</div>
+			</article>
+		{/each}
+	</div>
+</main>
 
-			window.addEventListener('load', setupVideo, false)
-		})(window)
-	</script>
-	<script>
-		document.addEventListener('astro:page-load', () => {
-			let articles = document.querySelector('div.articles')
-			if (articles === null) return
-			let collapsed = articles.classList.contains('collapsed')
+<style global>
+	main {
+		padding-block-start: 8rem;
+	}
 
-			const toggleCollapse = document.getElementById('toggleCollapse')!
-			toggleCollapse.addEventListener('click', () => {
-				console.log('clicked! collaspe = ', collapsed)
-
-				if (!collapsed) {
-					articles.classList.add('collapsed')
-					toggleCollapse.innerHTML = `
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
-			<path d="m7 15 5 5 5-5"></path>
-			<path d="m7 9 5-5 5 5"></path>
-		</svg>
-		`
-				} else {
-					articles.classList.remove('collapsed')
-					toggleCollapse.innerHTML = `
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" >
-			<path d="m7 20 5-5 5 5"></path>
-			<path d="m7 4 5 5 5-5"></path>
-		</svg>
-		`
-				}
-				// setCollapsed(!collapsed())
-				collapsed = !collapsed
-			})
-			// document.getElementById("toggleCollapse").addEventListener("click", handleClick);
-		})
-	</script>
-</Layout>
-
-<style is:global>
 	#toggleCollapse {
 		color: var(--t-high);
 		/* background: var(--bg); */
