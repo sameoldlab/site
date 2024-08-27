@@ -5,7 +5,7 @@
 		<!-- <a href='/lab'>lab</a> -->
 		<!-- <a href='/now'>now</a> -->
 		<a href="/note"> notes</a>
-		<a href="/log"> log</a>
+		<a href="/lab"> lab</a>
 	</nav>
 </header>
 
