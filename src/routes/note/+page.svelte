@@ -9,15 +9,20 @@
 	let collapse = $state(true)
 	const title = 'Notes'
 
-	const tags = new Set($page.url.searchParams.get('tag')?.split(','))
-	const entries = tags.size
-		? data.entries.filter(
-				(e) =>
-					new Set(
-						e.metadata.tags?.map((t) => t.replaceAll(' ', '-'))
-					).intersection(tags).size
-			)
-		: data.entries
+	let tags = $state(new Set())
+	$effect(() => {
+		tags = new Set($page.url.searchParams.get('tag')?.split(','))
+	})
+	const entries = $derived(
+		tags.size
+			? data.entries.filter(
+					(e) =>
+						new Set(
+							e.metadata.tags?.map((t) => t.replaceAll(' ', '-'))
+						).intersection(tags).size
+				)
+			: data.entries
+	)
 </script>
 
 <Collection title="Notes" collection="note" collapsed {entries} />

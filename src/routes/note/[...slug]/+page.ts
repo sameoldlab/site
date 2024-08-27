@@ -1,6 +1,5 @@
 import type { PageLoad } from './$types';
 import { backlinks } from '$lib/utils/getBacklinks';
-export const prerender = true
 
 export const load: PageLoad = async ({ params }) => {
 	const entry = await import(`./../../../content/note/${params.slug}.md`)
