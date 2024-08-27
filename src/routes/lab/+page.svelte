@@ -1,58 +1,38 @@
 <script lang="ts">
 	import og_image from './_og.png'
 	import Collection from '$lib/layouts/collection.svelte'
+	import Media from '$lib/components/MediaContainer.svelte'
 
 	let { data } = $props()
 	const { entries } = data
-	/* ;(function (window) {
-			function setupVideo() {
-				let v = document.getElementById('videoElement')
-				v.addEventListener(
-					'mouseover',
-					function () {
-						this.controls = true
-					},
-					false
-				)
-				v.addEventListener(
-					'mouseout',
-					function () {
-						this.controls = false
-					},
-					false
-				)
-			}
-			window.addEventListener('load', setupVideo, false)
-		})(window) */
-	console.log(entries)
 </script>
 
 <main>
 	<header class="main">
-		<h1>log</h1>
+		<h1>lab</h1>
 	</header>
 	<div class="articles">
 		{#each entries as entry}
 			<article class="note">
 				<header>
 					<h2>
-						<a class="" href={`/log/${entry.slug}`}>
+						<a class="" href={`/lab/${entry.slug}`}>
 							{new Date(entry.metadata.date).toLocaleDateString()}
 						</a>
 					</h2>
-					{#each entry.metadata.tags as tag}
+					{#each entry.metadata?.tags as tag}
 						#{tag}
 					{/each}
 				</header>
 
-				{#if entry.metadata.media}
-					<div class="media">
-						{#each entry.metadata.media as media}
-							<video src={media} muted autoplay loop> </video>
-						{/each}
-					</div>
-				{/if}
 				<div class="content">
+					{#if entry.metadata.media}
+						<div class="media">
+							{#each entry.metadata.media as src}
+								<Media post={{ src }} />
+							{/each}
+						</div>
+					{/if}
 					<svelte:component this={entry.default} />
 				</div>
 			</article>
