@@ -1,3 +1,5 @@
+import type { Component } from "svelte"
+
 export interface MetaProps {
 	title?: string
 	description?: string
@@ -17,6 +19,7 @@ export interface MetaProps {
 	} | undefined
 }
 export type Entry<T> = {
+	default: Component
 	slug: string
 	path: string
 } & T
@@ -35,6 +38,7 @@ export type Log = {
 	metadata: {
 		date: string | Date,
 		tags?: string[]
+		media?: string[]
 	}
 }
 export type Page = {
