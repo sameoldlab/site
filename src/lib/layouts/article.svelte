@@ -40,7 +40,7 @@
 				</p>
 				<div class="tags">
 					{#each entry.metadata.tags as tag}
-						<a href={'/tag/' + tag.split(' ').join('-')}>{tag}</a>
+						<a href={`/note/?tag=${tag.replaceAll(' ', '-')}`}>{tag}</a>
 					{/each}
 				</div>
 			</header>
