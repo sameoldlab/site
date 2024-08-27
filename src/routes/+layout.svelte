@@ -6,20 +6,18 @@
 	import { page } from '$app/stores'
 	import type { MetaProps } from '$lib/types'
 	import type { Snippet } from 'svelte'
-	import { fade, fly, slide } from 'svelte/transition'
+	import { fade } from 'svelte/transition'
 
 	interface Props extends MetaProps {
 		children: Snippet
 	}
 	const { children, ...props }: Props = $props()
-	console.log($page.data)
 	const meta: MetaProps = {
 		title: $page.data?.title ?? 'ibro.xyz',
 		description:
 			$page.data?.description ??
 			'Experiments, exploration, bean-feuled execution',
-		type: 'website',
-		image: {}
+		type: 'website'
 	}
 </script>
 

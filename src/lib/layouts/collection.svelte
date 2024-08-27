@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
-	import type { MetaProps, Note, Log, Entry } from '../types'
+	import type { MetaProps, Note, Entry } from '../types'
 
 	interface Props {
 		entries: Array<Entry<Note>>
@@ -84,11 +83,7 @@
 	</div>
 </main>
 
-<style global>
-	main {
-		padding-block-start: 8rem;
-	}
-
+<style>
 	#toggleCollapse {
 		color: var(--t-high);
 		/* background: var(--bg); */
@@ -145,7 +140,7 @@
 	}
 
 	.articles.collapsed {
-		color: var(--text);
+		color: var(--t-high);
 		transition: color var(--ease);
 
 		header,
