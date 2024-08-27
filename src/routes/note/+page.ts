@@ -4,7 +4,7 @@ export const load: PageLoad = async ({ fetch }) => {
 	const resp = await fetch('/api/note')
 	const entries = await resp.json()
 
-	return { entries }
+	return { entries, title: 'Notes' }
 }
 /* const notes = (
 	await getCollection('note', ({ data }) =>

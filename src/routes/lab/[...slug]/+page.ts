@@ -9,6 +9,7 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	return {
 		content: entry.default,
 		meta: entry.metadata,
+		title: `${entry.metadata.date} | Lab`,
 		prev: index === 0 ? undefined : data[index - 1],
 		next: index === (data.length - 1) ? undefined : data[index + 1],
 	}
