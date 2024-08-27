@@ -22,8 +22,8 @@
 </script>
 
 <svelte:head>
-	<title>{meta.title}</title>
-	<Meta {...meta} />
+	<title>{$page.data.title}</title>
+	<Meta {...$page.data} />
 </svelte:head>
 
 {#key $page.route.id}

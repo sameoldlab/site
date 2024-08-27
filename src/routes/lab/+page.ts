@@ -12,6 +12,7 @@ export const load: PageLoad = async ({ fetch }) => {
 		})
 
 	return {
-		entries: collection
+		entries: collection,
+		title: 'Lab'
 	}
 }
