@@ -72,7 +72,7 @@ let recent = notes.map(async (entry) => {
 			<h2 class="subhead">and writing about</h2>
 			<div class="row tags">
 				{#each tags as [tag, count]}
-					<a href={`/tag/${tag.replaceAll(' ', '-')}`}>
+					<a href={`/note/?tag=${tag.replaceAll(' ', '-')}`}>
 						<em class="title">{tag}</em>{' '}
 						<span class="description">{count}</span>
 					</a>
