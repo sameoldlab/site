@@ -31,16 +31,14 @@ let recent = notes.map(async (entry) => {
 </script>
 
 <main>
-	<section class="container">
-		<!--
+	<!--
 				I think design is about playing with constraints, function melts form, and
 				'simple' should mean clear. I too nerd out over typography, caustics, and
 				beziers, but also performance, privacy, and open protocols. If this computer
 				thing doesn't work out... I'll probably try canning tomatoes or washing
 				coffee cherries. If you want more rambling, please just see
 			</p> -->
-	</section>
-	<section class="container">
+	<section>
 		<p class="">
 			<em>Building interfaces to communicate data.</em> Exploring interactions
 			at same.supply data-ownership, improving usability for open protocols, and
@@ -104,7 +102,7 @@ let recent = notes.map(async (entry) => {
 
 <style>
 	main {
-		padding-block: 8rem;
+		padding-block-start: 5rem;
 		padding-inline: 2rem;
 		width: min(80ch, 100%);
 		margin-inline: auto;

@@ -39,7 +39,7 @@
 					</time>
 				</p>
 				<div class="tags">
-					{#each entry.metadata.tags as tag}
+					{#each entry.metadata.tags || [] as tag}
 						<a href={`/note/?tag=${tag.replaceAll(' ', '-')}`}>{tag}</a>
 					{/each}
 				</div>
