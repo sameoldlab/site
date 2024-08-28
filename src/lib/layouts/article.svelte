@@ -4,10 +4,10 @@
 	type Props = {
 		entry: Note
 		related?: Set<Page>
+		modified?: string
 		children: Snippet
 	}
-	let { entry, related, children }: Props = $props()
-	const modified = new Date()
+	let { entry, related, modified, children }: Props = $props()
 </script>
 
 <!--<Layout 
@@ -35,7 +35,7 @@
 					<time>
 						{new Date(
 							entry.metadata.date
-						).toLocaleDateString()}–{modified.toLocaleDateString()}
+						).toLocaleDateString()}–{modified?.toLocaleDateString()}
 					</time>
 				</p>
 				<div class="tags">

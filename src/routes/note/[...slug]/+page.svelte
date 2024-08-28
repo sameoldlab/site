@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Article from '$lib/layouts/article.svelte'
+	let { data } = $props()
 
-	export let data
-	const { content: Content, entry, related } = data
+	const { content: Content, entry, related } = $derived(data)
 	export const title = 'hello'
 </script>
 
-<Article {entry} {related}>
-	<Content />
+<Article {entry} modified={new Date(data.modified)} {related}>
+	<svelte:component this={Content} />
 </Article>
