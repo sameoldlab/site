@@ -17,4 +17,4 @@ No pain would be nicer though. Maybe this is where protocols are important? 🤷
 
 ![Diamond-shaped protocol growth cycle. Experimentation grows with adoption, then slows down with ossification ](../assets/protocol-ossification.png)
 
-Most things do eventually become irrelevant or break down so the goal should rarely be to make the perfect standard or protocol. The interesting part is the dance; the spread and growth of new standards, dominance, , and eventually ossification. Maybe a better model for replacement.
+Most things do eventually become irrelevant or break down so the goal should rarely be to make the perfect standard or protocol. The interesting part is the dance; the spread and growth of new standards, dominance, and then eventual ossification as the cycle begins again.
