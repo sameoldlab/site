@@ -17,18 +17,18 @@ export default defineConfig({
 	adapter: vercel({
 		imagesConfig: {
 			sizes: [320, 640, 1280],
-			domains: [],
+			domains: []
 		},
 		imageService: true,
 		devImageService: 'sharp',
-		webAnalytics: { enabled: false },
+		webAnalytics: { enabled: false }
 	}),
 	image: {
-		domains: ['ibro.xyz'],
+		domains: ['ibro.xyz']
 	},
 	prefetch: {
 		defaultStrategy: 'hover',
-		prefetchAll: true,
+		prefetchAll: true
 	},
 	site: 'https://ibro.xyz',
 	markdown: {
@@ -36,31 +36,31 @@ export default defineConfig({
 			theme: customTheme,
 			themes: {
 				light: 'rose-pine-dawn',
-				dark: 'poimandres',
+				dark: 'poimandres'
 			},
-			wrap: true,
+			wrap: true
 		},
 		rehypePlugins: [rehypeExternalLinks],
 		remarkPlugins: [
 			[
 				remarkWikilink,
 				{
-					hrefTemplate: permalink => `/note/${permalink}`,
-				},
+					hrefTemplate: (permalink) => `/note/${permalink}`
+				}
 			],
-			remarkModifiedTime,
-		],
+			remarkModifiedTime
+		]
 	},
 	integrations: [
 		// compress(), /*  munmap_chunk(): invalid pointer */
 		serviceWorker({
 			// https://developer.chrome.com/docs/workbox/modules/workbox-build/
 			workbox: {
-				cacheId: "ibro.xyz",
+				cacheId: 'ibro.xyz',
 				runtimeCaching: [
 					{
 						urlPattern: /\/$/,
-						handler: "NetworkFirst",
+						handler: 'NetworkFirst'
 					},
 					{
 						urlPattern: /\.html$/,
@@ -68,20 +68,19 @@ export default defineConfig({
 					},
 					{
 						// we serve stale copies of static assets while they're refreshed
-						urlPattern:
-							/^.*\.(ico|svg|json)$/,
-						handler: "StaleWhileRevalidate",
+						urlPattern: /^.*\.(ico|svg|json)$/,
+						handler: 'StaleWhileRevalidate'
 					},
 					{
 						// Network wil not be used at all for assets which are unlikely to change
 						urlPattern: /^.*\.(jpg|png|mp4|gif|webp|woff2)$/,
-						handler: "CacheFirst",
+						handler: 'CacheFirst'
 					}
-				],
-			},
+				]
+			}
 		}),
 		sitemap(),
 		svelte(),
-		metaTags(),
-	],
+		metaTags()
+	]
 })

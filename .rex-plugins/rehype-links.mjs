@@ -1,6 +1,6 @@
 export function rehypeExternalLinks() {
-	return function(tree) {
-		tree.children.forEach(node => {
+	return function (tree) {
+		tree.children.forEach((node) => {
 			traverseLinks(node)
 		})
 	}
@@ -9,7 +9,7 @@ export function rehypeExternalLinks() {
 function traverseLinks(node) {
 	//   console.log(node)
 	if (node.tagName === 'p') {
-		node.children.forEach(n => traverseLinks(n))
+		node.children.forEach((n) => traverseLinks(n))
 	} else if (node.tagName === 'a') {
 		const url = node.properties.href
 		// console.log(url)

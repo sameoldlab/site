@@ -40,8 +40,8 @@ export async function GET({ url }) {
 			{
 				name: 'Literata',
 				data: Literata.buffer,
-				style: 'italic',
-			},
-		],
+				style: 'italic'
+			}
+		]
 	})
 }
