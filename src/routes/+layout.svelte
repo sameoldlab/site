@@ -5,29 +5,24 @@
 	import Meta from '$lib/components/meta.svelte'
 	import { page } from '$app/stores'
 	import type { MetaProps } from '$lib/types'
-	import type { Snippet } from 'svelte'
 	import { fade } from 'svelte/transition'
 
-	interface Props extends MetaProps {
-		children: Snippet
-	}
-	const { children, ...props }: Props = $props()
-	const meta: MetaProps = {
+	const { children } = $props()
+
+	const meta: MetaProps = $derived({
 		title: $page.data?.title ?? 'ibro.xyz',
-		description:
-			$page.data?.description ??
-			'Experiments, exploration, bean-feuled execution',
-		type: 'website'
-	}
+		description: $page.data?.description ?? 'Recover, Remix, Resuscitate',
+		type: $page.data?.type ?? 'website'
+	})
 </script>
 
 <svelte:head>
-	<title>{$page.data.title}</title>
-	<Meta {...$page.data} />
+	<title>{meta.title}</title>
+	<Meta {...meta} />
 </svelte:head>
 
 {#key $page.route.id}
-	<div in:fade={{ duration: 260 }}>
+	<div in:fade={{ duration: 160 }}>
 		{@render children()}
 	</div>
 {/key}

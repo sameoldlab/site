@@ -9,10 +9,10 @@
 	}: MetaProps = $props()
 
 	const img = image || {
-		url: '/img/light_ortho001.jpg',
+		url: `/og/temp?title=${title}`,
 		type: 'image/png',
-		width: 2048,
-		height: 1152
+		width: 1200,
+		height: 600
 	}
 </script>
 
