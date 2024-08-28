@@ -1,20 +1,12 @@
-import { getCollection, type CollectionEntry } from 'astro:content'
 import { readFileSync } from 'fs'
 import { html } from 'satori-html'
 import { ImageResponse } from '@vercel/og'
 
-interface Props {
-	params: { slug: string }
-	props: {
-		post: CollectionEntry<'stream'>
-	}
-}
-
-export async function GET({ props }: Props) {
-	const { post } = props
+export async function GET({ url }) {
+	const title = url.searchParams.get('render')
 
 	const Literata = readFileSync(
-		`${process.cwd()}/public/fonts/Literata_60pt-LightItalic.ttf`
+		`${process.cwd()}/static/fonts/Literata_60pt-LightItalic.ttf`
 	)
 
 	const markup = html(`
@@ -36,7 +28,7 @@ export async function GET({ props }: Props) {
 				bottom: 2.5rem;
 				left: 3rem;
 			">
-				${post.data.date}
+				${title}
 			</div>
 		</div>
 		`)
@@ -52,12 +44,4 @@ export async function GET({ props }: Props) {
 			},
 		],
 	})
-}
-
-export async function getStaticPaths() {
-	const notes = await getCollection('stream')
-	return notes.map((post) => ({
-		params: { slug: post.slug },
-		props: { post },
-	}))
 }
