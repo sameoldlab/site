@@ -15,10 +15,10 @@ export async function get(context) {
 			link: `/note/${post.slug}/`,
 			//   description: "post.data.description",
 			pubDate: post.data.date,
-			content: sanitizeHtml(parser.render(post.body)),
+			content: sanitizeHtml(parser.render(post.body))
 		})),
 		// stylesheet: "/rss/styles.xsl",
 		// xmlns: { h: 'http://www.w3.org/TR/html4/' },
-		customData: '<language>en</language>',
+		customData: '<language>en</language>'
 	})
 }

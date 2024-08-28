@@ -21,11 +21,10 @@
 		return {
 			destroy() {
 				el.removeEventListener('mouseenter', handleMouseOver)
-			},
+			}
 		}
 	}
 </script>
-
 
 <div class="grid">
 	<div class="projects">

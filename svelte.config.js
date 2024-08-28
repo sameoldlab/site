@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-auto'
 import markdownPreprocess from './.rex-plugins/svMark.js'
 import { sveltePreprocess } from 'svelte-preprocess'
 
@@ -7,10 +7,7 @@ const config = {
 	extensions: ['.svelte', '.md'],
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: [
-		markdownPreprocess(),
-		sveltePreprocess()
-	],
+	preprocess: [markdownPreprocess(), sveltePreprocess()],
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
@@ -18,13 +15,15 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			handleHttpError: ({ path, referrer, message }) => {
-				if (['/note/nft-folder', '/note/visor', '/note/fractl-ui'].includes(path))
+				if (
+					['/note/nft-folder', '/note/visor', '/note/fractl-ui'].includes(path)
+				)
 					return
 
 				console.error(`no page found for ${path} from ${referrer}\n${message}`)
 			}
 		}
 	}
-};
+}
 
-export default config;
+export default config

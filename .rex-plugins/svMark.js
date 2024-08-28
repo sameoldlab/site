@@ -11,7 +11,6 @@ import { remarkModifiedTime } from './remark-modified-time.mjs'
 import remarkWikiLink from 'remark-wiki-link'
 import { rehypeExternalLinks } from './rehype-links.mjs'
 
-
 // https://github.com/joysofcode/sveltedown/blob/main/src/lib/sveltedown.js
 
 /**
@@ -19,16 +18,19 @@ import { rehypeExternalLinks } from './rehype-links.mjs'
  * @param {string} content
  */
 async function parseMarkdown(content, filepath) {
-  const processor = await unified()
-    .use(toMarkdownAST)
-    .use(remarkWikiLink, { pageResolver: (page) => [page], hrefTemplate: (permalink) => `/note/${permalink}` })
-    .use([remarkGfm, remarkSmartypants, remarkModifiedTime])
-    .use(toHtmlAST, { allowDangerousHtml: true })
-    .use(rehypeShiki, { theme: vesper })
-    .use(rehypeExternalLinks)
-    .use(toHtmlString, { allowDangerousHtml: true })
-    .process(content)
-  return processor.toString()
+	const processor = await unified()
+		.use(toMarkdownAST)
+		.use(remarkWikiLink, {
+			pageResolver: (page) => [page],
+			hrefTemplate: (permalink) => `/note/${permalink}`
+		})
+		.use([remarkGfm, remarkSmartypants, remarkModifiedTime])
+		.use(toHtmlAST, { allowDangerousHtml: true })
+		.use(rehypeShiki, { theme: vesper })
+		.use(rehypeExternalLinks)
+		.use(toHtmlString, { allowDangerousHtml: true })
+		.process(content)
+	return processor.toString()
 }
 
 /**
@@ -36,50 +38,51 @@ async function parseMarkdown(content, filepath) {
  * @param {string} content
  */
 function escapeHtml(content) {
-  content = content.replace(/{/g, '&#123;').replace(/}/g, '&#125;')
+	content = content.replace(/{/g, '&#123;').replace(/}/g, '&#125;')
 
-  const componentRegex = /<[A-Z].*/g
-  const components = content.match(componentRegex)
-  components?.forEach((component) => {
-    const replaced = component.replace('&#123;', '{').replace('&#125;', '}')
-    content = content.replace(component, replaced)
-  })
+	const componentRegex = /<[A-Z].*/g
+	const components = content.match(componentRegex)
+	components?.forEach((component) => {
+		const replaced = component.replace('&#123;', '{').replace('&#125;', '}')
+		content = content.replace(component, replaced)
+	})
 
-  return content
+	return content
 }
 
 function extractLinks(content = '') {
-  const internalLinks = (content.match(/\[\[\s?([^\[\]\|\n\r]+)(\|[^\[\]\|\n\r]+)?\s?\]\]/g) || [])
-    .map(v => v.slice(2, -2).split(':')[0]?.trim())
+	const internalLinks = (
+		content.match(/\[\[\s?([^\[\]\|\n\r]+)(\|[^\[\]\|\n\r]+)?\s?\]\]/g) || []
+	).map((v) => v.slice(2, -2).split(':')[0]?.trim())
 
-  return internalLinks
+	return internalLinks
 }
 
 function svMark() {
-  return {
-    name: 'svmark',
-    /**
-    * Convert Markdown to HTML
-    * @param {Object} param 
-    * @param {string} param.content 
-    * @param {string} param.filename 
-    */
-    async markup({ content: contents, filename }) {
-      if (!filename.endsWith('.md')) return { code: contents }
-      const { data, content } = matter(contents, {})
-      const html = await parseMarkdown(content, filename)
-      const code = escapeHtml(html)
-      const links = extractLinks(content)
+	return {
+		name: 'svmark',
+		/**
+		 * Convert Markdown to HTML
+		 * @param {Object} param
+		 * @param {string} param.content
+		 * @param {string} param.filename
+		 */
+		async markup({ content: contents, filename }) {
+			if (!filename.endsWith('.md')) return { code: contents }
+			const { data, content } = matter(contents, {})
+			const html = await parseMarkdown(content, filename)
+			const code = escapeHtml(html)
+			const links = extractLinks(content)
 
-      const script = `
+			const script = `
         <script context="module">
           export const metadata = ${JSON.stringify(data)}
           export const links = ${JSON.stringify(links)}
         </script>
       `
-      return { code: script + code }
-    }
-  }
+			return { code: script + code }
+		}
+	}
 }
 
 // export const raw = \`${escapeHtml(content)}\`

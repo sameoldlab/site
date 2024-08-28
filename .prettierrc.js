@@ -10,10 +10,10 @@ const config = {
 		{
 			files: '*.astro',
 			options: {
-				parser: 'astro',
-			},
-		},
-	],
+				parser: 'astro'
+			}
+		}
+	]
 }
 
 export default config
