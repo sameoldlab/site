@@ -36,6 +36,7 @@
 		"remark-smartypants": "^3.0.2",
 		"remark-wiki-link": "^2.0.1",
 		"satori": "^0.10.14",
+		"satori-html": "^0.3.2",
 		"sharp": "^0.33.5",
 		"svelte": "5.0.0-next.201",
 		"svelte-check": "^3.8.6",
