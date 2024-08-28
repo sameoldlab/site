@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import Collection from '$lib/layouts/collection.svelte'
-	import og_image from './_og.png'
 
 	let { data } = $props()
 

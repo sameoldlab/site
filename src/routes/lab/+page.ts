@@ -5,14 +5,10 @@ export const trailingSlash = 'always'
 
 export const load: PageLoad = async ({ fetch }) => {
 	const collectionFiles = import.meta.glob(`/src/content/stream/*.md`) as Record<string, () => Promise<Log>>
-	const collection = (await getCollection(collectionFiles))
-		.sort((a, b) => {
-			const rank = new Date(b.metadata.date).valueOf() - new Date(a.metadata.date).valueOf()
-			return rank
-		})
+	const collection = await getCollection(collectionFiles)
 
 	return {
-		entries: collection,
+		entries: collection.reverse(),
 		title: 'Lab'
 	}
 }

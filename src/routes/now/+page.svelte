@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <div id="p404">
 	<h1>Now</h1>
 	<br />
