@@ -21,7 +21,7 @@
 	--bg-mid: oklch(calc(var(--l) + calc(0.24 * var(--ld))) var(--c) var(--h));
 	--bg-high: oklch(calc(var(--l) + calc(0.32 * var(--ld))) var(--c) var(--h));
 
-	--ease: ease-in-out 80ms;
+	--ease: ease-out 160ms;
 	--width: 65ch;
 
 	color: var(--text);
@@ -36,31 +36,6 @@
 	&::selection {
 		color: var(--t-high);
 		background: var(--bg-high);
-	}
-}
-
-body>main {
-	padding: 1rem;
-	width: 100%;
-	padding-block-end: 5em;
-}
-
-img,
-video {
-	max-width: 100%;
-	height: auto;
-}
-
-a {
-	color: var(--t-high);
-	text-decoration: none;
-	border-bottom: 1px solid transparent;
-	transition: color var(--ease);
-
-	&:hover>h2,
-	&:hover {
-		color: var(--t-low);
-		border-bottom: 1px solid var(--t-low);
 	}
 }
 

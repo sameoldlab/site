@@ -54,5 +54,34 @@ hr {
 }
 
 main {
-	margin-block-end: 5rem;
+	padding: 1rem;
+	width: 100%;
+}
+
+body {
+	margin-block-end: 3rem;
+}
+
+.container {
+	width: var(--width);
+	margin-inline: auto;
+}
+
+img,
+video {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	color: var(--t-high);
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	transition: color var(--ease);
+
+	&:hover > h2,
+	&:hover {
+		color: var(--t-low);
+		border-bottom: 1px solid var(--t-low);
+	}
 }
