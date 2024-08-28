@@ -16,7 +16,7 @@ export const load: PageLoad = async ({ params, data }) => {
 		content: entry.default,
 		entry,
 		title: entry.metadata.title,
-		related: backlinks?.get(params.slug),
+		related: backlinks.get(params.slug),
 	}
 }
 
