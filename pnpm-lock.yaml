@@ -77,6 +77,9 @@ importers:
       satori:
         specifier: ^0.10.14
         version: 0.10.14
+      satori-html:
+        specifier: ^0.3.2
+        version: 0.3.2
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -2506,6 +2509,9 @@ packages:
   sander@0.5.1:
     resolution: {integrity: sha512-3lVqBir7WuKDHGrKRDn/1Ye3kwpXaDOMsiRP1wd6wpZW56gJhsbp5RqQpA6JG/P+pkXizygnr1dKR8vzWaVsfA==}
 
+  satori-html@0.3.2:
+    resolution: {integrity: sha512-wjTh14iqADFKDK80e51/98MplTGfxz2RmIzh0GqShlf4a67+BooLywF17TvJPD6phO0Hxm7Mf1N5LtRYvdkYRA==}
+
   satori@0.10.14:
     resolution: {integrity: sha512-abovcqmwl97WKioxpkfuMeZmndB1TuDFY/R+FymrZyiGP+pMYomvgSzVPnbNMWHHESOPosVHGL352oFbdAnJcA==}
     engines: {node: '>=16'}
@@ -2856,6 +2862,9 @@ packages:
 
   uid-promise@1.0.0:
     resolution: {integrity: sha512-R8375j0qwXyIu/7R0tjdF06/sElHqbmdmWC9M2qQHpEVbvE4I5+38KJI7LUUmQMp7NVq4tKHiBMkT0NFM453Ig==}
+
+  ultrahtml@1.5.3:
+    resolution: {integrity: sha512-GykOvZwgDWZlTQMtp5jrD4BVL+gNn2NVlVafjcFUJ7taY20tqYdwdoWBFy6GBJsNTZe1GkGPkSl5knQAjtgceg==}
 
   undici@5.28.4:
     resolution: {integrity: sha512-72RFADWFqKmUb2hmmvNODKL3p9hcB6Gt2DOQMis1SEBaV6a4MH8soBvzg+95CYhCKPFedut2JY9bMfrDl9D23g==}
@@ -5696,6 +5705,10 @@ snapshots:
       mkdirp: 0.5.6
       rimraf: 2.7.1
 
+  satori-html@0.3.2:
+    dependencies:
+      ultrahtml: 1.5.3
+
   satori@0.10.14:
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
@@ -6073,6 +6086,8 @@ snapshots:
   typescript@5.5.4: {}
 
   uid-promise@1.0.0: {}
+
+  ultrahtml@1.5.3: {}
 
   undici@5.28.4:
     dependencies:
