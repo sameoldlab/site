@@ -42,7 +42,7 @@ export type Log = {
 	}
 }
 export type Page = {
-	body: string,
-	title: string,
+	title: string
 	slug: string
+	links: string[]
 }
