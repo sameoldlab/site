@@ -1,17 +1,9 @@
 import { readFileSync } from 'fs'
 import { html } from 'satori-html'
 import { ImageResponse } from '@vercel/og'
-import type { Entry, Note } from '$lib/types'
 
-interface Props {
-	params: { slug: string }
-	props: {
-		post: Entry<Note>
-	}
-}
-
-export async function GET({ props }: Props) {
-	const { post } = props
+export async function GET({ url }) {
+	const title = url.searchParams.get('title')
 
 	const Literata = readFileSync(
 		`${process.cwd()}/static/fonts/Literata_60pt-LightItalic.ttf`
@@ -36,7 +28,7 @@ export async function GET({ props }: Props) {
 				bottom: 2.5rem;
 				left: 3rem;
 			">
-				${post.metadata.title}
+				${title}
 			</div>
 		</div>
 		`)
@@ -52,11 +44,4 @@ export async function GET({ props }: Props) {
 			},
 		],
 	})
-}
-
-export async function getStaticPaths<T>(notes: Array<{ slug: string } & T>) {
-	return notes.map((post) => ({
-		params: { slug: post.slug },
-		props: { post },
-	}))
 }
