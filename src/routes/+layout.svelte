@@ -6,23 +6,20 @@
 	import { page } from '$app/stores'
 	import type { MetaProps } from '$lib/types'
 	import { fade } from 'svelte/transition'
+	import { circIn, circOut } from 'svelte/easing'
 
-	const { children } = $props()
-
-	const meta: MetaProps = $derived({
-		title: $page.data?.title ?? 'ibro.xyz',
-		description: $page.data?.description ?? 'Recover, Remix, Resuscitate',
-		type: $page.data?.type ?? 'website'
-	})
+	let { data, children } = $props()
 </script>
 
 <svelte:head>
-	<title>{meta.title}</title>
-	<Meta {...meta} />
+	<title>{$page.data.title}</title>
+	<Meta {...$page.data} />
 </svelte:head>
-
-{#key $page.route.id}
-	<div in:fade={{ duration: 160 }}>
+{#key data.currentRoute}
+	<div
+		out:fade={{ duration: 40, easing: circOut }}
+		in:fade={{ duration: 260, delay: 81, easing: circIn }}
+	>
 		{@render children()}
 	</div>
 {/key}

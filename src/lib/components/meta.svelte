@@ -1,19 +1,19 @@
 <script lang="ts">
 	import type { MetaProps } from '../types'
 	import { page } from '$app/stores'
-	let {
-		title = 'ibro.xyz',
-		description = 'Experiments, exploration, bean-feuled execution',
-		type = 'website',
-		image
-	}: MetaProps = $props()
+	let { ...props }: MetaProps = $props()
 
-	const img = image || {
-		url: `/og/temp?title=${title}`,
-		type: 'image/png',
-		width: 1200,
-		height: 600
-	}
+	let title = $derived(props.title ?? 'ibro.xyz')
+	let description = $derived(props.description ?? 'Recover, Remix, Resuscitate')
+	let type = $derived(props.type ?? 'website')
+	const img = $derived(
+		props.image || {
+			url: `/og/temp?title=${title}`,
+			type: 'image/png',
+			width: 1200,
+			height: 600
+		}
+	)
 </script>
 
 <meta property="og:title" content={title} />
