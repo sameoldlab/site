@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto'
+import adapter from '@sveltejs/adapter-cloudflare'
 import markdownPreprocess from './.rex-plugins/svMark.js'
 import { sveltePreprocess } from 'svelte-preprocess'
 
