@@ -4,23 +4,15 @@
 	import Nav from '$lib/components/nav.svelte'
 	import Meta from '$lib/components/meta.svelte'
 	import { page } from '$app/stores'
-	import type { MetaProps } from '$lib/types'
-	import { fade } from 'svelte/transition'
-	import { circIn, circOut } from 'svelte/easing'
+	import Vt from './ViewTransition.svelte'
 
-	let { data, children } = $props()
+	let { children } = $props()
+	/* animations are not a good reason to rerender the entire page  {#key $page.data.title} <div  in:fade={{ duration: 260, delay: 81, easing: circInOut }} out:fade={{ duration: 40, easing: circOut }}  > {@render children()} </div> {/key} */
 </script>
 
 <svelte:head>
 	<title>{$page.data.title}</title>
 	<Meta {...$page.data} />
 </svelte:head>
-{#key data.currentRoute}
-	<div
-		out:fade={{ duration: 40, easing: circOut }}
-		in:fade={{ duration: 260, delay: 81, easing: circIn }}
-	>
-		{@render children()}
-	</div>
-{/key}
+<Vt>{@render children()}</Vt>
 <Nav />

@@ -1,5 +1,13 @@
 @import url('./globals.css');
 
+@view-transition {
+	navigation: auto;
+}
+
+:root {
+	view-transition-name: none;
+}
+
 h1,
 h2 {
 	margin: 0;
@@ -79,7 +87,7 @@ a {
 	border-bottom: 1px solid transparent;
 	transition: color var(--ease);
 
-	&:hover > h2,
+	&:hover>h2,
 	&:hover {
 		color: var(--t-low);
 		border-bottom: 1px solid var(--t-low);

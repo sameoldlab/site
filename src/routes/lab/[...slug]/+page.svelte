@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Media from '$lib/components/MediaContainer.svelte'
+	import { slide } from 'svelte/transition'
 	// import Article from '$lib/layouts/article.svelte'
-
 	let { data } = $props()
 </script>
 
@@ -20,7 +20,7 @@
 				<svelte:component this={data.content} />
 				<br />
 				{#if data.meta.media}
-					<div class="media">
+					<div class="media" in:slide>
 						{#each data.meta.media as src}
 							<Media post={{ src }} />
 						{/each}
@@ -57,6 +57,7 @@
 		padding-block: 3rem 0;
 		width: var(--width);
 		margin-inline: auto;
+		view-transition-name: nextprev-div;
 	}
 	header * {
 		text-align: start;
@@ -68,6 +69,7 @@
 		font-size: 1rem;
 	}
 	nav {
+		view-transition-name: nextprev;
 		display: flex;
 		justify-content: space-between;
 		padding-block-end: 3rem;
