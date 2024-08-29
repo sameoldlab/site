@@ -1,13 +1,14 @@
-import { readFileSync } from 'fs'
 import { html } from 'satori-html'
 import { ImageResponse } from '@vercel/og'
+import { read } from '$app/server'
+export const prerender = true
 
 export async function GET({ url }) {
 	const title = url.searchParams.get('title')
 
-	const Literata = readFileSync(
+	const Literata = read(
 		`${process.cwd()}/static/fonts/Literata_60pt-LightItalic.ttf`
-	)
+	).arrayBuffer()
 
 	const markup = html(`
 		<div
