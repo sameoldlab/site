@@ -3,6 +3,7 @@
 	"type": "module",
 	"version": "0.0.1",
 	"private": true,
+	"platform": "node",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -15,6 +16,7 @@
 	"devDependencies": {
 		"@shikijs/rehype": "^1.14.1",
 		"@sveltejs/adapter-auto": "^3.2.4",
+		"@sveltejs/adapter-cloudflare": "^4.7.2",
 		"@sveltejs/adapter-static": "^3.0.4",
 		"@sveltejs/enhanced-img": "^0.3.3",
 		"@sveltejs/kit": "^2.5.24",
