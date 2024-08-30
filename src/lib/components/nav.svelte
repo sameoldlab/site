@@ -1,5 +1,5 @@
 <header id="nav">
-	<a href="/" aria-label="Homepage"> ibro.xyz</a>
+	<a href="/" aria-label="Homepage"> home</a>
 
 	<nav class="item">
 		<!-- <a href='/lab'>lab</a> -->
