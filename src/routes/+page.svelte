@@ -82,7 +82,7 @@ let recent = notes.map(async (entry) => {
 	<section id="socials">
 		<div class="row">
 			<p>
-				Reach out by <a class="link" href="mailto:hey@ibro.xyz">email</a>,
+				Reach out by <a class="link" href="mailto:hey@same.supply">email</a>,
 				<a
 					class="link"
 					href="https://www.are.na/sameoldlab"

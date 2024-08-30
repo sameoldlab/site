@@ -3,12 +3,12 @@
 	import { page } from '$app/stores'
 	let { ...props }: MetaProps = $props()
 
-	let title = $derived(props.title ?? 'ibro.xyz')
+	let title = $derived(props.title ?? 'same.supply')
 	let description = $derived(props.description ?? 'Recover, Remix, Resuscitate')
 	let type = $derived(props.type ?? 'website')
 	const img = $derived(
 		props.image || {
-			url: `/og/temp?title=${title}`,
+			url: `https://same.supply/og/temp?title=${title}`,
 			type: 'image/png',
 			width: 1200,
 			height: 600
@@ -19,11 +19,11 @@
 <meta property="og:title" content={title} />
 <meta
 	property="og:url"
-	content={'https://' + $page.url.hostname + $page.url?.pathname}
+	content={'https://same.supply/' + $page.url?.pathname}
 />
 <meta property="og:description" content={description} />
 <meta name="description" content={description} />
-<meta property="og:site_name" content="ibro.xyz" />
+<meta property="og:site_name" content="same old supply" />
 {#if type === 'website'}
 	<meta property="og:type" content={type} />
 {:else}
