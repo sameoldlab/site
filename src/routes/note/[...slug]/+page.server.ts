@@ -2,27 +2,25 @@ import type { PageServerLoad } from './$types'
 import { execSync } from 'child_process'
 import { html } from 'satori-html'
 import { ImageResponse } from '@vercel/og'
-import { read } from '$app/server'
+// import { read } from '$app/server'
 export const prerender = true
+// import Literata from '$lib/Literata.ttf'
 
 export const load: PageServerLoad = async ({ url, params }) => {
 	const filepath = `src/content/note/${params.slug}.md`
 	const result = execSync(`git log -1 --pretty="format:%cI" "${filepath}"`)
 	const title = url.hostname
-	// const res = og(title)
+	// const res = await og(title)
+	// const img = await res.arrayBuffer()
 
 	return {
 		title,
 		modified: result.toString(),
-		// res
+		// res data is not serializable 
 	}
 }
 
 async function og(title: string) {
-	const Literata = await read(
-		`${process.cwd()}/static/fonts/Literata_60pt-LightItalic.ttf`
-	).arrayBuffer()
-
 	const markup = html(`
 		<div
 			class="w-full h-full flex items-center justify-center relative px-22 bg-[#141414]"
@@ -53,7 +51,7 @@ async function og(title: string) {
 		fonts: [
 			{
 				name: 'Literata',
-				data: Literata,
+				data: Buffer.from(Literata),
 				style: 'italic'
 			}
 		]

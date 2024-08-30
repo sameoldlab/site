@@ -1,14 +1,11 @@
 import { html } from 'satori-html'
 import { ImageResponse } from '@vercel/og'
-import { read } from '$app/server'
-export const prerender = true
+// import { read } from '$app/server'
+import Literata from '$lib/Literata.ttf'
+export const prerender = false
 
 export async function GET({ url }) {
 	const title = url.searchParams.get('title')
-
-	const Literata = read(
-		`${process.cwd()}/static/fonts/Literata_60pt-LightItalic.ttf`
-	).arrayBuffer()
 
 	const markup = html(`
 		<div
@@ -40,7 +37,7 @@ export async function GET({ url }) {
 		fonts: [
 			{
 				name: 'Literata',
-				data: Literata.buffer,
+				data: Buffer.from(Literata),
 				style: 'italic'
 			}
 		]
