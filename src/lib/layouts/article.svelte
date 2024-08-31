@@ -4,7 +4,7 @@
 	type Props = {
 		entry: Note
 		related?: Set<Page>
-		modified?: string
+		modified?: Date
 		children: Snippet
 	}
 	let { entry, related, modified, children }: Props = $props()

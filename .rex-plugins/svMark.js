@@ -25,7 +25,7 @@ async function parseMarkdown(content, filepath) {
 			pageResolver: (page) => [page],
 			hrefTemplate: (permalink) => `/note/${permalink}`
 		})
-		.use([remarkGfm, remarkSmartypants, remarkModifiedTime])
+		.use([remarkGfm, remarkSmartypants])
 		.use(toHtmlAST, { allowDangerousHtml: true })
 		.use(rehypeShiki, { theme: vesper })
 		.use(rehypeExternalLinks)
@@ -76,10 +76,11 @@ function svMark() {
 				const code = escapeHtml(html)
 				const links = extractLinks(content)
 				const slug = filename.split('/').pop().split('.')[0]
-				await renderCard(data.title ?? data.date, `./static/og/${slug}.png`)
+				renderCard(data.title ?? data.date, `./static/og/${slug}.png`)
 				const script = `
         <script module>
           export const metadata = ${JSON.stringify(data)}
+          export const modified = ${remarkModifiedTime(filename)}
           export const links = ${JSON.stringify(links)}
         </script>
       `
