@@ -4,6 +4,7 @@
 .vercel
 /.svelte-kit
 /build
+static/og/*.png
 
 # dependencies
 node_modules/
