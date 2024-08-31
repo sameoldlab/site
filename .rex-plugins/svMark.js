@@ -75,7 +75,7 @@ function svMark() {
 			const links = extractLinks(content)
 
 			const script = `
-        <script context="module">
+        <script module>
           export const metadata = ${JSON.stringify(data)}
           export const links = ${JSON.stringify(links)}
         </script>
