@@ -17,10 +17,7 @@
 </script>
 
 <meta property="og:title" content={title} />
-<meta
-	property="og:url"
-	content={'https://same.supply/' + $page.url?.pathname}
-/>
+<meta property="og:url" content={'https://same.supply' + $page.url?.pathname} />
 <meta property="og:description" content={description} />
 <meta name="description" content={description} />
 <meta property="og:site_name" content="same old supply" />
