@@ -25,6 +25,9 @@ const config = {
 				console.error(`no page found for ${path} from ${referrer}\n${message}`)
 			},
 		},
+		serviceWorker: {
+			files: (filename) => !/\.DS_Store/.test(filename) || !/\og/.test(filename)
+		}
 	}
 }
 
