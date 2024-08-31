@@ -7,8 +7,8 @@
 	let description = $derived(props.description ?? 'Recover, Remix, Resuscitate')
 	let type = $derived(props.type ?? 'website')
 	const img = $derived(
-		props.image || {
-			url: `https://same.supply/og/temp?title=${title}`,
+		props.image ?? {
+			url: `/img/root.png`,
 			type: 'image/png',
 			width: 1200,
 			height: 600

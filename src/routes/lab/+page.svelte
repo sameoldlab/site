@@ -1,6 +1,4 @@
 <script lang="ts">
-	import og_image from './_og.png'
-	import Collection from '$lib/layouts/collection.svelte'
 	import Media from '$lib/components/MediaContainer.svelte'
 
 	let { data } = $props()

@@ -11,7 +11,7 @@
 
 <svelte:head>
 	<title>{$page.data.title}</title>
-	<Meta {...$page.data} image={data.ogImage} />
+	<Meta {...$page.data} image={data?.ogImage} />
 </svelte:head>
 <Vt>{@render children()}</Vt>
 <Nav />
