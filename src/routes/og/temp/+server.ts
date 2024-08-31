@@ -1,15 +1,12 @@
 import { html } from 'satori-html'
 import satori from 'satori'
 import { Resvg, initWasm } from '@resvg/resvg-wasm'
-import type { RequestHandler } from '@sveltejs/kit'
 import Literata from '$lib/Literata.ttf'
 import card from '$lib/OgCard.js'
 
-export const prerender = false
 await initWasm(fetch('https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'))
 
-export const GET = (async ({ url }) => {
-	const title = url.searchParams.get('title') ?? ''
+export const renderCard = async (title = '') => {
 	const markup = html(card(title))
 	const svg = await satori(markup, {
 		width: 1200,
@@ -27,9 +24,5 @@ export const GET = (async ({ url }) => {
 		logLevel: 'trace'
 	}).render()
 
-	return new Response(image.asPng(), {
-		headers: {
-			'content-type': 'image/png'
-		}
-	})
-}) satisfies RequestHandler
+	return image.asPng()
+} 
