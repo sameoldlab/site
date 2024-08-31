@@ -1,13 +1,15 @@
 import { html } from 'satori-html'
 import satori from 'satori'
 import { Resvg, initWasm } from '@resvg/resvg-wasm'
-import Literata from '$lib/Literata.ttf'
-import card from '$lib/OgCard.js'
-import { writeFileSync } from 'fs'
+// import Literata from '../src/lib/Literata.ttf'
+import card from './OgCard.js'
+import { readFileSync, writeFile } from 'fs'
 
+const Literata = readFileSync('.assets/Literata.ttf')
 await initWasm(fetch('https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'))
 
 export const renderCard = async (title = '', path = '') => {
+	console.log({ title, path })
 	const markup = html(card(title))
 	const svg = await satori(markup, {
 		width: 1200,
@@ -15,7 +17,7 @@ export const renderCard = async (title = '', path = '') => {
 		fonts: [
 			{
 				name: 'Literata',
-				data: Buffer.from(Literata),
+				data: Literata.buffer,
 				style: 'italic'
 			}
 		]
@@ -25,9 +27,10 @@ export const renderCard = async (title = '', path = '') => {
 		logLevel: 'trace'
 	}).render()
 
-	try {
-		writeFileSync(path, image.asPng())
-	} catch (e) {
-		console.error(e)
-	}
+	return new Promise((resolve, reject) => {
+		writeFile(path, image.asPng(), (err) => {
+			reject(err)
+		})
+		resolve()
+	})
 } 

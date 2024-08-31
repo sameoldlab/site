@@ -10,6 +10,7 @@ import vesper from './vesper.js'
 import { remarkModifiedTime } from './remark-modified-time.mjs'
 import remarkWikiLink from 'remark-wiki-link'
 import { rehypeExternalLinks } from './rehype-links.mjs'
+import { renderCard } from './renderCard.js'
 
 // https://github.com/joysofcode/sveltedown/blob/main/src/lib/sveltedown.js
 
@@ -73,7 +74,8 @@ function svMark() {
 			const html = await parseMarkdown(content, filename)
 			const code = escapeHtml(html)
 			const links = extractLinks(content)
-
+			const slug = filename.split('/').pop().split('.')[0]
+			renderCard(data.title, `static/og/${slug}.png`)
 			const script = `
         <script module>
           export const metadata = ${JSON.stringify(data)}
