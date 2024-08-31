@@ -69,20 +69,24 @@ function svMark() {
 		 * @param {string} param.filename
 		 */
 		async markup({ content: contents, filename }) {
-			if (!filename.endsWith('.md')) return { code: contents }
-			const { data, content } = matter(contents, {})
-			const html = await parseMarkdown(content, filename)
-			const code = escapeHtml(html)
-			const links = extractLinks(content)
-			const slug = filename.split('/').pop().split('.')[0]
-			renderCard(data.title, `static/og/${slug}.png`)
-			const script = `
+			try {
+				if (!filename.endsWith('.md')) return { code: contents }
+				const { data, content } = matter(contents, {})
+				const html = await parseMarkdown(content, filename)
+				const code = escapeHtml(html)
+				const links = extractLinks(content)
+				const slug = filename.split('/').pop().split('.')[0]
+				await renderCard(data.title ?? data.date, `./static/og/${slug}.png`)
+				const script = `
         <script module>
           export const metadata = ${JSON.stringify(data)}
           export const links = ${JSON.stringify(links)}
         </script>
       `
-			return { code: script + code }
+				return { code: script + code }
+			} catch (e) {
+				console.error(e)
+			}
 		}
 	}
 }

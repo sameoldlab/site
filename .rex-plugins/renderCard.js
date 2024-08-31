@@ -9,7 +9,6 @@ const Literata = readFileSync('.assets/Literata.ttf')
 await initWasm(fetch('https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'))
 
 export const renderCard = async (title = '', path = '') => {
-	console.log({ title, path })
 	const markup = html(card(title))
 	const svg = await satori(markup, {
 		width: 1200,
@@ -29,6 +28,7 @@ export const renderCard = async (title = '', path = '') => {
 
 	return new Promise((resolve, reject) => {
 		writeFile(path, image.asPng(), (err) => {
+			console.error(err)
 			reject(err)
 		})
 		resolve()
