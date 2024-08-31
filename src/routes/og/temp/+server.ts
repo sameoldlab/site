@@ -6,10 +6,10 @@ import Literata from '$lib/Literata.ttf'
 import card from '$lib/OgCard.js'
 
 export const prerender = false
+await initWasm(fetch('https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'))
 
 export const GET = (async ({ url }) => {
 	const title = url.searchParams.get('title') ?? ''
-	await initWasm(fetch('https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'))
 	const markup = html(card(title))
 	const svg = await satori(markup, {
 		width: 1200,
