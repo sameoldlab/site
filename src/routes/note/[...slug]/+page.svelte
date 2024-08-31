@@ -6,5 +6,5 @@
 </script>
 
 <Article {entry} modified={new Date(data.modified)} {related}>
-	<svelte:component this={Content} />
+	<Content />
 </Article>

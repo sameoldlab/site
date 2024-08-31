@@ -3,6 +3,7 @@
 	import { slide } from 'svelte/transition'
 	// import Article from '$lib/layouts/article.svelte'
 	let { data } = $props()
+	let { content: Content } = $derived(data)
 </script>
 
 <main>
@@ -17,7 +18,7 @@
 				</h1>
 			</header>
 			<section class="content">
-				<svelte:component this={data.content} />
+				<Content />
 				<br />
 				{#if data.meta.media}
 					<div class="media" in:slide>

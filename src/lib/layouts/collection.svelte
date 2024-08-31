@@ -75,7 +75,10 @@
 				</header>
 				<div class="content">
 					<div class="toggle">
-						<svelte:component this={entry?.default} />
+						{#if entry?.default}
+							{@const Content = entry.default}
+							<Content />
+						{/if}
 					</div>
 				</div>
 			</article>

@@ -13,6 +13,7 @@
 	</header>
 	<div class="articles">
 		{#each entries as entry}
+			{@const Content = entry.default}
 			<article class="note">
 				<header>
 					<h2>
@@ -33,7 +34,7 @@
 							{/each}
 						</div>
 					{/if}
-					<svelte:component this={entry.default} />
+					<Content />
 				</div>
 			</article>
 			<hr />
