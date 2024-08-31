@@ -6,7 +6,6 @@
 	import { page } from '$app/stores'
 	import Vt from './ViewTransition.svelte'
 	let { children, data } = $props()
-	/* animations are not a good reason to rerender the entire page  {#key $page.data.title} <div  in:fade={{ duration: 260, delay: 81, easing: circInOut }} out:fade={{ duration: 40, easing: circOut }}  > {@render children()} </div> {/key} */
 </script>
 
 <svelte:head>
