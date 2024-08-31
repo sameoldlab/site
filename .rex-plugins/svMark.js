@@ -7,9 +7,9 @@ import remarkSmartypants from 'remark-smartypants'
 import rehypeShiki from '@shikijs/rehype'
 import matter from 'gray-matter'
 import vesper from './vesper.js'
-import { remarkModifiedTime } from './remark-modified-time.mjs'
+import { modifiedTime } from './modified-time.js'
 import remarkWikiLink from 'remark-wiki-link'
-import { rehypeExternalLinks } from './rehype-links.mjs'
+import { rehypeExternalLinks } from './rehype-links.js'
 import { renderCard } from './renderCard.js'
 
 // https://github.com/joysofcode/sveltedown/blob/main/src/lib/sveltedown.js
@@ -80,7 +80,7 @@ function svMark() {
 				const script = `
         <script module>
           export const metadata = ${JSON.stringify(data)}
-          export const modified = ${remarkModifiedTime(filename)}
+          export const modified = ${modifiedTime(filename)}
           export const links = ${JSON.stringify(links)}
         </script>
       `
