@@ -41,12 +41,11 @@ let recent = notes.map(async (entry) => {
 	<section>
 		<p class="">
 			<em>Building interfaces to communicate data.</em> Exploring interactions
-			at same.supply data-ownership, improving usability for open protocols, and
-			hyperpads. If this <em>computer thing</em> doesn't pan out, I'll probably try
-			metalwork or washing coffee again. Till then you can find me on the internet
-			working with design, code, and the many little things in between.
+			for easier data-ownership, open protocols, privacy and hyperpads. If this
+			<em>computer thing</em> doesn't pan out, I'll probably try metalwork or washing
+			coffee again. Till then you can find me on the internet working with design,
+			code, and the many little things in between.
 		</p>
-		<br />
 		<p class="">I'm Ibro. Welcome to my website. Hi.</p>
 	</section>
 	<div>
