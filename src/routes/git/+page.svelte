@@ -2,4 +2,8 @@
 	let { data } = $props()
 </script>
 
-<pre><code>{data.result}</code></pre>
+<pre><code>
+VERCEL: {data.vercel}
+CLOUDFLARE: {data.cloudflare}
+{data.result}
+</code></pre>
