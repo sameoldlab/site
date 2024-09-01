@@ -10,7 +10,6 @@ export const load: PageLoad = async ({ params }) => {
 		published_time: new Date(entry.metadata.date),
 		modified_time: new Date(entry.modified)
 	}
-	console.log(type.modified_time)
 
 	return {
 		modified: type.modified_time,
