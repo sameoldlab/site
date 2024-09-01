@@ -1,0 +1,59 @@
+<!--  ̴̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡ ̴̡ı̴̴̡ ̡l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ |ı̴̡̡ ̡͌l̡ ̴̡ı̴̴̡ ̡l̡ ̴̡-->
+<!--         lo, traveler!                        -->
+<!--        perhaps this is the data you seek...  -->
+<!--     https://github.com/sameoldlab/ibro.xyz   -->
+<!--                                              -->
+<!--——————————————————————————————————————————————-->
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- <link rel="sitemap" href="/sitemap-index.xml" /> -->
+	<style>
+		div {
+			padding-block-start: 8rem;
+			width: min(50ch, 90%);
+			margin: auto;
+		}
+
+		h1 {
+			padding-block-end: 1em;
+		}
+	</style>
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div>
+		<!-- {#if $page.error?.message} -->
+		<h1>Woe and misfortune!</h1>
+		<p>
+			The page you are looking is not here. Perhaps it was lost in the cloud and
+			seeking to circle back home, was assailed by an unwell email. Perhaps you
+			have made a mistake in the page whiich you seek, and by terrible chance
+			fallen upon this dark, and desolate crevice. Does this url match that
+			which you seek:
+			<code>
+				{$page.url}
+			</code>?
+		</p>
+		<p>
+			Or most woefully of all, perhaps the error is mine dear visitor. Through
+			ignorance or negligence I have created a false trail, or killed a once
+			lively, young link. If this is the case I apologize sincerely.
+		</p>
+		<p>
+			Consider circling back to the
+			<a href="/">the start</a> or if the spirit of adventure still lives within
+			you, traversing <a href="/lab">another route</a> instead.
+		</p>
+		<!-- list of 5 most recent posts -->
+		<!-- {:else} -->
+		<!-- <h1>Error: {$page.error?.message}</h1> -->
+		<!-- {/if} -->
+	</div>
+</body>
+
+</html>
