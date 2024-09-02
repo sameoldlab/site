@@ -1,6 +1,7 @@
 import { getCollection } from '$lib/utils/getCollection'
 import { json } from '@sveltejs/kit'
 import type { Note } from '$lib/types'
+export const prerender = true
 
 export async function GET() {
 	const collectionFiles = import.meta.glob(`/src/content/note/*.md`) as Record<
