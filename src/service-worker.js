@@ -18,6 +18,7 @@ self.addEventListener('install', (event) => {
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE)
 		await cache.addAll(ASSETS)
+		await cache.add('/offline.html')
 	}
 
 	event.waitUntil(addFilesToCache())
@@ -51,10 +52,11 @@ self.addEventListener('fetch', (event) => {
 			}
 		}
 
-		// for everything else, try the network first, but
-		// fall back to the cache if we're offline
+		// For everything else.
 		try {
+			// Try the network first
 			const response = await fetch(event.request)
+			// console.log('TRY', { url: response?.url, status: response?.status })
 
 			// if we're offline, fetch can return a value that is not a Response
 			// instead of throwing - and we can't pass this non-Response to respondWith
@@ -68,15 +70,10 @@ self.addEventListener('fetch', (event) => {
 
 			return response
 		} catch (err) {
+			// Fall back to the cache if we're offline
 			const response = await cache.match(event.request)
 
-			if (response) {
-				return response
-			}
-
-			// if there's no cache, then just error out
-			// as there is nothing we can do to respond to this request
-			throw err
+			return response ?? (await cache.match('/offline.html'))
 		}
 	}
 
