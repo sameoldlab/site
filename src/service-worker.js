@@ -18,7 +18,6 @@ self.addEventListener('install', (event) => {
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE)
 		await cache.addAll(ASSETS)
-		await cache.add('/offline.html')
 	}
 
 	event.waitUntil(addFilesToCache())
@@ -73,7 +72,7 @@ self.addEventListener('fetch', (event) => {
 			// Fall back to the cache if we're offline
 			const response = await cache.match(event.request)
 
-			return response ?? (await cache.match('/offline.html'))
+			return response ?? (await cache.match('/offline'))
 		}
 	}
 
