@@ -37,7 +37,7 @@
 <nav class="container">
 	<div class="nav-item" id="prev">
 		{#if data.prev}
-			<a href={data.prev.slug}>
+			<a href={'/lab/' + data.prev.slug}>
 				<span>Previous</span>
 				{data.prev.slug}
 			</a>
@@ -45,7 +45,7 @@
 	</div>
 	<div class="nav-item" id="next">
 		{#if data.next}
-			<a href={data.next.slug}>
+			<a href={'/lab/' + data.next.slug}>
 				<span>Next</span>
 				{data.next.slug}
 			</a>
