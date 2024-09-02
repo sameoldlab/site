@@ -82,17 +82,8 @@
 		grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 		padding-block: 1.2rem;
 	}
-	.tag-item {
+	/* .tag-item {
 		font-size: 0.9rem;
 		color: var(--t-low);
-	}
-	video {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	img {
-		padding: 0;
-		border-radius: 0;
-	}
+	} */
 </style>
