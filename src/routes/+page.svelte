@@ -1,43 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types.js'
 	export let data: PageData
-	const { notes, projects } = data
-
-	const tags = notes.reduce((acc, entry) => {
-		entry.metadata.tags?.forEach((t) => {
-			if (t === 'meta' || t === 'rabbithole') return
-			let tag = acc.get(t)
-			if (tag === undefined) tag = 0
-			acc.set(t, tag + 1)
-		})
-		return acc
-	}, new Map())
-
-	/*
-let recent = notes.map(async (entry) => {
-  const { remarkPluginFrontmatter } = await entry.render()
-  const modified = new Date(remarkPluginFrontmatter.modified)
-  return {
-    modified,
-    title: entry.title,
-    slug: entry.slug
-  }
-}).sort(async (a, b) => {
-  const ar = await a
-  const br = await b
-  return ar.modified.getTimezoneOffset() - br.modified.getTimezoneOffset() 
-}).filter((_,i) => i < 5)
-*/
+	const { tags, projects } = data
 </script>
 
 <main>
-	<!--
-				I think design is about playing with constraints, function melts form, and
-				'simple' should mean clear. I too nerd out over typography, caustics, and
-				beziers, but also performance, privacy, and open protocols. If this computer
-				thing doesn't work out... I'll probably try canning tomatoes or washing
-				coffee cherries. If you want more rambling, please just see
-			</p> -->
 	<section>
 		<p class="">
 			<em>Building interfaces to communicate data.</em> Exploring interactions
