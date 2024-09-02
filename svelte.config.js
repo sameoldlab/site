@@ -24,7 +24,7 @@ const config = {
 			},
 		},
 		serviceWorker: {
-			files: (filename) => !/\.DS_Store/.test(filename) || !/\og/.test(filename)
+			files: (filename) => !/\.DS_Store/.test(filename) && !/og\/[^/]/.test(filename)
 		}
 	}
 }
