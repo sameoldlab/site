@@ -13,11 +13,8 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@resvg/resvg-js": "^2.6.2",
 		"@resvg/resvg-wasm": "^2.6.2",
 		"@shikijs/rehype": "^1.15.1",
-		"@sveltejs/adapter-auto": "^3.2.4",
-		"@sveltejs/adapter-cloudflare": "^4.7.2",
 		"@sveltejs/adapter-static": "^3.0.4",
 		"@sveltejs/enhanced-img": "^0.3.4",
 		"@sveltejs/kit": "^2.5.25",
