@@ -35,7 +35,8 @@ async function parseMarkdown(content, filepath) {
 				return `/note/${permalink}`
 			}
 		})
-		.use([remarkGfm, remarkSmartypants])
+		.use(remarkGfm)
+		.use(remarkSmartypants, { dashes: "oldschool" })
 		.use(toHtmlAST, { allowDangerousHtml: true })
 		.use(rehypeShiki, { theme: vesper })
 		.use(rehypeExternalLinks)
