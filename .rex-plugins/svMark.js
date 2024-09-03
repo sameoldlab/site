@@ -14,16 +14,26 @@ import { renderCard } from './renderCard.js'
 
 // https://github.com/joysofcode/sveltedown/blob/main/src/lib/sveltedown.js
 
+const projects = ['nft-folder']
 /**
  * Markdown preprocessor.
  * @param {string} content
  */
 async function parseMarkdown(content, filepath) {
+	// const path = filepath.match(/src\/content\/([^\/]+)/)[1]
 	const processor = await unified()
 		.use(toMarkdownAST)
 		.use(remarkWikiLink, {
-			pageResolver: (page) => [page],
-			hrefTemplate: (permalink) => `/note/${permalink}`
+			pageResolver: (page) => [page.replaceAll(' ', '-').toLowerCase()],
+			hrefTemplate: (permalink) => {
+				if (projects.includes(permalink))
+					return '#'
+				// return `/project/${permalink}`
+				if (/^\d{4}-\d{2}-\d{2}$/.test(permalink))
+					return `/lab/${permalink}`
+
+				return `/note/${permalink}`
+			}
 		})
 		.use([remarkGfm, remarkSmartypants])
 		.use(toHtmlAST, { allowDangerousHtml: true })
