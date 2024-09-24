@@ -34,6 +34,7 @@
 		"remark-rehype": "^11.1.0",
 		"remark-smartypants": "^3.0.2",
 		"remark-wiki-link": "^2.0.1",
+		"runed": "^0.15.2",
 		"satori": "^0.10.14",
 		"satori-html": "^0.3.2",
 		"sharp": "^0.33.5",
