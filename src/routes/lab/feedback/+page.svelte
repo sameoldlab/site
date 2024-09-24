@@ -1,21 +1,22 @@
 <script lang="ts">
-	import { MATHS } from './helpers'
-	import { codeToHtml, createHighlighter, type HighlighterCore } from 'shiki'
+	import { MATHS, editor } from './helpers'
+	import { createHighlighter, type HighlighterCore } from 'shiki'
 	import { onMount } from 'svelte'
-	import { Previous, Debounced } from 'runed'
+	import { Debounced } from 'runed'
 	import { page } from '$app/stores'
-	import { replaceState } from '$app/navigation'
-	let err = $state()
+
+	let err = $state('')
 	// Math.sqrt(x*x + y*y) > (Math.cos(x + t) + 1) / 2 * 5  ? Math.random(x + t, y + t) * 0.3 : 1
 	let script = $state(
-		decodeURIComponent($page.url.hash).slice(1) ?? '(sin(t * 7) - t * i) / y'
+		$page.url.hash !== ''
+			? decodeURIComponent($page.url.hash).slice(1)
+			: '(x * 8) - i + t * sin(5)'
 	)
 	$effect(() => {
 		window.location.hash = encodeURIComponent(debounced.current)
 	})
 
 	const debounced = new Debounced(() => script, 500)
-	const lastScript = new Previous(() => script)
 	let canvas: HTMLCanvasElement | undefined = $state()
 	let shiki: HighlighterCore | undefined = $state()
 	let highlighted = $derived(
@@ -23,26 +24,11 @@
 			? ''
 			: shiki.codeToHtml(script, {
 					lang: 'javascript',
-					theme: 'vesper',
-					transformers: [
-						{
-							code(node) {
-								this.addClassToHast(node, 'language-js')
-							},
-							line(node, line) {
-								node.properties['data-line'] = line
-								if ([1, 3, 4].includes(line))
-									this.addClassToHast(node, 'highlight')
-							},
-							span(node, line, col) {
-								node.properties['data-token'] = `token:${line}:${col}`
-							}
-						}
-					]
+					theme: 'vesper'
 				})
 	)
 
-	const size = 1000
+	const size = 1080
 	onMount(async () => {
 		shiki = await createHighlighter({
 			themes: ['vesper'],
@@ -61,61 +47,71 @@
 		const cellSize = size / gridSize
 
 		let t = $state(0)
-		const radius = cellSize * 0.44
+		const radius = cellSize * 0.69
 
-		let animationFrameId: number
+		let frameId: number
 		let lastFrame = 0
-		const FPS = 1000 / 30
+		const FPS = 1000 / 24
 
 		const animate = (time: number) => {
-			animationFrameId = requestAnimationFrame(animate)
+			frameId = requestAnimationFrame(animate)
 			if (time - lastFrame >= FPS) {
 				lastFrame = time
-				t = animationFrameId / 8
+				t = frameId / 36
+				ctx.clearRect(0, 0, size, size)
 				draw()
 			}
 		}
 		animate(0)
 
-		let last
+		let inputScript = Function(
+			't, i, x, y',
+			`const { ${MATHS}} = Math;
+				return ${script}
+					`
+		)
+		let result = 0
+
+		function update(fn: Function, script: string) {
+			try {
+				const test = Function(
+					't, i, x, y',
+					`const { ${MATHS}} = Math;
+					return ${script}
+					`
+				)
+				err = ''
+				test(0, 0, 0, 0)
+				return test
+			} catch (e) {
+				err = e
+				return fn
+			}
+		}
+
 		function draw() {
 			let i = 0
-			let inputScript
-			try {
-				inputScript = Function(
-					's, x, y, i, t, Math',
-					`const { ${MATHS}} = Math;
-				
-						let fn = () => ${debounced.current};
-						return fn(); `
-				)
-				for (let y = 0; y < gridSize; y++) {
-					for (let x = 0; x < gridSize; x++) {
-						i++
-						const centerX = (x + 0.5) * cellSize
-						const centerY = (y + 0.5) * cellSize
-						let result
-						try {
-							result = inputScript(gridSize, x, y, i, t, Math)
-							// console.info(result)
-							err = ''
-						} catch (e) {
-							console.error(e)
-							err = e
-						}
-						ctx.fillStyle = `oklch(0.6 0.3 ${result})`
-						ctx.strokeStyle = `oklch(0.6 0.3 ${result})`
+			inputScript = update(inputScript, debounced.current)
 
-						ctx.beginPath()
-						ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
-						ctx.stroke()
-					}
+			for (let y = 1; y < gridSize - 1; y++) {
+				for (let x = 1; x < gridSize - 1; x++) {
+					const centerX = (x + 0.5) * cellSize
+					const centerY = (y + 0.5) * cellSize
+					result = inputScript(t, i, x, y)
+
+					const angle = result * (Math.PI / 180)
+					const endX = centerX + Math.cos(angle) * radius
+					const endY = centerY + Math.sin(angle) * radius
+
+					ctx.beginPath()
+					ctx.moveTo(centerX, centerY)
+					ctx.lineTo(endX, endY)
+					ctx.stroke()
+					ctx.strokeStyle = `oklch(0.8 0.9 ${(result % 90) + 270})`
+					ctx.lineWidth = 16
 					i++
 				}
-				last = inputScript
-			} catch (e) {
-				inputScript = last
-				err = e
+				i++
 			}
 		}
 	}
@@ -128,11 +124,16 @@
 	<div class="controls">
 		<h1>Feedback</h1>
 
-		<p><code>Code:</code></p>
+		<p><code>{@html '(t,i,x,y) =>'}</code></p>
 
 		<div class="code-input">
 			<!-- <input type="textarea" bind:value={script} spellcheck="false" /> -->
-			<textarea name="script" spellcheck="false" id="script" bind:value={script}
+			<textarea
+				use:editor
+				name="script"
+				spellcheck="false"
+				id="script"
+				bind:value={script}
 			></textarea>
 			{@html highlighted}
 		</div>
