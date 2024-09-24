@@ -1,14 +1,24 @@
 <script lang="ts">
-	import { MATHS } from './sketch.svelte'
+	import { MATHS } from './helpers'
 	import { codeToHtml, createHighlighter, type HighlighterCore } from 'shiki'
 	import { onMount } from 'svelte'
-
-	let err = $state('')
+	import { Previous, Debounced } from 'runed'
+	import { page } from '$app/stores'
+	import { replaceState } from '$app/navigation'
+	let err = $state()
 	// Math.sqrt(x*x + y*y) > (Math.cos(x + t) + 1) / 2 * 5  ? Math.random(x + t, y + t) * 0.3 : 1
-	let script = $state('(sin(t * 7) - t * i) / y')
+	let script = $state(
+		decodeURIComponent($page.url.hash).slice(1) ?? '(sin(t * 7) - t * i) / y'
+	)
+	$effect(() => {
+		window.location.hash = encodeURIComponent(debounced.current)
+	})
+
+	const debounced = new Debounced(() => script, 500)
+	const lastScript = new Previous(() => script)
 	let canvas: HTMLCanvasElement | undefined = $state()
 	let shiki: HighlighterCore | undefined = $state()
-	let highlighted = $derived.by(() =>
+	let highlighted = $derived(
 		!shiki
 			? ''
 			: shiki.codeToHtml(script, {
@@ -33,7 +43,6 @@
 	)
 
 	const size = 1000
-	let inputScript = $state()
 	onMount(async () => {
 		shiki = await createHighlighter({
 			themes: ['vesper'],
@@ -42,37 +51,42 @@
 		const ctx = canvas && canvas.getContext('2d')
 		if (!ctx) throw new Error('context not found')
 		sketch(ctx)
+	})
 
-		function sketch(ctx: CanvasRenderingContext2D) {
-			// $effect(() => console.log(script))
-			// should control size, color, and spacing
+	function sketch(ctx: CanvasRenderingContext2D) {
+		// $effect(() => console.log(script))
+		// should control size, color, and spacing
 
-			const gridSize = 12
-			const cellSize = size / gridSize
+		const gridSize = 12
+		const cellSize = size / gridSize
 
-			let t = $state(0)
-			const radius = cellSize * 0.44
+		let t = $state(0)
+		const radius = cellSize * 0.44
 
-			let animationFrameId: number
-			let lastFrame = 0
-			const FPS = 1000 / 30
+		let animationFrameId: number
+		let lastFrame = 0
+		const FPS = 1000 / 30
 
-			const animate = (time: number) => {
-				animationFrameId = requestAnimationFrame(animate)
-				if (time - lastFrame >= FPS) {
-					lastFrame = time
-					t = animationFrameId / 8
-					draw()
-				}
+		const animate = (time: number) => {
+			animationFrameId = requestAnimationFrame(animate)
+			if (time - lastFrame >= FPS) {
+				lastFrame = time
+				t = animationFrameId / 8
+				draw()
 			}
-			animate(0)
+		}
+		animate(0)
 
-			function draw() {
-				let i = 0
-				const inputScript = Function(
+		let last
+		function draw() {
+			let i = 0
+			let inputScript
+			try {
+				inputScript = Function(
 					's, x, y, i, t, Math',
 					`const { ${MATHS}} = Math;
-						let fn = () => ${script};
+				
+						let fn = () => ${debounced.current};
 						return fn(); `
 				)
 				for (let y = 0; y < gridSize; y++) {
@@ -83,7 +97,7 @@
 						let result
 						try {
 							result = inputScript(gridSize, x, y, i, t, Math)
-							console.info(result)
+							// console.info(result)
 							err = ''
 						} catch (e) {
 							console.error(e)
@@ -98,9 +112,13 @@
 					}
 					i++
 				}
+				last = inputScript
+			} catch (e) {
+				inputScript = last
+				err = e
 			}
 		}
-	})
+	}
 </script>
 
 <main>
