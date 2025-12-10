@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/multikey/v1",
+    "https://w3id.org/security/suites/secp256k1-2019/v1"
+  ],
+  "alsoKnownAs": [
+    "at://ibro.xyz"
+  ],
+  "id": "did:web:ibro.xyz",
+  "service": [
+    {
+      "id": "#atproto_pds",
+      "serviceEndpoint": "https://atp.same.supply",
+      "type": "AtprotoPersonalDataServer"
+    }
+  ],
+  "verificationMethod": [
+    {
+      "controller": "did:web:ibro.xyz",
+      "id": "did:web:ibro.xyz#signing",
+      "publicKeyMultibase": "zQ3shbapw4oKdmT7b5qBnNEVJ8mME4PPoFb763cBy52duuPot",
+      "type": "Multikey"
+    }
+  ]
+}
